@@ -209,7 +209,11 @@ document.addEventListener('DOMContentLoaded', () => {
             form_name: "Nom",
             form_email: "Email",
             form_message: "Message",
+            form_message: "Message",
             form_submit: "Envoyer",
+            form_success_msg: "Message envoyé ! Merci pour votre contact.",
+            form_error_msg: "Erreur lors de l'envoi. Veuillez réessayer.",
+            form_sent_btn: "✓ Envoyé",
 
             // --- ALL WEB PROJECTS TRANSLATIONS ---
             // Generic Buttons & Labels
@@ -426,7 +430,10 @@ document.addEventListener('DOMContentLoaded', () => {
             form_name: "Name",
             form_email: "Email",
             form_message: "Message",
-            form_submit: "Send"
+            form_submit: "Send",
+            form_success_msg: "Message sent! Thank you for contacting me.",
+            form_error_msg: "Error sending message. Please try again.",
+            form_sent_btn: "✓ Sent"
         }
     };
 
@@ -495,4 +502,76 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
+    // --- Contact Form Handling ---
+    const contactForm = document.querySelector('.contact-form');
+    if (contactForm) {
+        const submitBtn = document.querySelector('.form-submit');
+        const notification = document.getElementById('notification');
+        // Store the key to restore text properly based on current lang
+        const defaultBtnRef = submitBtn.getAttribute('data-i18n');
+
+        const showToast = (message, isError = false) => {
+            notification.innerText = message;
+            notification.style.background = isError ? '#ff4d4d' : 'var(--text-primary)';
+            notification.style.color = isError ? '#fff' : 'var(--bg-color)';
+            notification.classList.add('show');
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 4000);
+        };
+
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            // Set Loading State
+            submitBtn.disabled = true;
+            submitBtn.style.opacity = '0.7';
+            submitBtn.style.cursor = 'wait';
+
+            const formData = new FormData(contactForm);
+
+            try {
+                const response = await fetch(contactForm.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: { 'Accept': 'application/json' }
+                });
+
+                if (response.ok) {
+                    // Success Feedback
+                    const successMsg = i18n[currentLang].form_success_msg || "Message envoyé !";
+                    showToast(successMsg);
+
+                    // Button Success State
+                    submitBtn.innerText = i18n[currentLang].form_sent_btn || "✓ Envoyé";
+                    submitBtn.style.background = '#4CAF50';
+                    submitBtn.style.color = '#fff';
+                    submitBtn.style.borderColor = '#4CAF50';
+
+                    contactForm.reset();
+
+                    // Reset button after 3 seconds
+                    setTimeout(() => {
+                        // Restore original text based on current language and key
+                        const originalText = i18n[currentLang][defaultBtnRef] || "Envoyer";
+                        submitBtn.innerText = originalText;
+
+                        submitBtn.style.background = 'var(--text-primary)';
+                        submitBtn.style.color = 'var(--bg-color)';
+                        submitBtn.disabled = false;
+                        submitBtn.style.opacity = '1';
+                        submitBtn.style.cursor = 'pointer';
+                    }, 3000);
+                } else {
+                    throw new Error('Erreur réseau');
+                }
+            } catch (error) {
+                const errorMsg = i18n[currentLang].form_error_msg || "Erreur...";
+                showToast(errorMsg, true);
+                submitBtn.disabled = false;
+                submitBtn.style.opacity = '1';
+                submitBtn.style.cursor = 'pointer';
+            }
+        });
+    }
 });
