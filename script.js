@@ -244,8 +244,8 @@ document.addEventListener('DOMContentLoaded', () => {
             avia_imp: "Le site est un peu lourd. J'aurais dû mieux optimiser les assets dès le départ et utiliser moins de plugins.",
 
             // Creative Portfolio
-            port_title: "Creative Portfolio",
-            port_lead: "Ce site. Une vitrine de mon identité numérique, mettant l'accent sur les micro-interactions, la typographie et l'accessibilité.",
+            port_title: "Réservation Universitaire",
+            port_lead: "Conception d'une plateforme web pour la gestion des prêts de matériel en université. Le système orchestre un flux de réservation complexe et sécurise les accès grâce à une architecture multi-rôles distincte pour les étudiants, enseignants, agents techniques et administrateurs.",
             res_title: "Réservation Universitaire",
             res_obj: "Digitaliser l'ancien système papier de réservation de salles. Le but était de réduire les conflits d'horaires et de simplifier la vie administrative.",
             res_learn: "Ce projet m'a appris la rigueur de la conception de base de données (MCD/MLD) et l'importance de sécuriser les formulaires contre les injections SQL.",
@@ -308,8 +308,8 @@ document.addEventListener('DOMContentLoaded', () => {
             avia_imp: "The site is a bit heavy. I should have optimized assets better from the start and used fewer plugins.",
 
             // Creative Portfolio
-            port_title: "Creative Portfolio",
-            port_lead: "This site. A showcase of my digital identity, focusing on micro-interactions, typography, and accessibility.",
+            port_title: "University Booking",
+            port_lead: "Designed and developed a web platform for university equipment loan management. The system orchestrates a complex reservation workflow and secures access through a distinct multi-role architecture for students, faculty, technical agents, and administrators.",
             res_title: "University Booking",
             res_obj: "Digitize the old paper room booking system. The goal was to reduce schedule conflicts and simplify administrative life.",
             res_learn: "This project taught me database design rigor (CDM/LDM) and the importance of securing forms against SQL injections.",
