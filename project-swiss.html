@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swiss Focus - Enzo</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    <style>
+        .mag-header {
+            padding-bottom: 3rem;
+            text-align: center;
+        }
+
+        /* --- Project Meta --- */
+        .project-meta {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 2rem 0;
+            margin: 4rem 0 6rem 0;
+            text-align: center;
+        }
+
+        .meta-item h4 {
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            margin-bottom: 0.5rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .meta-item p {
+            font-size: 1rem;
+            font-weight: 500;
+        }
+
+        /* --- Magazine Carousel (Neon Style) --- */
+        .mag-showcase {
+            display: flex;
+            gap: 2rem;
+            overflow-x: auto;
+            padding: 4rem 4rem;
+            perspective: 1000px;
+            scrollbar-width: none;
+        }
+
+        .mag-showcase::-webkit-scrollbar {
+            display: none;
+        }
+
+        .mag-page {
+            height: 500px;
+            width: auto;
+            flex-shrink: 0;
+            background: transparent;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform: rotateY(-15deg) scale(0.9);
+            transform-origin: center left;
+            cursor: pointer;
+        }
+
+        .mag-page:hover {
+            transform: rotateY(0) scale(1);
+            z-index: 100;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.5);
+            margin: 0 2rem;
+        }
+
+        .mag-page img {
+            height: 100%;
+            width: auto;
+            display: block;
+            border-radius: 4px;
+        }
+
+        /* --- Analysis Sections --- */
+        .analysis-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 8rem;
+            align-items: center;
+        }
+
+        .analysis-section.alt {
+            direction: rtl;
+        }
+
+        .analysis-section.alt .analysis-text {
+            direction: ltr;
+        }
+
+        .analysis-img {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid var(--border-color);
+        }
+
+        .analysis-img img {
+            width: 100%;
+            display: block;
+            transition: 0.5s var(--easing);
+        }
+
+        .analysis-img:hover img {
+            transform: scale(1.05);
+        }
+
+        .analysis-text h3 {
+            font-family: var(--font-heading);
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+        }
+
+        .analysis-text p {
+            color: var(--text-secondary);
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* --- Lightbox --- */
+        .lightbox {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s var(--easing);
+        }
+
+        .lightbox.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+
+        .lightbox img {
+            max-width: 85%;
+            max-height: 85vh;
+            border-radius: 4px;
+            box-shadow: 0 0 50px rgba(0, 0, 0, 0.5);
+            transform: scale(0.9);
+            transition: transform 0.4s var(--easing);
+        }
+
+        .lightbox.active img {
+            transform: scale(1);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 2rem;
+            right: 2rem;
+            color: #fff;
+            font-size: 2rem;
+            cursor: pointer;
+            background: none;
+            border: none;
+            z-index: 2002;
+        }
+
+        .lightbox-nav {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: white;
+            font-size: 3rem;
+            cursor: pointer;
+            padding: 2rem;
+            transition: 0.3s;
+            z-index: 2001;
+        }
+
+        .lightbox-nav:hover {
+            opacity: 0.7;
+        }
+
+        .lightbox-prev {
+            left: 2rem;
+        }
+
+        .lightbox-next {
+            right: 2rem;
+        }
+
+        .next-project-card {
+            border: 1px solid var(--border-color);
+            padding: 3rem;
+            display: block;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: 0.3s;
+        }
+
+        .next-project-card:hover {
+            background: var(--card-bg);
+            border-color: var(--text-primary);
+        }
+
+        @media (max-width: 768px) {
+            .analysis-section {
+                grid-template-columns: 1fr;
+                direction: ltr !important;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+
+    <nav>
+        <a href="index.html" class="logo">Enzo.</a>
+        <div class="nav-links">
+            <a href="about.html" data-i18n="nav_story">Parcours</a>
+            <a href="projects.html" data-i18n="nav_work">Travaux</a>
+            <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-btn">FR</button>
+            <div class="sep"></div>
+            <button class="theme-toggle" id="theme-btn" title="Changer de thème">
+
+                <span id="theme-icon">☾</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <article class="container">
+            <div class="mag-header">
+                <span class="tag" data-i18n="tag_editorial">INFLUENCE N°3</span>
+                <h1 style="margin-top: 1rem; font-size: clamp(2.5rem, 8vw, 8rem); line-height: 1.1;">
+                    Intemporal<br>Pieces</h1>
+                <p class="lead" style="margin: 0 auto;" data-i18n="mag_neon_lead">Un magazine explorant des icones de la
+                    culture hip-hop et les pieces qui ont fait de eux des légendes.
+                </p>
+            </div>
+
+            <div class="mag-showcase" id="magShowcase">
+                <!-- Using images from influence3 -->
+                <div class="mag-page"><img src="influence3/influence3-01.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-02.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-03.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-04.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-05.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-06.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-07.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-08.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-09.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-10.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-11.png"></div>
+                <div class="mag-page"><img src="influence3/influence3-12.png"></div>
+            </div>
+
+            <!-- Controls -->
+            <div class="mag-controls" style="display: flex; gap: 1rem; justify-content: center; margin: 1rem 0 6rem 0;">
+                <button id="scrollLeft"
+                    style="background: none; border: 1px solid var(--border-color); color: var(--text-primary); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s;">←</button>
+                <div style="font-family: var(--font-mono); font-size: 0.8rem; display: flex; align-items: center; opacity: 0.6;"
+                    data-i18n="scroll_explore">
+                    SCROLL TO EXPLORE</div>
+                <button id="scrollRight"
+                    style="background: none; border: 1px solid var(--border-color); color: var(--text-primary); width: 50px; height: 50px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: 0.3s;">→</button>
+            </div>
+
+            <!-- Meta -->
+            <div class="project-meta">
+                <div class="meta-item">
+                    <h4 data-i18n="label_role">Rôle</h4>
+                    <p>Graphic Designer</p>
+                </div>
+                <div class="meta-item">
+                    <h4 data-i18n="label_year">Année</h4>
+                    <p>2025</p>
+                </div>
+                <div class="meta-item">
+                    <h4 data-i18n="label_tools">Outils</h4>
+                    <p>InDesign, Illustrator, Photoshop, Behance</p>
+                </div>
+            </div>
+
+            <!-- Analysis Section 1 -->
+            <section class="analysis-section">
+                <div class="analysis-img">
+                    <img src="influence3/influence3-01.png" alt="Swiss Style Cover">
+                </div>
+                <div class="analysis-text">
+                    <span class="tag" style="margin-bottom: 1rem; display:inline-block;">Philosophy</span>
+                    <h3 data-i18n="type_analysis_title">Le Style International</h3>
+                    <p data-i18n="type_analysis_text">
+                        Hommage aux maîtres suisses. Utilisation exclusive d'une seule famille typographique
+                        et d'une grille modulaire stricte pour atteindre une clarté objective.
+                    </p>
+                </div>
+            </section>
+
+            <!-- Analysis Section 2 (Alt) -->
+            <section class="analysis-section alt">
+                <div class="analysis-img">
+                    <img src="influence3/influence3-05.png" alt="Grid System">
+                </div>
+                <div class="analysis-text">
+                    <span class="tag" style="margin-bottom: 1rem; display:inline-block;">Constraint</span>
+                    <h3 data-i18n="type_grid_title">Système & Rigueur</h3>
+                    <p data-i18n="type_grid_text">
+                        Chaque élément est ancré. L'espace blanc n'est pas vide, il est actif.
+                        Il définit la structure autant que le texte lui-même.
+                    </p>
+                </div>
+            </section>
+
+            <div style="margin-top: 6rem; text-align: center;">
+                <a href="contact.html" class="btn-action primary">Me Contacter</a>
+            </div>
+
+            <!-- Navigation Next -->
+            <hr style="border-color: var(--border-color); margin: 4rem 0;">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 2rem;">
+                <a href="projects-editorial.html" class="next-project-card">
+                    <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);"
+                        data-i18n="back_select">← BACK</span>
+                    <h3 style="margin-top: 0.5rem;" data-i18n="mag_select_title">Sélection</h3>
+                </a>
+                <a href="project-neon.html" class="next-project-card" style="text-align: right;">
+                    <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);"
+                        data-i18n="nav_next_edition">NEXT
+                        EDITION</span>
+                    <h3 style="margin-top: 0.5rem;">Neon Editorial →</h3>
+                </a>
+            </div>
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <section id="contact-footer" style="padding: 4rem 0;">
+        <div class="container contact-wrapper">
+            <div
+                style="margin-top: 6rem; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <div style="display:flex; gap: 2rem; align-items: center;">
+                    <a href="cv/CV_Enzo_Abdi.pdf" download class="btn-download" data-i18n="footer_cv">Télécharger CV</a>
+                    <a href="https://www.linkedin.com/in/abdienzo/" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">LINKEDIN</a>
+                    <a href="https://github.com/zoaavela" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">GITHUB</a>
+                    <button class="footer-lang-btn" id="footer-lang-btn">Switch to English</button>
+                </div>
+                <div>© 2025 ENZO</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+
+    <!-- Lightbox Element -->
+    <div class="lightbox" id="lightbox">
+        <button class="lightbox-close">&times;</button>
+        <button class="lightbox-nav lightbox-prev">&lsaquo;</button>
+        <button class="lightbox-nav lightbox-next">&rsaquo;</button>
+        <img src="" id="lightbox-img" alt="Fullscreen View">
+    </div>
+
+    <script>
+        // Lightbox Logic with Navigation
+        const contentImages = Array.from(document.querySelectorAll('.mag-page img, .analysis-img img'));
+        const lightbox = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const closeBtn = document.querySelector('.lightbox-close');
+        const prevBtn = document.querySelector('.lightbox-nav.lightbox-prev');
+        const nextBtn = document.querySelector('.lightbox-nav.lightbox-next');
+
+        let currentIndex = 0;
+
+        const updateLightboxImage = (index) => {
+            if (index < 0) index = contentImages.length - 1;
+            if (index >= contentImages.length) index = 0;
+            currentIndex = index;
+            lightboxImg.src = contentImages[currentIndex].getAttribute('src');
+        };
+
+        contentImages.forEach((img, index) => {
+            img.parentElement.addEventListener('click', (e) => {
+                currentIndex = contentImages.indexOf(img);
+                updateLightboxImage(currentIndex);
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+            img.addEventListener('click', (e) => {
+                e.stopPropagation();
+                currentIndex = index;
+                updateLightboxImage(currentIndex);
+                lightbox.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        const closeLightbox = () => {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        };
+
+        closeBtn.addEventListener('click', closeLightbox);
+
+        lightbox.addEventListener('click', (e) => {
+            if (e.target === lightbox) closeLightbox();
+        });
+
+        document.addEventListener('keydown', (e) => {
+            if (!lightbox.classList.contains('active')) return;
+            if (e.key === 'Escape') closeLightbox();
+            if (e.key === 'ArrowLeft') updateLightboxImage(currentIndex - 1);
+            if (e.key === 'ArrowRight') updateLightboxImage(currentIndex + 1);
+        });
+
+        prevBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateLightboxImage(currentIndex - 1);
+        });
+
+        nextBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            updateLightboxImage(currentIndex + 1);
+        });
+
+
+        // Mag Showcase Scroll Logic
+        const showcase = document.getElementById('magShowcase');
+        const scrollLeftBtn = document.getElementById('scrollLeft');
+        const scrollRightBtn = document.getElementById('scrollRight');
+
+        if (scrollLeftBtn && scrollRightBtn) {
+            scrollLeftBtn.addEventListener('click', () => {
+                showcase.scrollBy({ left: -400, behavior: 'smooth' });
+            });
+            scrollRightBtn.addEventListener('click', () => {
+                showcase.scrollBy({ left: 400, behavior: 'smooth' });
+            });
+        }
+
+        showcase.addEventListener('wheel', (evt) => {
+            evt.preventDefault();
+            showcase.scrollLeft += evt.deltaY;
+        });
+    </script>
+</body>
+
+</html>

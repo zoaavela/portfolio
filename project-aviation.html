@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club D'Aviation - Enzo</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    <style>
+        .project-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            min-width: 160px;
+        }
+
+        .btn-action:hover {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border-color: var(--text-primary);
+        }
+
+        .btn-action.primary {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border-color: var(--text-primary);
+        }
+
+        .btn-action.primary:hover {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .preview-container {
+            width: 100%;
+            height: 500px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            margin-top: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .preview-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+
+    <nav>
+        <a href="index.html" class="logo">Enzo.</a>
+        <div class="nav-links">
+            <a href="about.html" data-i18n="nav_story">Parcours</a>
+            <a href="projects.html" data-i18n="nav_work">Travaux</a>
+            <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-btn">FR</button>
+            <div class="sep"></div>
+            <button class="theme-toggle" id="theme-btn" title="Changer de thème">
+
+                <span id="theme-icon">☾</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <article class="container">
+            <!-- Header -->
+            <div class="project-header">
+                <span class="tag" style="font-family: var(--font-mono); color: var(--text-secondary);">WEB DEVELOPMENT /
+                    IDENTITY</span>
+                <h1 style="font-size: clamp(3rem, 6vw, 5rem); margin: 1rem 0;" data-i18n="avia_title">Club D'Aviation
+                </h1>
+                <p class="lead" style="margin: 0 auto; max-width: 600px;" data-i18n="avia_lead">
+                    Une refonte complète de l'identité numérique d'un aéroclub, reliant tradition aéronautique et design
+                    moderne.
+                </p>
+
+                <!-- Actions -->
+                <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center;">
+                    <a href="https://github.com/zoaavela/airclub-website" class="btn-action primary"
+                        data-i18n="btn_code">Code Source</a>
+                    <a href="https://zoaavela.github.io/airclub-website/" class="btn-action" data-i18n="btn_live">Voir
+                        le site</a>
+                </div>
+            </div>
+
+
+            <!-- Details -->
+            <div
+                style="margin-top: 4rem; display: grid; grid-template-columns: repeat(2, 1fr); gap: 4rem; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+
+                <!-- Project: Club Aviation -->
+                <div style="grid-column: span 2;">
+                    <h2 style="margin-bottom: 2rem;" data-i18n="stat_projects">Le Projet</h2>
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4rem;">
+                        <div>
+                            <h4 style="font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.85rem;"
+                                data-i18n="lbl_objectives">
+                                Objectifs</h4>
+                            <p style="margin-bottom: 1.5rem;" data-i18n="avia_obj">Moderniser l'image vieillissante d'un
+                                club amateur pour
+                                attirer une audience plus jeune et faciliter les inscriptions aux baptêmes de l'air.</p>
+
+                            <h4 style="font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.85rem;"
+                                data-i18n="lbl_stack">
+                                Stack</h4>
+                            <p>WordPress, Elementor Pro, CSS Custom.</p>
+                        </div>
+                        <div>
+                            <h4 style="font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.85rem;"
+                                data-i18n="lbl_learning">
+                                Apprentissage</h4>
+                            <p style="margin-bottom: 1.5rem;" data-i18n="avia_learn">J'ai découvert la réalité de la
+                                relation client : traduire
+                                des besoins vagues en solutions techniques concrètes. J'ai aussi appris à hacker
+                                WordPress pour sortir des templates standards.</p>
+
+                            <h4 style="font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 0.5rem; text-transform: uppercase; font-size: 0.85rem;"
+                                data-i18n="lbl_improvements">
+                                Améliorations</h4>
+                            <p data-i18n="avia_imp">Le site est un peu lourd. J'aurais dû mieux optimiser les assets dès
+                                le départ et
+                                utiliser moins de plugins.</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div style="margin-top: 6rem; text-align: center;">
+                <a href="contact.html" class="btn-action primary" data-i18n="btn_contact_me">Me Contacter</a>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <a href="projects.html"
+                    style="color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono);"
+                    data-i18n="back_projects">← Retour
+                    aux projets</a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <section id="contact-footer" style="padding: 4rem 0;">
+        <div class="container contact-wrapper">
+            <div
+                style="margin-top: 6rem; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <div style="display:flex; gap: 2rem; align-items: center;">
+                    <a href="cv/CV_Enzo_Abdi.pdf" download class="btn-download" data-i18n="footer_cv">Télécharger CV</a>
+                    <a href="https://www.linkedin.com/in/abdienzo/" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">LINKEDIN</a>
+                    <a href="https://github.com/zoaavela" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">GITHUB</a>
+                    <button class="footer-lang-btn" id="footer-lang-btn">Switch to English</button>
+                </div>
+                <div>© 2025 ENZO</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

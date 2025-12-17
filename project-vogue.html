@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vogue Analytics - Enzo</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    <style>
+        .project-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            min-width: 160px;
+        }
+
+        .btn-action:hover {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border-color: var(--text-primary);
+        }
+
+        .btn-action.primary {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border-color: var(--text-primary);
+        }
+
+        .btn-action.primary:hover {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .preview-container {
+            width: 100%;
+            /* height: 500px; REMOVED to show full code */
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            margin-top: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+
+    <nav>
+        <a href="index.html" class="logo">Enzo.</a>
+        <div class="nav-links">
+            <a href="about.html" data-i18n="nav_story">Parcours</a>
+            <a href="projects.html" data-i18n="nav_work">Travaux</a>
+            <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-btn">FR</button>
+            <div class="sep"></div>
+            <button class="theme-toggle" id="theme-btn" title="Changer de thème">
+
+                <span id="theme-icon">☾</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <article class="container">
+            <!-- Header -->
+            <div class="project-header">
+                <span class="tag" style="font-family: var(--font-mono); color: var(--text-secondary);">DATA
+                    PREVIEW</span>
+                <h1 style="font-size: clamp(3rem, 6vw, 5rem); margin: 1rem 0;" data-i18n="vogue_title">Vogue Analytics
+                </h1>
+                <p class="lead" style="margin: 0 auto; max-width: 600px;" data-i18n="vogue_lead">
+                    Une exploration approfondie des données de mode, visualisée avec D3.js pour révéler les cycles de
+                    tendances.
+                </p>
+
+                <!-- Actions -->
+                <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center;">
+                    <a href="https://github.com/zoaavela" target="_blank" class="btn-action primary"
+                        data-i18n="btn_code">Code Source</a>
+                    <a href="#" target="_blank" class="btn-action" data-i18n="btn_live">Voir le site</a>
+                </div>
+            </div>
+
+            <!-- Code Editor Mockup -->
+            <div class="preview-container"
+                style="display: flex; flex-direction: column; padding: 0; align-items: stretch; background: #1e1e1e; border: 1px solid #333;">
+
+                <!-- Mock Window Header -->
+                <div
+                    style="background: #252526; padding: 0.8rem 1rem; display: flex; align-items: center; border-bottom: 1px solid #333;">
+                    <div style="display: flex; gap: 8px;">
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></div>
+                    </div>
+                    <span
+                        style="margin-left: 1rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #888;">quiz_game.py
+                        — Python</span>
+                </div>
+
+                <!-- Editor Body -->
+                <div style="display: flex;">
+                    <!-- Line Numbers -->
+                    <div
+                        style="padding: 1rem 0.5rem; background: #1e1e1e; color: #555; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-align: right; user-select: none; border-right: 1px solid #333;">
+                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70
+                    </div>
+
+                    <!-- Code Area -->
+                    <div style="flex: 1; padding: 1rem;">
+                        <pre style="margin: 0;"><code style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #d4d4d4; line-height: 1.5;">
+<span style="color: #c586c0;">import</span> os
+
+<span style="color: #6a9955;"># Configuration du jeu</span>
+QUESTIONS = [
+    {
+        <span style="color: #ce9178;">"question"</span>: <span style="color: #ce9178;">"Quelle est la capitale de la France ?"</span>,
+        <span style="color: #ce9178;">"options"</span>: [<span style="color: #ce9178;">"A. Lyon"</span>, <span style="color: #ce9178;">"B. Marseille"</span>, <span style="color: #ce9178;">"C. Paris"</span>],
+        <span style="color: #ce9178;">"reponse"</span>: <span style="color: #ce9178;">"C"</span>
+    },
+    {
+        <span style="color: #ce9178;">"question"</span>: <span style="color: #ce9178;">"Combien font 5 x 5 ?"</span>,
+        <span style="color: #ce9178;">"options"</span>: [<span style="color: #ce9178;">"A. 10"</span>, <span style="color: #ce9178;">"B. 25"</span>, <span style="color: #ce9178;">"C. 55"</span>],
+        <span style="color: #ce9178;">"reponse"</span>: <span style="color: #ce9178;">"B"</span>
+    },
+    {
+        <span style="color: #ce9178;">"question"</span>: <span style="color: #ce9178;">"Quel langage utilise-t-on pour le Web (Front-end) ?"</span>,
+        <span style="color: #ce9178;">"options"</span>: [<span style="color: #ce9178;">"A. Python"</span>, <span style="color: #ce9178;">"B. JavaScript"</span>, <span style="color: #ce9178;">"C. C++"</span>],
+        <span style="color: #ce9178;">"reponse"</span>: <span style="color: #ce9178;">"B"</span>
+    }
+]
+
+FICHIER_SCORE = <span style="color: #ce9178;">"meilleur_score.txt"</span>
+
+<span style="color: #569cd6;">def</span> <span style="color: #dcdcaa;">charger_meilleur_score</span>():
+    <span style="color: #ce9178;">"""Lit le fichier pour trouver le record actuel."""</span>
+    <span style="color: #c586c0;">if</span> os.path.exists(FICHIER_SCORE):
+        <span style="color: #c586c0;">with</span> <span style="color: #dcdcaa;">open</span>(FICHIER_SCORE, <span style="color: #ce9178;">"r"</span>) <span style="color: #c586c0;">as</span> f:
+            <span style="color: #c586c0;">try</span>:
+                <span style="color: #c586c0;">return</span> <span style="color: #4ec9b0;">int</span>(f.read())
+            <span style="color: #c586c0;">except</span> <span style="color: #4ec9b0;">ValueError</span>:
+                <span style="color: #c586c0;">return</span> <span style="color: #b5cea8;">0</span>
+    <span style="color: #c586c0;">return</span> <span style="color: #b5cea8;">0</span>
+
+<span style="color: #569cd6;">def</span> <span style="color: #dcdcaa;">sauvegarder_score</span>(nouveau_score):
+    <span style="color: #ce9178;">"""Ecrase le fichier avec le nouveau record."""</span>
+    <span style="color: #c586c0;">with</span> <span style="color: #dcdcaa;">open</span>(FICHIER_SCORE, <span style="color: #ce9178;">"w"</span>) <span style="color: #c586c0;">as</span> f:
+        f.write(<span style="color: #4ec9b0;">str</span>(nouveau_score))
+
+<span style="color: #569cd6;">def</span> <span style="color: #dcdcaa;">lancer_jeu</span>():
+    score = <span style="color: #b5cea8;">0</span>
+    record_actuel = charger_meilleur_score()
+
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"\n--- BIENVENUE DANS LE QUIZ MASTER ---"</span>)
+    <span style="color: #dcdcaa;">print</span>(f<span style="color: #ce9178;">"Record à battre : {record_actuel} points\n"</span>)
+
+    <span style="color: #c586c0;">for</span> i, q <span style="color: #c586c0;">in</span> <span style="color: #dcdcaa;">enumerate</span>(QUESTIONS):
+        <span style="color: #dcdcaa;">print</span>(f<span style="color: #ce9178;">"Question {i + 1} : {q['question']}"</span>)
+        
+        <span style="color: #c586c0;">for</span> option <span style="color: #c586c0;">in</span> q[<span style="color: #ce9178;">'options'</span>]:
+            <span style="color: #dcdcaa;">print</span>(option)
+        
+        reponse_user = <span style="color: #dcdcaa;">input</span>(<span style="color: #ce9178;">"Votre réponse (A, B ou C) : "</span>).upper()
+
+        <span style="color: #c586c0;">if</span> reponse_user == q[<span style="color: #ce9178;">'reponse'</span>]:
+            <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"Bonne réponse !\n"</span>)
+            score += <span style="color: #b5cea8;">1</span>
+        <span style="color: #c586c0;">else</span>:
+            <span style="color: #dcdcaa;">print</span>(f<span style="color: #ce9178;">"Mauvaise réponse. C'était la {q['reponse']}.\n"</span>)
+
+    <span style="color: #dcdcaa;">print</span>(f<span style="color: #ce9178;">"--- TERMINÉ ! VOTRE SCORE : {score}/{len(QUESTIONS)} ---"</span>)
+
+    <span style="color: #6a9955;"># Mise à jour du record si nécessaire</span>
+    <span style="color: #c586c0;">if</span> score > record_actuel:
+        <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"INCROYABLE ! NOUVEAU RECORD ENREGISTRÉ !"</span>)
+        sauvegarder_score(score)
+    <span style="color: #c586c0;">else</span>:
+        <span style="color: #dcdcaa;">print</span>(f<span style="color: #ce9178;">"Dommage, le record reste à {record_actuel}."</span>)
+
+<span style="color: #c586c0;">if</span> __name__ == <span style="color: #ce9178;">"__main__"</span>:
+    lancer_jeu()
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Details -->
+            <div
+                style="margin-top: 4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; border-top: 1px solid var(--border-color); padding-top: 2rem; text-align: center;">
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="lbl_stack">Stack</h3>
+                    <p style="color: var(--text-secondary);">D3.js, React, Python (Pandas)</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="lbl_source">Data Source</h3>
+                    <p style="color: var(--text-secondary);">Vogue Runway Archive</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="label_year">Year</h3>
+                    <p style="color: var(--text-secondary);">2024</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 6rem; text-align: center;">
+                <a href="contact.html" class="btn-action primary" data-i18n="btn_contact_me">Me Contacter</a>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <a href="projects.html"
+                    style="color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono);"
+                    data-i18n="back_projects">← Retour aux projets</a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <section id="contact-footer" style="padding: 4rem 0;">
+        <div class="container contact-wrapper">
+            <div
+                style="margin-top: 6rem; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <div style="display:flex; gap: 2rem; align-items: center;">
+                    <a href="cv/CV_Enzo_Abdi.pdf" download class="btn-download" data-i18n="footer_cv">Télécharger CV</a>
+                    <a href="https://www.linkedin.com/in/abdienzo/" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">LINKEDIN</a>
+                    <a href="https://github.com/zoaavela" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">GITHUB</a>
+                    <button class="footer-lang-btn" id="footer-lang-btn">Switch to English</button>
+                </div>
+                <div>© 2025 ENZO</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cyber Dashboard - Enzo</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    <style>
+        .project-header {
+            padding: 8rem 0 4rem;
+            text-align: center;
+        }
+
+        .btn-action {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border: 1px solid var(--border-color);
+            border-radius: 50px;
+            text-decoration: none;
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            transition: 0.3s;
+            min-width: 160px;
+        }
+
+        .btn-action:hover {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border-color: var(--text-primary);
+        }
+
+        .btn-action.primary {
+            background: var(--text-primary);
+            color: var(--bg-color);
+            border-color: var(--text-primary);
+        }
+
+        .btn-action.primary:hover {
+            background: transparent;
+            color: var(--text-primary);
+        }
+
+        .preview-container {
+            width: 100%;
+            /* height: 500px; REMOVED to show full code */
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            margin-top: 4rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+
+    <nav>
+        <a href="index.html" class="logo">Enzo.</a>
+        <div class="nav-links">
+            <a href="about.html" data-i18n="nav_story">Parcours</a>
+            <a href="projects.html" data-i18n="nav_work">Travaux</a>
+            <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-btn">FR</button>
+            <div class="sep"></div>
+            <button class="theme-toggle" id="theme-btn" title="Changer de thème">
+
+                <span id="theme-icon">☾</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <article class="container">
+            <!-- Header -->
+            <div class="project-header">
+                <span class="tag" style="font-family: var(--font-mono); color: var(--text-secondary);">SECURITY</span>
+                <h1 style="font-size: clamp(3rem, 6vw, 5rem); margin: 1rem 0;" data-i18n="cyber_title">Générateur de
+                    Mots de Passe
+                </h1>
+                <p class="lead" style="margin: 0 auto; max-width: 600px;" data-i18n="cyber_lead">
+                    Un tableau de bord de surveillance en temps réel pour analyser les flux réseaux et détecter les
+                    anomalies de sécurité.
+                </p>
+
+                <!-- Actions -->
+                <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center;">
+                    <a href="https://github.com/zoaavela" target="_blank" class="btn-action primary"
+                        data-i18n="btn_code">Code Source</a>
+                </div>
+            </div>
+
+            <!-- Code Editor Mockup -->
+            <div class="preview-container"
+                style="display: flex; flex-direction: column; padding: 0; align-items: stretch; background: #1e1e1e; border: 1px solid #333;">
+
+                <!-- Mock Window Header -->
+                <div
+                    style="background: #252526; padding: 0.8rem 1rem; display: flex; align-items: center; border-bottom: 1px solid #333;">
+                    <div style="display: flex; gap: 8px;">
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ff5f56;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #ffbd2e;"></div>
+                        <div style="width: 12px; height: 12px; border-radius: 50%; background: #27c93f;"></div>
+                    </div>
+                    <span
+                        style="margin-left: 1rem; font-family: 'Inter', sans-serif; font-size: 0.8rem; color: #888;">password_gen.py
+                        — Python</span>
+                </div>
+
+                <!-- Editor Body -->
+                <div style="display: flex;">
+                    <!-- Line Numbers -->
+                    <div
+                        style="padding: 1rem 0.5rem; background: #1e1e1e; color: #555; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; text-align: right; user-select: none; border-right: 1px solid #333;">
+                        1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37
+                    </div>
+
+                    <!-- Code Area -->
+                    <div style="flex: 1; padding: 1rem;">
+                        <pre style="margin: 0;"><code style="font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; color: #d4d4d4; line-height: 1.5;">
+<span style="color: #c586c0;">import</span> random
+<span style="color: #c586c0;">import</span> string
+
+<span style="color: #569cd6;">def</span> <span style="color: #dcdcaa;">generer_mot_de_passe</span>(longueur, inclure_symboles):
+    <span style="color: #ce9178;">"""
+    Génère une chaîne aléatoire robuste basée sur les critères.
+    """</span>
+    caracteres = string.ascii_letters + string.digits
+    
+    <span style="color: #c586c0;">if</span> inclure_symboles:
+        caracteres += <span style="color: #ce9178;">"!@#$%^&*"</span>
+
+    <span style="color: #c586c0;">return</span> <span style="color: #ce9178;">""</span>.join(random.choice(caracteres) <span style="color: #c586c0;">for</span> _ <span style="color: #c586c0;">in</span> range(longueur))
+
+<span style="color: #569cd6;">def</span> <span style="color: #dcdcaa;">lancer_programme</span>():
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"--- GÉNÉRATEUR DE MOTS DE PASSE ---"</span>)
+
+    <span style="color: #c586c0;">while</span> <span style="color: #569cd6;">True</span>:
+        <span style="color: #c586c0;">try</span>:
+            longueur = <span style="color: #4ec9b0;">int</span>(<span style="color: #dcdcaa;">input</span>(<span style="color: #ce9178;">"Longueur du mot de passe (min 4) : "</span>))
+            <span style="color: #c586c0;">if</span> longueur >= <span style="color: #b5cea8;">4</span>:
+                <span style="color: #c586c0;">break</span>
+            <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"Erreur : La longueur doit être d'au moins 4."</span>)
+        <span style="color: #c586c0;">except</span> <span style="color: #4ec9b0;">ValueError</span>:
+            <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"Erreur : Veuillez entrer un nombre valide."</span>)
+
+    reponse = <span style="color: #dcdcaa;">input</span>(<span style="color: #ce9178;">"Inclure des symboles spéciaux ? (o/n) : "</span>).lower()
+    avec_symboles = (reponse == <span style="color: #ce9178;">'o'</span>)
+
+    pwd = generer_mot_de_passe(longueur, avec_symboles)
+
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"\n"</span> + <span style="color: #ce9178;">"-"</span> * <span style="color: #b5cea8;">30</span>)
+    <span style="color: #dcdcaa;">print</span>(f<span style="color: #ce9178;">"Résultat : {pwd}"</span>)
+    <span style="color: #dcdcaa;">print</span>(<span style="color: #ce9178;">"-"</span> * <span style="color: #b5cea8;">30</span>)
+
+<span style="color: #c586c0;">if</span> __name__ == <span style="color: #ce9178;">"__main__"</span>:
+    lancer_programme()
+                        </code></pre>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Details -->
+            <div
+                style="margin-top: 4rem; display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; border-top: 1px solid var(--border-color); padding-top: 2rem; text-align: center;">
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Stack</h3>
+                    <p style="color: var(--text-secondary);">Python</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="lbl_context">Context</h3>
+                    <p style="color: var(--text-secondary);" data-i18n="cyber_context_val">Password Generator</p>
+                </div>
+                <div>
+                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="label_year">Year</h3>
+                    <p style="color: var(--text-secondary);">2025</p>
+                </div>
+            </div>
+
+            <div style="margin-top: 6rem; text-align: center;">
+                <a href="contact.html" class="btn-action primary" data-i18n="btn_contact_me">Me Contacter</a>
+            </div>
+
+            <div style="margin-top: 4rem; text-align: center;">
+                <a href="projects.html"
+                    style="color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono);"
+                    data-i18n="back_projects">← Retour
+                    aux projets</a>
+            </div>
+
+        </article>
+    </main>
+
+    <!-- Footer -->
+    <section id="contact-footer" style="padding: 4rem 0;">
+        <div class="container contact-wrapper">
+            <div
+                style="margin-top: 6rem; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <div style="display:flex; gap: 2rem; align-items: center;">
+                    <a href="cv/CV_Enzo_Abdi.pdf" download class="btn-download" data-i18n="footer_cv">Télécharger CV</a>
+                    <a href="https://www.linkedin.com/in/abdienzo/" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">LINKEDIN</a>
+                    <a href="https://github.com/zoaavela" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">GITHUB</a>
+                    <button class="footer-lang-btn" id="footer-lang-btn">Switch to English</button>
+                </div>
+                <div>© 2025 ENZO</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

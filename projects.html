@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travaux - Enzo</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    <style>
+        .works-section {
+            margin-bottom: 6rem;
+        }
+
+        .works-cat-title {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border-color);
+            display: inline-block;
+            width: 100%;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        .works-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .work-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            overflow: hidden;
+            text-decoration: none;
+            color: var(--text-primary);
+            transition: 0.4s var(--easing);
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            aspect-ratio: 4/5;
+        }
+
+        .work-card:hover {
+            transform: translateY(-8px);
+            border-color: var(--text-primary);
+        }
+
+        .work-visual {
+            flex: 1;
+            background: var(--bg-color);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Generic Gradients for placeholders */
+        .g-neon {
+            background: linear-gradient(135deg, #FF0055, #000000);
+        }
+
+        .g-struct {
+            background: linear-gradient(135deg, #333, #000);
+        }
+
+        /* Monochrome */
+        .g-swiss {
+            background: linear-gradient(135deg, #FF4500, #F0F0F0);
+        }
+
+        /* Swiss Red/Whiteish */
+        .g-vogue {
+            background: linear-gradient(135deg, #e6007e, #000);
+        }
+
+        /* Vogue pink */
+        .g-cyber {
+            background: linear-gradient(135deg, #00ff99, #000);
+        }
+
+        /* Cyber green */
+        .g-ui {
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        /* Blue */
+        .g-port {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        /* Purple */
+        .g-data {
+            background: linear-gradient(135deg, #c4b5fd, #111);
+        }
+
+        .work-info {
+            padding: 1.5rem;
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .work-title {
+            font-family: var(--font-heading);
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.1;
+        }
+
+        .work-cat {
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            text-transform: uppercase;
+        }
+
+        .work-arrow {
+            font-size: 1.5rem;
+            opacity: 0.5;
+            transition: 0.3s;
+        }
+
+        .work-card:hover .work-arrow {
+            opacity: 1;
+            transform: translateX(5px);
+        }
+
+        /* Number badge */
+        .work-num {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 0.2rem 0.5rem;
+            border-radius: 4px;
+            backdrop-filter: blur(4px);
+            z-index: 10;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+
+    <nav>
+        <a href="index.html" class="logo">Enzo.</a>
+        <div class="nav-links">
+            <a href="about.html" data-i18n="nav_story">Parcours</a>
+            <a href="projects.html" class="active" data-i18n="nav_work">Travaux</a>
+            <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-btn">FR</button>
+            <div class="sep"></div>
+            <button class="theme-toggle" id="theme-btn" title="Changer de thème">
+                <span id="theme-icon">☾</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <div class="container">
+            <h1 style="margin-bottom: 1rem;" data-i18n="works_page_title">Réalisations.</h1>
+            <p class="lead" style="margin-left: 0; margin-bottom: 4rem;" data-i18n="works_page_lead">
+                Une vision globale de mes projets : design, data et expériences web.
+            </p>
+
+            <!-- DESIGN SECTION -->
+            <div class="works-section">
+                <h2 class="works-cat-title" data-i18n="work_cat_design">Design & Editorial</h2>
+                <div class="works-grid">
+                    <!-- 1. Neon Series -->
+                    <a href="project-neon.html" class="work-card">
+                        <div class="work-visual g-neon">
+                            <span class="work-num">01</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Intemporal Pieces</div>
+                                <div class="work-cat">Magazine / Design</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+
+                    <!-- 2. Structure & Void -->
+                    <a href="project-structure.html" class="work-card">
+                        <div class="work-visual g-struct">
+                            <span class="work-num">02</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Re-Up</div>
+                                <div class="work-cat">Magazine / Design</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+
+                    <!-- 3. Swiss Type -->
+                    <a href="project-swiss.html" class="work-card">
+                        <div class="work-visual g-swiss">
+                            <span class="work-num">03</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Nacré</div>
+                                <div class="work-cat">Magazine / Design</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+
+            <!-- WEB SECTION -->
+            <div class="works-section">
+                <h2 class="works-cat-title" data-i18n="work_cat_web">Web & Ecosystems</h2>
+                <div class="works-grid">
+                    <!-- System UI Kit -->
+                    <a href="project-tourist.html" class="work-card">
+                        <div class="work-visual g-ui">
+                            <span class="work-num">04</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Agence Touristique</div>
+                                <div class="work-cat">Web / Identity</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+
+                    <!-- Portfolio -->
+                    <a href="project-portfolio.html" class="work-card">
+                        <div class="work-visual g-port">
+                            <span class="work-num">05</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Réservation Universitaire</div>
+                                <div class="work-cat">Web / Identity</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+
+                    <a href="project-aviation.html" class="work-card">
+                        <div class="work-visual g-port">
+                            <span class="work-num">06</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Club D'Aviation</div>
+                                <div class="work-cat">Web / Identity</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+            <!-- DATA SECTION -->
+            <div class="works-section">
+                <h2 class="works-cat-title" data-i18n="work_cat_data">Programmation, Data & Intelligence</h2>
+                <div class="works-grid">
+                    <!-- Net-Sentinel AI -->
+                    <a href="project-bank.html" class="work-card">
+                        <div class="work-visual g-data">
+                            <span class="work-num">07</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Gestion Bancaire</div>
+                                <div class="work-cat">Java</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+
+                    <!-- Cyber Dashboard -->
+                    <a href="project-cyber.html" class="work-card">
+                        <div class="work-visual g-cyber">
+                            <span class="work-num">08</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Mots de Passe</div>
+                                <div class="work-cat">Python</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+
+                    <!-- Vogue Analytics -->
+                    <a href="project-vogue.html" class="work-card">
+                        <div class="work-visual g-vogue">
+                            <span class="work-num">09</span>
+                        </div>
+                        <div class="work-info">
+                            <div>
+                                <div class="work-title">Jeu Quiz</div>
+                                <div class="work-cat">Python</div>
+                            </div>
+                            <span class="work-arrow">↗</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <section id="contact-footer" style="padding: 4rem 0;">
+        <div class="container contact-wrapper">
+            <div
+                style="margin-top: 6rem; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <div style="display:flex; gap: 2rem; align-items: center;">
+                    <a href="cv/CV_Enzo_Abdi.pdf" download="" class="btn-download" data-i18n="footer_cv">Télécharger
+                        CV</a>
+                    <a href="https://www.linkedin.com/in/abdienzo/" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">LINKEDIN</a>
+                    <a href="https://github.com/zoaavela" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">GITHUB</a>
+                    <button class="footer-lang-btn" id="footer-lang-btn">Switch to English</button>
+                </div>
+                <div>© 2025 ENZO</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

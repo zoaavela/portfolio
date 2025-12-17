@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Parcours - Enzo</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+    <style>
+        .page-header {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid var(--border-color);
+            margin-bottom: 4rem;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="cursor"></div>
+
+    <nav>
+        <a href="index.html" class="logo">Enzo.</a>
+        <div class="nav-links">
+            <a href="about.html" data-i18n="nav_story" class="active">Parcours</a>
+            <a href="projects.html" data-i18n="nav_work">Travaux</a>
+            <a href="contact.html" data-i18n="nav_contact">Contact</a>
+        </div>
+        <div class="nav-actions">
+            <button class="lang-toggle" id="lang-btn">FR</button>
+            <div class="sep"></div>
+            <button class="theme-toggle" id="theme-btn" title="Changer de thème">
+                <span id="theme-icon">☾</span>
+            </button>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Header -->
+        <section class="container page-header">
+            <h1 style="margin-bottom: 1rem;" data-i18n="title_story">Parcours.</h1>
+            <p class="lead" style="margin-left: 0;" data-i18n="hero_lead">
+                Étudiant en informatique, je navigue à l'intersection de la data, du design et des réseaux. Mon
+                portfolio présente des projets où la rigueur analytique rencontre la clarté visuelle et la
+                résilience structurelle.
+            </p>
+        </section>
+
+        <!-- Parcours: Minimal Timeline -->
+        <section id="parcours">
+            <div class="container">
+                <h2 data-i18n="sect_history">Expériences
+                </h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <span class="t-date" data-i18n="timeline_date_1">2024 - Aujourd'hui</span>
+                        <h3 style="margin-bottom:0;" data-i18n="timeline_title_1">BUT Métiers du Multimédia et de
+                            l'Internet</h3>
+                        <p class="t-date" data-i18n="timeline_desc_1">Major de promotion 2024 - 2025</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="t-date" data-i18n="timeline_date_2">ÉTÉ 2025</span>
+                        <h3 style="margin-bottom:0;" data-i18n="timeline_title_2">Junior Data Engineer</h3>
+                        <p class="t-date" data-i18n="timeline_desc_2">Stage - La Banque Postale</p>
+                    </div>
+                    <div class="timeline-item">
+                        <span class="t-date" data-i18n="timeline_date_3">2020 - 2023</span>
+                        <h3 style="margin-bottom:0;" data-i18n="timeline_title_3">Lycée André Boulloche</h3>
+                        <p class="t-date" data-i18n="timeline_desc_3">Baccalauréat Spécialité Mathématiques et Anglais
+                            Mention Bien</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competences Section -->
+        <section id="competences">
+            <div class="container">
+                <h2 data-i18n="sect_skills">Compétences</h2>
+                <p class="lead" style="margin-bottom: 3rem;" data-i18n="skills_lead">
+                    Un équilibre entre mes fondations en MMI et les compétences techniques
+                    que je développe pour ma transition professionnelle.
+                </p>
+
+                <div class="skills-container">
+                    <div class="skills-section">
+                        <h3 data-i18n="skills_sub_mmi">Fondations MMI</h3>
+                        <p class="skills-description" data-i18n="skills_desc_mmi">
+                            Compétences solides acquises durant mon parcours MMI.
+                        </p>
+                        <div class="skills-list">
+                            <span class="skill-tag">HTML5</span>
+                            <span class="skill-tag">CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                            <span class="skill-tag">Bootstrap</span>
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Git / GitHub</span>
+                            <span class="skill-tag">PHP</span>
+                            <span class="skill-tag">MySQL</span>
+                            <span class="skill-tag">Python</span>
+                            <span class="skill-tag">Java</span>
+                            <span class="skill-tag">FTP</span>
+
+                        </div>
+                    </div>
+
+                    <div class="skills-section">
+                        <h3 data-i18n="skills_sub_evo">Compétences en évolution</h3>
+                        <p class="skills-description" data-i18n="skills_desc_evo">
+                            Technologies pour ma transition Cyber & Data.
+                        </p>
+                        <div class="skills-list">
+                            <span class="skill-tag">SQL / NoSQL</span>
+                            <span class="skill-tag">Pandas</span>
+                            <span class="skill-tag">OWASP Top 10</span>
+                            <span class="skill-tag">Docker</span>
+                            <span class="skill-tag">Linux Admin</span>
+                            <span class="skill-tag">Tcp/IP</span>
+                            <span class="skill-tag">Cryptographie</span>
+                            <span class="skill-tag">Smtp</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <section id="contact-footer" style="padding: 4rem 0;">
+        <div class="container contact-wrapper">
+            <div
+                style="margin-top: 6rem; display: flex; justify-content: space-between; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <div style="display:flex; gap: 2rem; align-items: center;">
+                    <a href="cv/CV_Enzo_Abdi.pdf" download class="btn-download" data-i18n="footer_cv">Télécharger
+                        CV</a>
+                    <a href="https://www.linkedin.com/in/abdienzo/" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">LINKEDIN</a>
+                    <a href="https://github.com/zoaavela" target="_blank"
+                        style="color: var(--text-primary); text-decoration: none;">GITHUB</a>
+                    <button class="footer-lang-btn" id="footer-lang-btn">Switch to English</button>
+                </div>
+                <div>© 2025 ENZO</div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

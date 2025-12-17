@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enzo - Cyber & Data</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script>
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        document.documentElement.setAttribute('data-theme', savedTheme);
+    </script>
+</head>
+
+<body style="overflow-y: hidden;">
+    <div id="cursor"></div>
+
+    <!-- Minimal Header (Logo Only) -->
+    <nav class="home-nav">
+        <a href="#" class="logo">Enzo.</a>
+    </nav>
+
+    <!-- Controls moved to bottom right -->
+    <div class="index-controls">
+        <button class="lang-toggle" id="lang-btn">FR</button>
+        <div class="sep"></div>
+        <button class="theme-toggle" id="theme-btn">
+            <span id="theme-icon">☾</span>
+        </button>
+    </div>
+
+    <main class="full-height"
+        style="min-height: 100vh; flex-direction: column; justify-content: center; padding-top: 0;">
+
+        <div class="container hero-wrapper" style="text-align: center;">
+            <p
+                style="font-family: var(--font-mono); color: var(--text-secondary); margin-bottom: 2rem; letter-spacing: 2px;">
+                PORTFOLIO 2025</p>
+
+            <div class="menu-list">
+                <a href="about.html" class="menu-item">
+                    <span class="menu-text" data-i18n="nav_story">Parcours</span>
+                </a>
+                <a href="projects.html" class="menu-item">
+                    <span class="menu-text" data-i18n="nav_work">Travaux</span>
+                </a>
+                <a href="contact.html" class="menu-item">
+                    <span class="menu-text" data-i18n="nav_contact">Contact</span>
+                </a>
+            </div>
+
+            <div
+                style="margin-top: 4rem; display: flex; justify-content: center; gap: 2rem; font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-secondary);">
+                <span>DATA ENGINEER</span>
+                <span>•</span>
+                <span>CYBERSECURITY</span>
+                <span>•</span>
+                <span>DESIGN</span>
+            </div>
+        </div>
+
+    </main>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
