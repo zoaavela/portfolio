@@ -171,87 +171,84 @@
                     bancaires avec gestion des dépôts, retraits et virements.
                 </p>
 
-                <div style="margin-top: 3rem; display: flex; gap: 1rem; justify-content: center;">
-                    <a href="#" class="btn-action primary" data-i18n="btn_github">Voir sur GitHub</a>
-                </div>
-            </div>
+                <!-- JAVA CODE SHOWCASE -->
+                <div style="margin-top: 2rem;">
 
-            <!-- JAVA CODE SHOWCASE -->
-            <div style="margin-top: 2rem;">
-
-                <!-- File 1: CompteBancaire -->
-                <div class="code-intro"
-                    style="margin-bottom: 2rem; border-left: 2px solid var(--text-primary); padding-left: 1rem;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="bank_c1_title">1. La Classe Métier
-                    </h3>
-                    <p style="color: var(--text-secondary);" data-i18n="bank_c1_text">
-                        Définition de l'objet <code>CompteBancaire</code>. J'apprends ici l'encapsulation (attributs
-                        privés) et la création de méthodes pour interagir avec les données (déposer, retirer).
-                    </p>
-                </div>
-                <div class="code-window" id="window-1">
-                    <div class="window-header">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
-                        <span class="filename">CompteBancaire.java</span>
+                    <!-- File 1: CompteBancaire -->
+                    <div class="code-intro"
+                        style="margin-bottom: 2rem; border-left: 2px solid var(--text-primary); padding-left: 1rem;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="bank_c1_title">1. La Classe
+                            Métier
+                        </h3>
+                        <p style="color: var(--text-secondary);" data-i18n="bank_c1_text">
+                            Définition de l'objet <code>CompteBancaire</code>. J'apprends ici l'encapsulation (attributs
+                            privés) et la création de méthodes pour interagir avec les données (déposer, retirer).
+                        </p>
                     </div>
-                    <pre class="code-content" id="code-1"></pre>
-                </div>
-
-                <!-- File 2: Main Logic -->
-                <div class="code-intro"
-                    style="margin: 4rem 0 2rem; border-left: 2px solid var(--text-primary); padding-left: 1rem;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="bank_c2_title">2. Gestion de
-                        Tableaux</h3>
-                    <p style="color: var(--text-secondary);" data-i18n="bank_c2_text">
-                        Dans le programme principal, j'utilise un tableau <code>CompteBancaire[]</code> pour gérer
-                        plusieurs comptes. Les boucles <code>for</code> me permettent d'automatiser les crédits et
-                        l'affichage.
-                    </p>
-                </div>
-                <div class="code-window" id="window-2">
-                    <div class="window-header">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
-                        <span class="filename">Main.java</span>
+                    <div class="code-window" id="window-1">
+                        <div class="window-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="filename">CompteBancaire.java</span>
+                        </div>
+                        <pre class="code-content" id="code-1"></pre>
                     </div>
-                    <pre class="code-content" id="code-2"></pre>
-                </div>
 
-                <!-- File 3: TestCompte -->
-                <div class="code-intro"
-                    style="margin: 4rem 0 2rem; border-left: 2px solid var(--text-primary); padding-left: 1rem;">
-                    <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="bank_c3_title">3. Tests et
-                        Validations</h3>
-                    <p style="color: var(--text-secondary);" data-i18n="bank_c3_text">
-                        Une classe dédiée pour tester chaque fonctionnalité : dépôt, retrait (avec gestion d'erreur de
-                        solde) et virements entre deux objets compte distincts.
-                    </p>
-                </div>
-                <div class="code-window" id="window-3">
-                    <div class="window-header">
-                        <div class="dot red"></div>
-                        <div class="dot yellow"></div>
-                        <div class="dot green"></div>
-                        <span class="filename">TestCompte.java</span>
+                    <!-- File 2: Main Logic -->
+                    <div class="code-intro"
+                        style="margin: 4rem 0 2rem; border-left: 2px solid var(--text-primary); padding-left: 1rem;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="bank_c2_title">2. Gestion de
+                            Tableaux</h3>
+                        <p style="color: var(--text-secondary);" data-i18n="bank_c2_text">
+                            Dans le programme principal, j'utilise un tableau <code>CompteBancaire[]</code> pour gérer
+                            plusieurs comptes. Les boucles <code>for</code> me permettent d'automatiser les crédits et
+                            l'affichage.
+                        </p>
                     </div>
-                    <pre class="code-content" id="code-3"></pre>
+                    <div class="code-window" id="window-2">
+                        <div class="window-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="filename">Main.java</span>
+                        </div>
+                        <pre class="code-content" id="code-2"></pre>
+                    </div>
+
+                    <!-- File 3: TestCompte -->
+                    <div class="code-intro"
+                        style="margin: 4rem 0 2rem; border-left: 2px solid var(--text-primary); padding-left: 1rem;">
+                        <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;" data-i18n="bank_c3_title">3. Tests et
+                            Validations</h3>
+                        <p style="color: var(--text-secondary);" data-i18n="bank_c3_text">
+                            Une classe dédiée pour tester chaque fonctionnalité : dépôt, retrait (avec gestion d'erreur
+                            de
+                            solde) et virements entre deux objets compte distincts.
+                        </p>
+                    </div>
+                    <div class="code-window" id="window-3">
+                        <div class="window-header">
+                            <div class="dot red"></div>
+                            <div class="dot yellow"></div>
+                            <div class="dot green"></div>
+                            <span class="filename">TestCompte.java</span>
+                        </div>
+                        <pre class="code-content" id="code-3"></pre>
+                    </div>
+
                 </div>
 
-            </div>
+                <div style="margin-top: 6rem; text-align: center;">
+                    <a href="contact.html" class="btn-action primary" data-i18n="btn_contact_me">Me Contacter</a>
+                </div>
 
-            <div style="margin-top: 6rem; text-align: center;">
-                <a href="contact.html" class="btn-action primary" data-i18n="btn_contact_me">Me Contacter</a>
-            </div>
-
-            <div style="margin-top: 4rem; text-align: center;">
-                <a href="projects.html"
-                    style="color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono);"
-                    data-i18n="back_projects">← Retour
-                    aux projets</a>
-            </div>
+                <div style="margin-top: 4rem; text-align: center;">
+                    <a href="projects.html"
+                        style="color: var(--text-secondary); text-decoration: none; font-family: var(--font-mono);"
+                        data-i18n="back_projects">← Retour
+                        aux projets</a>
+                </div>
 
         </article>
     </main>

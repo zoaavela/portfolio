@@ -151,7 +151,7 @@ document.addEventListener('DOMContentLoaded', () => {
             role_neon: "Directeur Artistique",
 
             // Mag Selection
-            mag_select_title: "Sélection.",
+            mag_select_title: "Projets",
             mag_select_lead: "Trois esthétiques. Trois approches. Choisir une édition.",
 
             // Works Page
@@ -259,8 +259,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tour_imp: "Avec du recul, j'aurais dû passer par une étape de maquettage avant de coder. Le responsive et l'optimisation des images auraient aussi pu être mieux gérés.",
 
             // Vogue Analytics
-            vogue_title: "Vogue Analytics",
-            vogue_lead: "Une exploration approfondie des données de mode, visualisée avec D3.js pour révéler les cycles de tendances.",
+            vogue_title: "Quiz Python",
+            vogue_lead: "Jeu de Quiz réalisé en Python.",
 
             // Project Data (Gestion Bancaire)
             bank_title: "Gestion Bancaire",
@@ -323,8 +323,8 @@ document.addEventListener('DOMContentLoaded', () => {
             tour_imp: "In hindsight, I should have wireframed before coding. Responsive design and image optimization could also have been handled better.",
 
             // Vogue Analytics
-            vogue_title: "Vogue Analytics",
-            vogue_lead: "A deep exploration of fashion data, visualized with D3.js to reveal trend cycles.",
+            vogue_title: "Python Quiz",
+            vogue_lead: "Quiz game created with Python.",
 
             // Project Data (Gestion Bancaire)
             bank_title: "Banking System",
@@ -372,7 +372,7 @@ document.addEventListener('DOMContentLoaded', () => {
             footer_cv: "Download CV",
 
             // Mag Selection
-            mag_select_title: "Selection.",
+            mag_select_title: "Projects",
             mag_select_lead: "Three aesthetics. Three approaches. Choose an edition.",
 
             // Works Page
