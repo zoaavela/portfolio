@@ -167,9 +167,46 @@ nav {
     border-radius: 100px;
 
     /* STABILITY FIX */
-    min-width: 480px;
-    /* Compact width */
+    width: 90%;
+    max-width: 600px;
+    /* Limit width on large screens */
+    min-width: auto;
     justify-content: space-between;
+}
+
+/* Menu Toggle (Hamburger) */
+.menu-toggle {
+    display: none;
+    background: none;
+    border: none;
+    cursor: pointer;
+    flex-direction: column;
+    gap: 5px;
+    padding: 0.5rem;
+    z-index: 2002;
+    /* Above everything */
+}
+
+.menu-toggle span {
+    display: block;
+    width: 24px;
+    height: 2px;
+    background: var(--text-primary);
+    transition: 0.3s cubic-bezier(0.19, 1, 0.22, 1);
+    border-radius: 2px;
+}
+
+/* Hamburger Animation */
+.menu-toggle.active span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.menu-toggle.active span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
 }
 
 .logo {
@@ -626,8 +663,59 @@ section.active .timeline-item:nth-child(3) {
 }
 
 @media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
     .nav-links {
-        display: none;
+        display: flex;
+        /* Keep it flex but hidden via transform/opacity */
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100vw;
+        height: 100vh;
+        background: var(--bg-color);
+        /* Solid background to cover content */
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 3rem;
+        padding-top: 4rem;
+
+        /* Animation State */
+        opacity: 0;
+        pointer-events: none;
+        transform: translateY(-20px);
+        transition: opacity 0.4s var(--easing), transform 0.4s var(--easing);
+        z-index: 1001;
+        /* Behind hamburger */
+    }
+
+    .nav-links.active {
+        opacity: 1;
+        pointer-events: all;
+        transform: translateY(0);
+    }
+
+    .nav-links a {
+        font-size: 2rem;
+        /* Larger text for mobile */
+        min-width: auto;
+    }
+
+    /* Adjust nav layout for mobile */
+    nav {
+        padding: 0.5rem 1rem;
+        width: 90%;
+        max-width: none;
+    }
+
+    .nav-actions {
+        border-left: none;
+        padding-left: 0;
+        gap: 0.5rem;
+        /* Tighter gap */
     }
 
     .hero-stats {
