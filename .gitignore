@@ -1,7 +1,5 @@
-node_modules
-dist
-dist-ssr
-*.local
-.env
-.env.*
-!.env.example
+.claude/
+.vscode/
+node_modules/
+dist/
+*.timestamp-*
