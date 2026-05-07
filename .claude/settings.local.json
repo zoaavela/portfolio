@@ -1,9 +1,0 @@
-{
-  "permissions": {
-    "allow": [
-      "Bash(npm --version)",
-      "Bash(npm install *)",
-      "Bash(npx vite *)"
-    ]
-  }
-}
