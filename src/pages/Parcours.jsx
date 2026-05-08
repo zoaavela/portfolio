@@ -40,22 +40,22 @@ export default function Parcours() {
     const [carouselWidth, setCarouselWidth] = useState(0)
     // État pour savoir si on est sur mobile ou desktop
     const [isDesktop, setIsDesktop] = useState(typeof window !== 'undefined' ? window.innerWidth >= 768 : true)
-    
+
     useEffect(() => {
         const updateWidth = () => {
             const isDesk = window.innerWidth >= 768
             setIsDesktop(isDesk)
-            
+
             if (carouselRef.current && isDesk) {
                 setCarouselWidth(carouselRef.current.scrollWidth - window.innerWidth)
             }
         }
-        
+
         setTimeout(updateWidth, 100)
         window.addEventListener('resize', updateWidth)
         return () => window.removeEventListener('resize', updateWidth)
     }, [])
-    
+
     const { scrollYProgress } = useScroll({
         target: targetRef,
     })
@@ -67,7 +67,7 @@ export default function Parcours() {
     })
 
     const opacityTitleDesktop = useTransform(smoothProgress, [0, 0.05], [1, 0])
-    
+
     // Le défilement ne s'applique qu'en mode Desktop
     const x = useTransform(smoothProgress, (p) => isDesktop ? `${p * -carouselWidth}px` : "0px")
 
@@ -75,17 +75,17 @@ export default function Parcours() {
         <main className="bg-[#0D0D0D] font-grotesk text-offwhite min-h-screen">
             {/* Sur desktop : 400vh. Sur mobile : taille normale automatique */}
             <div ref={targetRef} className="md:h-[400vh] relative">
-                
+
                 {/* Sur desktop : sticky et h-screen. Sur mobile : juste un block normal */}
                 <div className="md:sticky md:top-0 md:h-screen flex flex-col md:flex-row md:items-center md:overflow-hidden relative">
-                    
+
                     {/* Le titre */}
-                    <motion.div 
-                        style={{ opacity: isDesktop ? opacityTitleDesktop : 1 }} 
+                    <motion.div
+                        style={{ opacity: isDesktop ? opacityTitleDesktop : 1 }}
                         className="md:absolute left-7 md:left-14 top-24 z-10 pointer-events-none mt-24 md:mt-0 mb-12 md:mb-0 px-7 md:px-0"
                     >
                         <h1 className="font-bebas text-6xl md:text-8xl text-offwhite tracking-widest leading-none drop-shadow-lg">
-                            MON<br className="hidden md:block"/> PARCOURS.
+                            MON<br className="hidden md:block" /> PARCOURS.
                         </h1>
                         <p className="mt-4 font-mono text-[10px] text-[#555] tracking-[0.2em] uppercase max-w-[200px] hidden md:block">
                             Scrollez pour avancer dans le temps
@@ -93,36 +93,36 @@ export default function Parcours() {
                     </motion.div>
 
                     {/* La chronologie */}
-                    <motion.div 
-                        ref={carouselRef} 
-                        style={{ x }} 
+                    <motion.div
+                        ref={carouselRef}
+                        style={{ x }}
                         className="flex flex-col md:flex-row md:items-center w-full md:w-[max-content] md:pt-16 pb-24 md:pb-0 px-7 md:px-0 gap-16 md:gap-0"
                     >
                         {/* Espace initial (uniquement sur PC) */}
                         <div className="hidden md:block w-[40vw] shrink-0"></div>
-                        
+
                         {milestones.map((milestone, idx) => (
                             <div key={idx} className="w-full md:w-[450px] shrink-0 flex flex-col gap-4 md:gap-6 relative group md:mr-32">
-                                
+
                                 {/* Ligne horizontale (Desktop) */}
                                 {idx !== milestones.length - 1 && (
                                     <div className="absolute top-[44px] left-[220px] right-[-180px] h-px bg-[#222] z-0 hidden md:block"></div>
                                 )}
-                                
+
                                 {/* Ligne verticale (Mobile) */}
                                 {idx !== milestones.length - 1 && (
                                     <div className="absolute top-[80px] bottom-[-80px] left-[20px] w-px bg-[#222] z-0 md:hidden block"></div>
                                 )}
-                                
+
                                 <div className="font-bebas text-5xl md:text-8xl text-[#222] relative z-10 transition-colors duration-500 group-hover:text-[#F0EDE8] bg-[#0D0D0D] w-max pr-4 md:pr-0">
                                     {milestone.year}
                                 </div>
-                                
+
                                 <div className="relative aspect-[16/9] overflow-hidden bg-[#111] border border-[#1A1A1A] p-2 md:p-3 z-10 ml-0 md:ml-0">
                                     <div className="w-full h-full relative overflow-hidden">
                                         <div className="absolute inset-0 bg-[#0D0D0D]/60 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
-                                        <img 
-                                            src={milestone.image} 
+                                        <img
+                                            src={milestone.image}
                                             alt={milestone.title}
                                             className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
                                         />
@@ -144,7 +144,7 @@ export default function Parcours() {
                                 </div>
                             </div>
                         ))}
-                        
+
                         {/* Espace final (uniquement sur PC) */}
                         <div className="hidden md:block w-[15vw] shrink-0"></div>
                     </motion.div>

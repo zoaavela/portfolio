@@ -39,7 +39,7 @@ export default function Home() {
                         ENZO.
                     </h1>
                     <div className="w-px h-12 md:h-16 bg-[#333] mx-auto my-6 md:my-8"></div>
-                    <p className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-[#888] uppercase max-w-lg leading-relaxed">
+                    <p className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-[#888] uppercase max-w-lg mx-auto leading-relaxed">
                         Data & AI Engineer <br className="md:hidden" />crafting intelligent systems.
                     </p>
                 </motion.div>

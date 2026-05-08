@@ -1,0 +1,96 @@
+{
+    "id": "webdocumentary",
+    "accent": "#C8A84B",
+    "meta": {
+        "title": "Web Documentaire Tennis",
+        "subtitle": "Webdoc interactif",
+        "category": "Web Documentaire",
+        "pitch": "Web documentaire sur le tennis alliant data, interview terrain, podcast audio et photographie — réalisé avec une immersion au club de Meaux.",
+        "period": "Novembre 2025",
+        "duration": "Court terme (projet d'études)",
+        "context": "Projet d'études",
+        "team_size": 1,
+        "role": "Développeur front-end / Journaliste / Photographe",
+        "status": "En ligne"
+    },
+    "links": {
+        "demo": "https://zoaavela.github.io/webDocumentary/",
+        "repository": "https://github.com/zoaavela/webDocumentary"
+    },
+    "description": {
+        "short": "Web documentaire sur le tennis combinant data, interview terrain au club de Meaux, podcast audio, quatre articles et une galerie photo.",
+        "long": "Projet de web documentaire réalisé en solo autour du tennis. Le site combine plusieurs formats : une page d'accueil avec data et introduction, une interview menée directement au club de Meaux, un podcast audio, quatre articles de fond et une galerie photo. L'enjeu était autant éditorial que technique — produire du contenu journalistique sérieux et le mettre en forme de manière cohérente et immersive en HTML, CSS et JavaScript vanilla."
+    },
+    "tech_stack": {
+        "frontend": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "backend": [],
+        "infrastructure": [
+            "GitHub Pages"
+        ],
+        "display": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    "content": {
+        "sections": [
+            {
+                "id": "accueil",
+                "name": "Accueil",
+                "description": "Page d'introduction avec data et mise en contexte du documentaire."
+            },
+            {
+                "id": "interview",
+                "name": "Interview",
+                "description": "Interview terrain réalisée au club de tennis de Meaux."
+            },
+            {
+                "id": "podcast",
+                "name": "Podcast",
+                "description": "Épisode audio intégré au site."
+            },
+            {
+                "id": "articles",
+                "name": "Articles",
+                "description": "Quatre articles de fond sur le tennis."
+            },
+            {
+                "id": "galerie",
+                "name": "Galerie",
+                "description": "Galerie photo issue du reportage terrain."
+            }
+        ]
+    },
+    "challenges": [
+        {
+            "title": "Double casquette technique et éditorial",
+            "description": "Produire du contenu journalistique de qualité — interview, articles, podcast — tout en développant le site en solo.",
+            "resolution": "Organisation par phases : contenu d'abord, intégration ensuite, pour ne pas mélanger les deux disciplines.",
+            "lesson": "Un webdoc réussi tient autant à la qualité du contenu qu'à celle du code."
+        },
+        {
+            "title": "Intégration de formats multiples",
+            "description": "Faire coexister data, audio, texte et photo de manière cohérente sur un seul site sans framework.",
+            "resolution": "Structure HTML sémantique rigoureuse et CSS custom pour unifier l'identité visuelle entre les différents formats.",
+            "lesson": "Le vanilla oblige à comprendre ce qu'on fait — pas de magie."
+        }
+    ],
+    "results_and_impact": {
+        "summary": "Web documentaire complet déployé sur GitHub Pages — interview terrain, podcast, articles et galerie photo sur le tennis, développé en solo en vanilla.",
+        "key_learnings": [
+            "Production de contenu journalistique terrain",
+            "Intégration audio et galerie photo en vanilla JS",
+            "Structure éditoriale multi-formats",
+            "Déploiement GitHub Pages"
+        ]
+    },
+    "visuals": {
+        "main_image": null,
+        "alt_text": "Capture d'écran du web documentaire tennis — interview club de Meaux"
+    }
+}

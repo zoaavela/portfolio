@@ -1,0 +1,255 @@
+{
+  "id": "vision",
+  "accent": "#4A90D9",
+  "meta": {
+    "title": "Vision",
+    "subtitle": "Projet de datavisualisation",
+    "category": "Application Web",
+    "pitch": "Application fullstack de datavisualisation pour la prise de décision en matière de logements sociaux, basée sur les données INSEE.",
+    "period": "Mars 2026",
+    "duration": "Court terme (projet d'études)",
+    "context": "Projet d'études",
+    "team_size": 4,
+    "role": "Lead Data / Chef de Projet / Développement Fullstack / Data Analyste / Gestion Agile",
+    "status": "En production"
+  },
+  "links": {
+    "demo": "https://v1sion.pages.dev/",
+    "repository": "https://github.com/zoaavela/vision",
+    "repository_note": "Version publique — déploiement local uniquement"
+  },
+  "description": {
+    "short": "Application fullstack permettant la visualisation et l'analyse des données INSEE sur les logements sociaux en France (2020–2023), à destination des décideurs publics.",
+    "long": "Vision est une application web fullstack développée dans le cadre d'un projet d'études en équipe de quatre. Elle exploite un jeu de données massives de l'INSEE sur le suivi des logements sociaux en France de 2020 à 2023. Le véritable enjeu n'était pas le nettoyage des données — le fichier étant déjà propre — mais l'orchestration d'une data analyse complexe pour concevoir des modules pertinents et extraire une signification profonde pour l'utilisateur. L'objectif final est de fournir un véritable outil d'aide à la décision pour les acteurs du logement social.",
+    "data_source": "INSEE — Données logements sociaux, 2020 à 2023",
+    "data_note": "Les données étaient fournies propres (CSV), le défi principal a été de sélectionner et d'exploiter les indicateurs les plus pertinents plutôt que de procéder à un nettoyage."
+  },
+  "tech_stack": {
+    "frontend": [
+      "React",
+      "Chart.js",
+      "Leaflet (cartographie interactive)",
+      "CSS Media Queries (responsive)"
+    ],
+    "backend": [
+      "Symfony (PHP)",
+      "JWT Token (authentification)",
+      "API REST"
+    ],
+    "infrastructure": [
+      "Cloudflare Pages (hébergement front — dépôt privé GitLab)",
+      "AlwaysData (hébergement back via SSH)",
+      "FileZilla (FTP)",
+      "InfinityFree (hébergement du wiki interne)"
+    ],
+    "design_and_tools": [
+      "Spline (animation 3D)"
+    ],
+    "data": [
+      "Script PHP d'import CSV vers base de données",
+      "Méthodes statistiques : corrélations, modélisation de tendances"
+    ]
+  },
+  "architecture": {
+    "type": "Fullstack SPA + API REST",
+    "access_model": "Public (consultation) + Espace admin (imports CSV via API)",
+    "roles": [
+      {
+        "name": "Visiteur",
+        "permissions": [
+          "Consultation de tous les modules et visualisations"
+        ]
+      },
+      {
+        "name": "Admin",
+        "permissions": [
+          "Import de fichiers CSV",
+          "Gestion du profil"
+        ]
+      },
+      {
+        "name": "Super Admin",
+        "permissions": [
+          "Import de fichiers CSV",
+          "Validation ou refus des demandes de compte",
+          "Gestion de l'accès à la plateforme"
+        ],
+        "note": "Un seul super admin. Les nouveaux comptes doivent être approuvés par le super admin avant d'accéder aux fonctionnalités d'import."
+      }
+    ],
+    "account_flow": "Création de compte → En attente d'approbation → Accepté ou refusé par le Super Admin"
+  },
+  "modules": [
+    {
+      "id": "matrice",
+      "name": "Matrice territoriale",
+      "description": "Analyse croisée de la dynamique démographique et de la solidité économique des territoires.",
+      "indicators": [
+        "Croissance dynamique",
+        "Attractivité résidentielle",
+        "Tension économique",
+        "Vulnérabilité structurelle"
+      ],
+      "features": [
+        "Sélection de territoires",
+        "Analyse personnalisée par territoire",
+        "Visualisation graphique"
+      ],
+      "granularity": [
+        "Commune",
+        "Département",
+        "Région",
+        "National"
+      ]
+    },
+    {
+      "id": "chomage",
+      "name": "Taux de chômage",
+      "description": "Analyse classique du taux de chômage par territoire.",
+      "granularity": [
+        "Commune",
+        "Département",
+        "Région",
+        "National"
+      ]
+    },
+    {
+      "id": "couverture_sociale",
+      "name": "Couverture sociale & précarité",
+      "description": "Adéquation entre le parc HLM et le volume de ménages sous le seuil de pauvreté, pour identifier les zones en manque de logement social.",
+      "granularity": [
+        "Commune",
+        "Département",
+        "Région",
+        "National"
+      ]
+    },
+    {
+      "id": "thermique",
+      "name": "Analyse thermique",
+      "description": "Analyse croisée de l'âge du parc immobilier et de sa consommation énergétique pour identifier les besoins de rénovation.",
+      "indicators": [
+        "Négligence thermique",
+        "Usure normale",
+        "Rénovations exemplaires"
+      ],
+      "granularity": [
+        "Commune",
+        "Département",
+        "Région",
+        "National"
+      ]
+    },
+    {
+      "id": "indicateurs_departement",
+      "name": "Indicateurs par département",
+      "description": "Répartition du parc immobilier entre résidences principales, secondaires et logements vacants.",
+      "chart_type": "Camembert (pie chart)",
+      "granularity": [
+        "Département",
+        "Région"
+      ]
+    },
+    {
+      "id": "demographie",
+      "name": "Démographie & population",
+      "description": "Comparaison de la proportion des moins de 20 ans face aux 60 ans et plus par territoire.",
+      "chart_type": "Barres opposées (population pyramid)",
+      "granularity": [
+        "Commune",
+        "Département",
+        "Région",
+        "National"
+      ]
+    }
+  ],
+  "other_features": [
+    {
+      "id": "carte",
+      "name": "Hub cartographique",
+      "description": "Carte Leaflet interactive pour l'exploration géographique et la consultation rapide des indicateurs bruts (chômage, pauvreté, taux HLM, passeport thermique). Affichage conditionnel selon disponibilité de la donnée. Aucune analyse poussée — lecture directe des indicateurs.",
+      "tech": "Leaflet.js"
+    },
+    {
+      "id": "profil",
+      "name": "Gestion du profil",
+      "description": "Interface de gestion de compte : modification du mot de passe, du nom et des informations personnelles.",
+      "roles_concerned": [
+        "Admin",
+        "Super Admin"
+      ]
+    },
+    {
+      "id": "a_propos",
+      "name": "Page À propos / Guide",
+      "description": "Page explicative sur le contexte et la démarche du projet."
+    },
+    {
+      "id": "connexion",
+      "name": "Page de connexion",
+      "description": "Authentification sécurisée via JWT token."
+    }
+  ],
+  "internal_tooling": {
+    "name": "Wiki interne de projet",
+    "description": "Outil de documentation interne hébergé sur InfinityFree avec Supabase, servant de base de connaissances partagée entre les membres de l'équipe. Il centralise l'analyse de données, les décisions techniques et la documentation pour faciliter la maintenance et la collaboration.",
+    "purpose": [
+      "Documentation des choix d'analyse",
+      "Partage des informations entre membres",
+      "Facilitation de la maintenance"
+    ],
+    "tech": [
+      "InfinityFree (hébergement)",
+      "Supabase (base de données)"
+    ],
+    "initiator": "Décision du chef de projet"
+  },
+  "project_management": {
+    "methodology": "Agile hybride (Scrum + Kanban)",
+    "rationale": "Liberté du Kanban adaptée à la dynamique de l'équipe, structurée par des sprints Scrum pour cadrer les livraisons.",
+    "key_challenges": [
+      "Dépendances front/back : le front était souvent bloqué en attente de routes API. Résolu par des rituels de planification des dépendances en début de sprint.",
+      "Changement de structure en cours de projet : passage d'un accès restrictif à un accès public, nécessitant la refonte de la gestion des rôles et la création du rôle Super Admin."
+    ]
+  },
+  "challenges": [
+    {
+      "title": "Prise en main de Symfony",
+      "description": "Première utilisation du framework Symfony dans un projet fullstack concret et de grande envergure.",
+      "resolution": "Apprentissage en contexte réel, avec une belle surprise sur la praticité et la robustesse du framework.",
+      "lesson": "Symfony s'est révélé particulièrement adapté pour construire une API sécurisée et performante dans un délai contraint."
+    },
+    {
+      "title": "Prise en main de React",
+      "description": "Première expérience avec React dans un projet de production.",
+      "resolution": "Architecture orientée composants imposée dès le départ, avec une gestion rigoureuse du State Management pour des filtres dynamiques interdépendants et des zooms contextuels.",
+      "lesson": "La discipline d'architecture composants est clé pour maintenir un projet React scalable."
+    },
+    {
+      "title": "Sélection et exploitation des données",
+      "description": "Le fichier CSV étant déjà propre, le défi s'est déplacé vers la data analyse : quelles données choisir pour créer des modules pertinents et utiles ?",
+      "resolution": "Application de méthodes statistiques avancées (corrélations, tendances) pour dégager des KPIs et des perspectives stratégiques.",
+      "lesson": "La valeur ajoutée du Data Analyste réside dans la sélection et l'interprétation des données, pas seulement dans leur nettoyage."
+    },
+    {
+      "title": "Gestion des dépendances en équipe",
+      "description": "Le front était régulièrement bloqué en attente de la finalisation des routes API back-end.",
+      "resolution": "Intégration de rituels de planification des dépendances en début de sprint pour anticiper les goulots d'étranglement.",
+      "lesson": "L'agilité est avant tout une discipline de communication préventive."
+    }
+  ],
+  "results_and_impact": {
+    "summary": "Application fullstack déployée en production, consultable publiquement. Outil d'aide à la décision fonctionnel pour les acteurs du logement social, couvrant six modules analytiques distincts et une carte interactive.",
+    "key_learnings": [
+      "Maîtrise de Symfony dans un contexte de projet réel",
+      "Architecture React orientée composants et State Management avancé",
+      "Data Storytelling : traduire des données statistiques en visualisations compréhensibles",
+      "Leadership proactif et coordination d'une équipe de 4 en agile",
+      "Gestion des droits d'accès et sécurité d'API (JWT, rôles)"
+    ]
+  },
+  "visuals": {
+    "main_image": null,
+    "alt_text": "Capture d'écran de l'application Vision — tableau de bord de datavisualisation"
+  }
+}

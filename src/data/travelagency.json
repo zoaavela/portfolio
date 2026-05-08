@@ -1,0 +1,67 @@
+{
+    "id": "travelagency",
+    "accent": "#E8845A",
+    "meta": {
+        "title": "Travel Agency",
+        "subtitle": "Site vitrine agence de voyage",
+        "category": "Site Web",
+        "pitch": "Premier projet web — site vitrine d'une agence de voyage fictive, amélioré progressivement tout en restant fidèle au vanilla.",
+        "period": "Octobre 2024",
+        "duration": "Long terme (projet personnel évolutif)",
+        "context": "Projet personnel",
+        "team_size": 1,
+        "role": "Développeur front-end / Designer",
+        "status": "En ligne"
+    },
+    "links": {
+        "demo": "https://zoaavela.github.io/travelAgencyWebsite/",
+        "repository": "https://github.com/zoaavela/travelAgencyWebsite"
+    },
+    "description": {
+        "short": "Premier projet web — site vitrine 3 pages pour une agence de voyage fictive, construit et amélioré en vanilla sans jamais changer de stack.",
+        "long": "Travel Agency est mon premier projet web, débuté en octobre 2024. Un site vitrine pour une agence de voyage fictive composé d'une page home, une page formulaire et une troisième page. Ce qui le rend particulier c'est son évolution dans le temps — le site a été amélioré progressivement, toujours en HTML, CSS et JavaScript vanilla, sans jamais céder à la tentation d'un framework. Un choix délibéré pour maîtriser les fondamentaux avant tout."
+    },
+    "tech_stack": {
+        "frontend": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ],
+        "backend": [],
+        "infrastructure": [
+            "GitHub Pages"
+        ],
+        "display": [
+            "HTML",
+            "CSS",
+            "JavaScript"
+        ]
+    },
+    "challenges": [
+        {
+            "title": "Premier projet from scratch",
+            "description": "Partir de zéro sans aucune base de projet existant — structurer, designer et coder un site complet pour la première fois.",
+            "resolution": "Progression par itérations, chaque amélioration apportée au fil de la montée en compétences.",
+            "lesson": "Le premier projet est toujours celui qu'on retouche le plus — et c'est là qu'on apprend vraiment."
+        },
+        {
+            "title": "Tenir en vanilla sur la durée",
+            "description": "Résister à l'envie de switcher vers un framework au fur et à mesure que le projet grossissait.",
+            "resolution": "Choix assumé de rester vanilla pour solidifier les fondamentaux du DOM, des événements et du CSS natif.",
+            "lesson": "Comprendre le vanilla rend tout le reste plus simple après."
+        }
+    ],
+    "results_and_impact": {
+        "summary": "Site 3 pages déployé et amélioré dans le temps — premier projet web personnel, entièrement en vanilla, toujours en ligne.",
+        "key_learnings": [
+            "Fondamentaux HTML/CSS/JS sans filet",
+            "Gestion d'un formulaire en vanilla",
+            "Itération et amélioration d'un projet sur la durée",
+            "Discipline de stack — maîtriser avant d'abstraire"
+        ]
+    },
+    "visuals": {
+        "main_image": null,
+        "alt_text": "Capture d'écran du site Travel Agency — page home agence fictive"
+    }
+}

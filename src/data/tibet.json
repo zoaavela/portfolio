@@ -1,0 +1,102 @@
+{
+  "id": "tibet",
+  "accent": "#C4A35A",
+  "meta": {
+    "title": "Exploration du Tibet",
+    "subtitle": "Site culturel & datavisualisation 3D",
+    "category": "Application Web",
+    "pitch": "Site de découverte culturelle du Tibet alliant articles de fond, globe interactif et objet 3D modélisé, pour faire voyager l'utilisateur au cœur d'un peuple et d'un territoire.",
+    "period": "Mars – Avril 2026",
+    "duration": "Court terme (projet d'études)",
+    "context": "Projet d'études",
+    "team_size": 3,
+    "role": "Développeur front-end / Chef de projet / UI-UX Design / Documentation",
+    "status": "Archivé"
+  },
+  "links": {
+    "demo": "https://tibet-art.pages.dev/",
+    "repository": "https://github.com/zoaavela/tibet"
+  },
+  "description": {
+    "short": "Application web culturelle sur le Tibet, combinant articles de recherche approfondis, globe interactif en GeoJSON et un objet sacré tibétain modélisé en 3D sous Blender, pour une expérience de découverte immersive.",
+    "long": "Projet d'études consistant à choisir une région du monde, mener des recherches documentaires sérieuses, modéliser un objet en 3D et présenter l'ensemble via un site internet. Le Tibet s'est imposé par l'attrait de sa paisibilité, ses croyances et ses mythologies. L'ambition était de faire voyager l'utilisateur avec rigueur et précaution, en valorisant des savoirs souvent méconnus — du nomadisme Drogpa à l'architecture des Dzongs en passant par la science médicale traditionnelle Sowa Rigpa. Le projet mêle recherche documentaire, modélisation 3D, cartographie interactive et développement front-end React.",
+    "note": "Projet sans back-end ni base de données — application front-end statique hébergée sur Cloudflare Pages."
+  },
+  "tech_stack": {
+    "frontend": [
+      "React",
+      "Three.js / React Three Fiber (intégration objet 3D)",
+      "GeoJSON (globe interactif)"
+    ],
+    "backend": [],
+    "database": [],
+    "infrastructure": [
+      "Cloudflare Pages"
+    ],
+    "design_and_tools": [
+      "Blender (modélisation 3D du Phurba — réalisée par l'équipe)"
+    ]
+  },
+  "modules": [
+    {
+      "id": "phurba",
+      "name": "Phurba 3D & Hotspots",
+      "description": "Dague rituelle tibétaine modélisée sous Blender, intégrée avec des points d'interaction (hotspots) pédagogiques.",
+      "granularity": ["Modélisation 3D", "Interactivité"]
+    },
+    {
+      "id": "globe",
+      "name": "Globe Géo-culturel",
+      "description": "Exploration du territoire via un globe interactif basé sur des données GeoJSON précises.",
+      "granularity": ["Cartographie", "GeoJSON"]
+    },
+    {
+      "id": "articles",
+      "name": "Chroniques & Savoirs",
+      "description": "Série d'articles de recherche sur la médecine Sowa Rigpa, l'architecture des Dzongs et le nomadisme Drogpa.",
+      "granularity": ["Recherche", "Rédaction"]
+    }
+  ],
+  "architecture": {
+    "type": "SPA front-end statique",
+    "note": "Pas de back-end ni de base de données. Toute la logique est côté client."
+  },
+  "project_management": {
+    "methodology": "Aucune méthodologie formelle",
+    "team_organisation": "Répartition des tâches par domaine : développement front-end (React, intégration 3D, globe), modélisation Blender, rédaction des articles et recherche documentaire."
+  },
+  "challenges": [
+    {
+      "title": "Intégration cohérente de l'objet 3D avec des hotspots",
+      "description": "Intégrer un modèle Blender dans React de manière fluide et pédagogique, avec des points d'interaction (hotspots) positionnés précisément sur les parties symboliques du Phurba, sans que l'expérience ne paraisse artificielle ou déconnectée du contenu éditorial.",
+      "resolution": "Travail conjoint entre la partie modélisation (équipe) et le développement front-end pour aligner les coordonnées 3D des hotspots avec les éléments significatifs du modèle.",
+      "lesson": "L'intégration 3D dans une interface web nécessite une coordination étroite entre modélisation et développement — ce ne sont pas deux étapes indépendantes."
+    },
+    {
+      "title": "Intégration des coordonnées GeoJSON sur le globe React",
+      "description": "Mettre en place un globe terrestre interactif avec des données GeoJSON précises pour représenter le Tibet — une région aux frontières complexes et politiquement sensibles — et y placer des points d'intérêt géographiquement cohérents.",
+      "resolution": "Utilisation de données GeoJSON sourcées et vérifiées, intégrées dans un composant React dédié avec gestion de la rotation initiale et de l'interactivité.",
+      "lesson": "La cartographie interactive requiert une rigueur dans la sélection et le nettoyage des données géographiques, même pour un projet front-end sans back-end."
+    },
+    {
+      "title": "Recherche documentaire sérieuse et précautionneuse",
+      "description": "Le Tibet est un sujet riche mais délicat, avec des enjeux culturels, politiques et religieux forts. Il fallait documenter avec précision sans tomber dans les raccourcis ou les inexactitudes.",
+      "resolution": "Recherche approfondie à partir de sources académiques et culturelles fiables pour chacun des quatre articles, avec une attention particulière au respect des traditions et croyances tibétaines.",
+      "lesson": "Traiter un sujet culturel sensible exige autant de rigueur éditoriale que de rigueur technique."
+    }
+  ],
+  "results_and_impact": {
+    "summary": "Site déployé en production sur Cloudflare Pages, combinant quatre articles de recherche, un globe interactif GeoJSON et un objet 3D avec hotspots. Première expérience complète mêlant modélisation 3D, cartographie et développement React dans un projet culturel.",
+    "key_learnings": [
+      "Intégration d'un modèle Blender dans une application React",
+      "Mise en place d'un globe interactif avec données GeoJSON",
+      "Coordination équipe entre modélisation 3D et développement front",
+      "Rédaction d'articles culturels de fond avec rigueur documentaire",
+      "Déploiement d'une SPA statique sur Cloudflare Pages"
+    ]
+  },
+  "visuals": {
+    "main_image": null,
+    "alt_text": "Capture d'écran du site Exploration du Tibet — globe interactif et objet 3D Phurba"
+  }
+}

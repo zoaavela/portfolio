@@ -81,7 +81,7 @@ export default function App() {
                     <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
                 </Routes>
             </AnimatePresence>
-            
+
             <AnimatePresence>
                 {showFooter && (
                     <motion.div
@@ -96,4 +96,4 @@ export default function App() {
             </AnimatePresence>
         </div>
     )
-}
+}

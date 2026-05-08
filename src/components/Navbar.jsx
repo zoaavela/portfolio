@@ -30,11 +30,11 @@ export default function Navbar() {
                 <Link to="/" className="font-bebas text-xl text-offwhite tracking-widest">
                     ENZO.
                 </Link>
-                
+
                 <div className="flex items-center gap-5 md:gap-7">
                     {/* Bouton Langue */}
-                    <button 
-                        onClick={toggleLang} 
+                    <button
+                        onClick={toggleLang}
                         className="font-mono text-[10px] tracking-[0.2em] text-[#666] hover:text-offwhite transition-colors"
                     >
                         {lang === 'FR' ? 'FR/EN' : 'EN/FR'}
@@ -44,8 +44,8 @@ export default function Navbar() {
                     <div className="w-px h-3 bg-[#222]"></div>
 
                     {/* Bouton Thème */}
-                    <button 
-                        onClick={toggleTheme} 
+                    <button
+                        onClick={toggleTheme}
                         className="text-[#666] hover:text-offwhite transition-colors"
                     >
                         {theme === 'dark' ? (

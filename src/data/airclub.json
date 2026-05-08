@@ -1,0 +1,63 @@
+{
+    "id": "airclub",
+    "accent": "#1A6FBA",
+    "meta": {
+        "title": "AirClub",
+        "subtitle": "Refonte site web",
+        "category": "Site Web",
+        "pitch": "Refonte complète d'un site de club d'aviation — design, structure et contenu repensés from scratch.",
+        "period": "Septembre 2025",
+        "duration": "Court terme (exercice)",
+        "context": "Projet d'études",
+        "team_size": 1,
+        "role": "Développeur front-end / Designer",
+        "status": "En ligne"
+    },
+    "links": {
+        "demo": "https://zoaavela.github.io/airclubWebsite/",
+        "repository": "https://github.com/zoaavela/airclubWebsite"
+    },
+    "description": {
+        "short": "Refonte complète d'un site de club d'aviation — une seule page, design et contenu entièrement repensés.",
+        "long": "Exercice de refonte d'un site existant pour un club d'aviation. L'objectif était de repartir de zéro sur le design, la structure et le contenu pour produire quelque chose de propre et cohérent. Réalisé en solo avec HTML, CSS, JavaScript vanilla et Bootstrap — un exercice pour se mettre à l'aise avec le framework."
+    },
+    "tech_stack": {
+        "frontend": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Bootstrap"
+        ],
+        "backend": [],
+        "infrastructure": [
+            "GitHub Pages"
+        ],
+        "display": [
+            "HTML",
+            "CSS",
+            "JavaScript",
+            "Bootstrap"
+        ]
+    },
+    "challenges": [
+        {
+            "title": "Prise en main de Bootstrap",
+            "description": "Premier projet sérieux avec Bootstrap — apprendre à travailler avec le système de grille et les composants sans perdre le contrôle du design.",
+            "resolution": "Approche progressive : utiliser les composants Bootstrap comme base et les surcharger avec du CSS custom pour garder une identité visuelle cohérente.",
+            "lesson": "Bootstrap accélère le développement mais nécessite de savoir quand s'en détacher."
+        }
+    ],
+    "results_and_impact": {
+        "summary": "Site one-page déployé sur GitHub Pages. Refonte complète d'un site existant — design, structure et contenu — réalisée en solo.",
+        "key_learnings": [
+            "Maîtrise du système de grille Bootstrap",
+            "Refonte de site à partir d'un existant",
+            "Cohérence design sur une single page",
+            "Déploiement via GitHub Pages"
+        ]
+    },
+    "visuals": {
+        "main_image": null,
+        "alt_text": "Capture d'écran du site AirClub — refonte one-page club d'aviation"
+    }
+}

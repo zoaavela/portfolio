@@ -1,25 +1,84 @@
-const mainProjects = [
-    { id: '01', type: 'main', height: 'h-[320px]', title: 'VISION', stack: 'React · Symfony · Chart.js', bg: 'bg-[linear-gradient(160deg,#1A1A2E,#0D0D0D)]' },
-    { id: '02', type: 'main', height: 'h-[320px]', title: 'TIBET', stack: 'React · Three.js · Blender', bg: 'bg-[linear-gradient(160deg,#1A2E1A,#0D0D0D)]' },
-    { id: '03', type: 'main', height: 'h-[320px]', title: 'ETL ARCHI', stack: 'Spark · dbt · Airflow', bg: 'bg-[linear-gradient(160deg,#2E1A1A,#0D0D0D)]' },
-];
+import { Link } from 'react-router-dom'
+import { projects } from '../data/projects'
 
-const secondaryProjects = [
-    // Column 1 (220 + 150 + 180 = 550)
-    { id: '04', type: 'secondary', height: 'h-[220px]', title: 'SCRAPING TOOL', stack: 'Python · BS4', bg: 'bg-[linear-gradient(135deg,#1A1A1A,#0D0D0D)]' },
-    { id: '05', type: 'secondary', height: 'h-[150px]', title: 'NLP CLASSIFIER', stack: 'BERT · HuggingFace', bg: 'bg-[linear-gradient(135deg,#111111,#0D0D0D)]' },
-    { id: '06', type: 'secondary', height: 'h-[180px]', title: 'API REST', stack: 'FastAPI · Docker', bg: 'bg-[linear-gradient(135deg,#1A1A1A,#0D0D0D)]' },
-    
-    // Column 2 (150 + 220 + 180 = 550)
-    { id: '07', type: 'secondary', height: 'h-[150px]', title: 'DATA VIZ ART', stack: 'D3.js · Observable', bg: 'bg-[linear-gradient(135deg,#111111,#0D0D0D)]' },
-    { id: '08', type: 'secondary', height: 'h-[220px]', title: 'SQL OPTIMIZER', stack: 'PostgreSQL · dbt', bg: 'bg-[linear-gradient(135deg,#1A1A1A,#0D0D0D)]' },
-    { id: '09', type: 'secondary', height: 'h-[180px]', title: 'DASHBOARD BI', stack: 'Power BI · DAX', bg: 'bg-[linear-gradient(135deg,#111111,#0D0D0D)]' },
-    
-    // Column 3 (180 + 150 + 220 = 550)
-    { id: '10', type: 'secondary', height: 'h-[180px]', title: 'DATA WAREHOUSE', stack: 'Snowflake · SQL', bg: 'bg-[linear-gradient(135deg,#1A1A1A,#0D0D0D)]' },
-    { id: '11', type: 'secondary', height: 'h-[150px]', title: 'RECOMMENDER', stack: 'Python · Scikit-Learn', bg: 'bg-[linear-gradient(135deg,#1A1A1A,#0D0D0D)]' },
-    { id: '12', type: 'secondary', height: 'h-[220px]', title: 'MLOPS PIPELINE', stack: 'MLflow · Kubernetes', bg: 'bg-[linear-gradient(135deg,#1A1A1A,#0D0D0D)]' },
-];
+// --- DATA PREPARATION ---
+
+// Only Vision is a "Main" project for now
+const visionProject = projects.find(p => p.id === 'vision')
+
+const mainProjects = [
+    // 1. Vision
+    ...(visionProject ? [{
+        id: visionProject.id,
+        type: 'main',
+        height: 'h-[320px]',
+        title: visionProject.meta.title.toUpperCase(),
+        stack: visionProject.tech_stack?.frontend?.slice(0, 3).join(' · '),
+        bg: 'bg-[linear-gradient(160deg,#1A1A2E,#0D0D0D)]'
+    }] : []),
+    // 2. Placeholder 1
+    { id: 'placeholder-1', type: 'main', height: 'h-[320px]', title: 'COMING SOON', stack: 'Data Engineering', bg: 'bg-[#111]' },
+    // 3. Placeholder 2
+    { id: 'placeholder-2', type: 'main', height: 'h-[320px]', title: 'COMING SOON', stack: 'Machine Learning', bg: 'bg-[#111]' },
+].slice(0, 3)
+
+// All other projects go to secondary
+const otherProjectsFromData = projects
+    .filter(p => p.id !== 'vision')
+    .map(p => ({
+        id: p.id,
+        title: p.meta.title.toUpperCase(),
+        stack: p.tech_stack?.display?.[0] || p.tech_stack?.frontend?.[0] || p.tech_stack?.backend?.[0] || 'Web Project',
+        isPlaceholder: false
+    }))
+
+// Fill up the 9 slots for the secondary grid
+const secondaryProjects = Array.from({ length: 9 }).map((_, i) => {
+    const realProject = otherProjectsFromData[i]
+
+    // Staggered height pattern to create "nested bricks" effect
+    // All columns sum to 550px, but internal alignments are offset
+    const columnPatterns = [
+        ['h-[220px]', 'h-[150px]', 'h-[180px]'], // Col 1
+        ['h-[150px]', 'h-[220px]', 'h-[180px]'], // Col 2
+        ['h-[180px]', 'h-[150px]', 'h-[220px]'], // Col 3
+    ]
+    const colIndex = Math.floor(i / 3)
+    const rowIndex = i % 3
+    const height = columnPatterns[colIndex][rowIndex]
+
+    if (realProject) {
+        return {
+            ...realProject,
+            type: 'secondary',
+            height,
+            bg: 'bg-[linear-gradient(135deg,#1A1A1A,#0D0D0D)]'
+        }
+    }
+
+    // Placeholders
+    const placeholders = [
+        { title: 'DATA VIZ ART', stack: 'D3.js · Observable' },
+        { title: 'SQL OPTIMIZER', stack: 'PostgreSQL · dbt' },
+        { title: 'DASHBOARD BI', stack: 'Power BI · DAX' },
+        { title: 'DATA WAREHOUSE', stack: 'Snowflake · SQL' },
+        { title: 'RECOMMENDER', stack: 'Python · Scikit-Learn' },
+        { title: 'MLOPS PIPELINE', stack: 'MLflow · Kubernetes' },
+    ]
+    const ph = placeholders[i - otherProjectsFromData.length] || placeholders[0]
+
+    return {
+        id: `placeholder-s-${i}`,
+        type: 'secondary',
+        height,
+        title: ph.title,
+        stack: ph.stack,
+        bg: 'bg-[#111]',
+        isPlaceholder: true
+    }
+})
+
+// --- COMPONENTS ---
 
 function SectionDivider({ title }) {
     return (
@@ -31,25 +90,29 @@ function SectionDivider({ title }) {
 }
 
 function ProjectCard({ p, className = '' }) {
-    return (
-        <div 
-            className={`group break-inside-avoid bg-[#111] border ${p.type === 'main' ? 'border-[#202020]' : 'border-[#1A1A1A]'} cursor-pointer relative overflow-hidden block w-full ${p.height} ${className}`}
+    const isClickable = projects.some(proj => proj.id === p.id)
+
+    const CardContent = (
+        <div
+            className={`group break-inside-avoid bg-[#111] border ${p.type === 'main' ? 'border-[#202020]' : 'border-[#1A1A1A]'} ${isClickable ? 'cursor-pointer' : 'cursor-default'} relative overflow-hidden block w-full ${p.height} ${className}`}
         >
             {/* Image / Gradient Hover */}
-            <div className={`absolute inset-0 z-0 opacity-0 transition-opacity duration-300 ease-in-out group-hover:opacity-100 ${p.bg}`}></div>
-            
+            <div className={`absolute inset-0 z-0 opacity-0 transition-opacity duration-300 ease-in-out ${isClickable ? 'group-hover:opacity-100' : ''} ${p.bg}`}></div>
+
             {/* Glass Overlay */}
-            <div className="absolute inset-0 z-0 bg-[#0D0D0D]/60 opacity-0 transition-opacity duration-300 group-hover:opacity-100"></div>
-            
+            <div className="absolute inset-0 z-0 bg-[#0D0D0D]/60 opacity-0 transition-opacity duration-300 ${isClickable ? 'group-hover:opacity-100' : ''}"></div>
+
             {/* Arrow */}
-            <span className="absolute top-4 right-4 text-[14px] text-[#1A1A1A] transition-all duration-200 z-20 group-hover:text-offwhite group-hover:translate-x-[2px] group-hover:-translate-y-[2px]">
-                ↗
-            </span>
-            
+            {isClickable && (
+                <span className="absolute top-4 right-4 text-[14px] text-[#1A1A1A] transition-all duration-200 z-20 group-hover:text-offwhite group-hover:translate-x-[2px] group-hover:-translate-y-[2px]">
+                    ↗
+                </span>
+            )}
+
             {/* Content */}
             <div className="p-5 flex flex-col justify-end h-full relative z-10">
                 <div className="font-mono text-[9px] text-[#232323] tracking-[0.12em] mb-2 transition-colors duration-200 group-hover:text-[#444]">
-                    {p.id}{p.type === 'main' ? ' · Principal' : ''}
+                    {p.id.toUpperCase()}{p.type === 'main' && isClickable ? ' · Principal' : ''}
                 </div>
                 <div className={`font-bebas tracking-[0.04em] leading-none transition-colors duration-200 group-hover:text-offwhite ${p.type === 'main' ? 'text-[36px] text-[#383838]' : 'text-[24px] text-[#2A2A2A]'}`}>
                     {p.title}
@@ -60,6 +123,12 @@ function ProjectCard({ p, className = '' }) {
             </div>
         </div>
     )
+
+    if (isClickable) {
+        return <Link to={`/projets/${p.id}`}>{CardContent}</Link>
+    }
+
+    return CardContent
 }
 
 export default function Projects() {
