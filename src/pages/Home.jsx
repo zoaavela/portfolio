@@ -25,10 +25,10 @@ const featuredProjects = [
 
 export default function Home() {
     return (
-        <main className="bg-[#0D0D0D] h-[100dvh] w-full text-offwhite font-grotesk overflow-x-hidden overflow-y-auto snap-y snap-mandatory scroll-smooth">
+        <main className="bg-[#0D0D0D] h-[100dvh] w-full text-offwhite font-grotesk overflow-x-hidden overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth">
 
             {/* SECTION 1 : HERO & NAVIGATION */}
-            <section className="h-[100dvh] w-full snap-start flex flex-col items-center justify-center pt-14 px-7 relative">
+            <section className="min-h-[100dvh] md:h-[100dvh] w-full md:snap-start flex flex-col items-center justify-center py-20 md:py-0 md:pt-14 px-7 relative">
                 <motion.div
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -69,7 +69,7 @@ export default function Home() {
             </section>
 
             {/* SECTION 2 : PROJETS PHARES */}
-            <section className="h-[100dvh] w-full snap-start flex flex-col items-center justify-center pt-14 px-7 relative">
+            <section className="min-h-[100dvh] md:h-[100dvh] w-full md:snap-start flex flex-col items-center justify-center py-20 md:py-0 md:pt-14 px-7 relative">
                 <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
@@ -106,7 +106,7 @@ export default function Home() {
             </section>
 
             {/* SECTION 3 : FOOTER */}
-            <section className="h-[100dvh] w-full snap-start flex flex-col justify-end">
+            <section className="min-h-screen md:h-[100dvh] w-full md:snap-start flex flex-col justify-end">
                 <BigFooter />
             </section>
 
