@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
 
@@ -10,9 +10,16 @@ const links = [
 ]
 
 export default function Navbar() {
+    const location = useLocation()
     const [open, setOpen] = useState(false)
     const [lang, setLang] = useState('FR')
     const [theme, setTheme] = useState('dark')
+
+    // Fermeture automatique du menu au changement de page
+    // Cela garantit que le menu reste opaque jusqu'à ce que la nouvelle page soit chargée
+    useEffect(() => {
+        setOpen(false)
+    }, [location.pathname])
 
     const toggleLang = () => setLang(lang === 'FR' ? 'EN' : 'FR')
     const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
@@ -67,8 +74,6 @@ export default function Navbar() {
                         onClick={() => setOpen(!open)}
                         className="text-offwhite hover:text-[#888] transition-colors ml-1 flex items-center gap-2 group"
                     >
-                        {/* On laisse la taille naturelle pour éviter les espaces vides gênants. 
-                            Cela va légèrement décaler les autres boutons au clic, mais c'est le comportement naturel et le plus ergonomique. */}
                         <span className="font-mono text-[10px] tracking-widest uppercase hidden md:block">
                             {open ? 'FERMER' : 'MENU'}
                         </span>
@@ -103,7 +108,6 @@ export default function Navbar() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: i * 0.05 + 0.05, duration: 0.5 }}
                                 className="border-b border-[#111] first:border-t py-2 flex justify-center group cursor-pointer"
-                                onClick={() => setOpen(false)}
                             >
                                 <Link
                                     to={link.href}
