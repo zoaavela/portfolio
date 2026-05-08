@@ -12,8 +12,8 @@ export default function Footer() {
                     <h2 className="font-bebas text-7xl md:text-9xl text-offwhite tracking-widest leading-[0.85] drop-shadow-lg">
                         LET'S BUILD<br />SOMETHING.
                     </h2>
-                    <a href="mailto:hello@enzo.com" className="font-mono text-sm md:text-base tracking-[0.2em] text-[#888] hover:text-offwhite transition-colors w-fit">
-                        HELLO@ENZO.COM
+                    <a href="mailto:enzooabdi@gmail.com" className="font-mono text-sm md:text-base tracking-[0.2em] text-[#888] hover:text-offwhite transition-colors w-fit">
+                        ENZOOABDI@GMAIL.COM
                     </a>
                 </div>
 
@@ -21,8 +21,8 @@ export default function Footer() {
                 <div className="flex gap-16 md:gap-24 mt-4 md:mt-0">
                     <div className="flex flex-col gap-4">
                         <span className="font-mono text-[10px] tracking-widest uppercase text-[#444] mb-2">Réseaux</span>
-                        <a href="#" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">LinkedIn</a>
-                        <a href="#" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">GitHub</a>
+                        <a href="https://www.linkedin.com/in/abdienzo/" target="_blank" rel="noopener noreferrer" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">LinkedIn</a>
+                        <a href="https://github.com/zoaavela" target="_blank" rel="noopener noreferrer" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">GitHub</a>
                         <a href="#" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Twitter</a>
                     </div>
                     <div className="flex flex-col gap-4">

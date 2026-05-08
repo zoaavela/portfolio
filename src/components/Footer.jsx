@@ -19,9 +19,9 @@ export default function Footer() {
                 </a>
 
                 {/* Liens sociaux */}
-                <a href="#" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">LinkedIn</a>
-                <a href="#" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">GitHub</a>
-                <a href="#" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">Mail</a>
+                <a href="https://www.linkedin.com/in/abdienzo/" target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">LinkedIn</a>
+                <a href="https://github.com/zoaavela" target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">GitHub</a>
+                <a href="mailto:enzooabdi@gmail.com" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">Mail</a>
             </div>
         </footer>
     )

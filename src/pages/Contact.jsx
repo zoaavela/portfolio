@@ -26,12 +26,12 @@ export default function Contact() {
                         </p>
                         
                         <div className="mt-2 md:mt-12 flex flex-col gap-2 md:gap-4">
-                            <a href="mailto:hello@enzo.com" className="font-bebas text-3xl md:text-5xl text-[#555] hover:text-offwhite transition-colors w-fit">
-                                HELLO@ENZO.COM
+                            <a href="mailto:enzooabdi@gmail.com" className="font-bebas text-3xl md:text-5xl text-[#555] hover:text-offwhite transition-colors w-fit">
+                                ENZOOABDI@GMAIL.COM
                             </a>
                             <div className="flex gap-6 mt-2 md:mt-4">
-                                <a href="#" className="font-mono text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">LinkedIn</a>
-                                <a href="#" className="font-mono text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">GitHub</a>
+                                <a href="https://www.linkedin.com/in/abdienzo/" target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">LinkedIn</a>
+                                <a href="https://github.com/zoaavela" target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">GitHub</a>
                             </div>
                         </div>
                     </motion.div>
