@@ -1,0 +1,60 @@
+{
+    "id": "javabanking",
+    "accent": "#4CAF82",
+    "meta": {
+        "title": "Compte Bancaire",
+        "subtitle": "POO Java",
+        "category": "Script Java",
+        "pitch": "Modélisation d'un compte bancaire en Java — dépôt, retrait, virement et gestion de tableaux de comptes.",
+        "period": "Octobre 2025",
+        "duration": "Court terme (TP de cours)",
+        "context": "Projet d'études",
+        "team_size": 1,
+        "role": "Développeur",
+        "status": "Archivé"
+    },
+    "links": {
+        "repository": "https://github.com/zoaavela/java-banking"
+    },
+    "description": {
+        "short": "TP de programmation orientée objet en Java — classe CompteBancaire avec dépôt, retrait, virement et gestion de tableaux de comptes.",
+        "long": "Travaux pratiques de cours sur la programmation orientée objet en Java. Le projet modélise un compte bancaire via une classe CompteBancaire avec attributs privés, constructeur et méthodes : affichage du solde, dépôt, retrait avec gestion des erreurs, et virement entre comptes. Une deuxième classe de test manipule un tableau de quatre comptes avec crédits et retraits en boucle."
+    },
+    "tech_stack": {
+        "frontend": [],
+        "backend": [
+            "Java"
+        ],
+        "infrastructure": [],
+        "display": [
+            "Java"
+        ]
+    },
+    "challenges": [
+        {
+            "title": "Encapsulation et accès aux attributs",
+            "description": "Gérer les attributs privés tout en permettant les virements entre deux instances de CompteBancaire.",
+            "resolution": "Accès direct au solde de l'instance destination depuis la méthode virementVers — possible car dans la même classe.",
+            "lesson": "L'encapsulation en Java n'empêche pas l'accès entre instances de la même classe."
+        },
+        {
+            "title": "Gestion des cas d'erreur",
+            "description": "Couvrir tous les cas : montant négatif, solde insuffisant, virement impossible.",
+            "resolution": "Conditions imbriquées avec messages d'erreur explicites pour chaque cas.",
+            "lesson": "La robustesse d'un programme se construit dans les cas limites, pas dans le cas nominal."
+        }
+    ],
+    "results_and_impact": {
+        "summary": "Classe Java fonctionnelle avec gestion complète des opérations bancaires et manipulation de tableaux d'objets.",
+        "key_learnings": [
+            "Programmation orientée objet en Java",
+            "Encapsulation et attributs privés",
+            "Gestion des erreurs et cas limites",
+            "Manipulation de tableaux d'objets"
+        ]
+    },
+    "visuals": {
+        "main_image": null,
+        "alt_text": "Compte Bancaire Java — TP POO"
+    }
+}

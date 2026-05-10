@@ -83,7 +83,10 @@ export default function PythonTerminal() {
     }
 
     const handleKey = (e) => {
-        if (e.key === 'Enter') run()
+        if (e.key === 'Enter') {
+            e.preventDefault()
+            run()
+        }
     }
 
     return (

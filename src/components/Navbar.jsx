@@ -1,18 +1,25 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { motion, AnimatePresence } from 'framer-motion'
+import { useLanguage } from '../context/LanguageContext'
 
-const links = [
-    { label: 'PROJETS', href: '/projets' },
-    { label: 'PARCOURS', href: '/parcours' },
-    { label: 'BLOG', href: '/blog' },
-    { label: 'CONTACT', href: '/contact' },
-]
+const links = {
+    FR: [
+        { label: 'PROJETS', href: '/projets' },
+        { label: 'PARCOURS', href: '/parcours' },
+        { label: 'CONTACT', href: '/contact' },
+    ],
+    EN: [
+        { label: 'PROJECTS', href: '/projets' },
+        { label: 'EXPERIENCE', href: '/parcours' },
+        { label: 'CONTACT', href: '/contact' },
+    ]
+}
 
 export default function Navbar() {
+    const { lang, toggleLang, t } = useLanguage()
     const location = useLocation()
     const [open, setOpen] = useState(false)
-    const [lang, setLang] = useState('FR')
     const [theme, setTheme] = useState('dark')
 
     // Fermeture automatique du menu au changement de page
@@ -21,7 +28,6 @@ export default function Navbar() {
         setOpen(false)
     }, [location.pathname])
 
-    const toggleLang = () => setLang(lang === 'FR' ? 'EN' : 'FR')
     const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark')
 
     return (
@@ -75,7 +81,7 @@ export default function Navbar() {
                         className="text-offwhite hover:text-[#888] transition-colors ml-1 flex items-center gap-2 group"
                     >
                         <span className="font-mono text-[10px] tracking-widest uppercase hidden md:block">
-                            {open ? 'FERMER' : 'MENU'}
+                            {open ? t({ FR: 'FERMER', EN: 'CLOSE' }) : t({ FR: 'MENU', EN: 'MENU' })}
                         </span>
                         {open ? (
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.2">
@@ -101,7 +107,7 @@ export default function Navbar() {
                         transition={{ duration: 0.35 }}
                         className="fixed inset-0 z-40 bg-[#0D0D0D] flex flex-col justify-center px-7"
                     >
-                        {links.map((link, i) => (
+                        {links[lang].map((link, i) => (
                             <motion.div
                                 key={link.href}
                                 initial={{ opacity: 0, y: 30 }}

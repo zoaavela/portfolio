@@ -1,40 +1,78 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, useSpring } from 'framer-motion'
+import { useLanguage } from '../context/LanguageContext'
 
-const milestones = [
-    {
-        year: '2018',
-        title: 'DÉBUT DES ÉTUDES',
-        desc: "Entrée en école d'ingénieur. Plongée dans les mathématiques appliquées, l'algorithmique et les fondements de l'informatique.",
-        image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219ed?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-        year: '2020',
-        title: 'PREMIERS PAS DATA',
-        desc: "Découverte de l'écosystème Big Data lors d'un premier stage. Création de pipelines ETL et initiation au Machine Learning.",
-        image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-        year: '2022',
-        title: 'MASTER IA & DATA',
-        desc: 'Obtention du diplôme avec mention. Spécialisation en Intelligence Artificielle et thèse sur les modèles de langage (NLP).',
-        image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-        year: '2023',
-        title: 'DATA ENGINEER',
-        desc: "Premier poste structurant. Déploiement d'architectures cloud robustes et industrialisation de modèles prédictifs.",
-        image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
-    },
-    {
-        year: '2024',
-        title: 'CONSULTANT SENIOR',
-        desc: "Lancement en tant qu'indépendant. Accompagnement de startups et grands comptes sur leur stratégie et implémentation IA.",
-        image: 'https://images.unsplash.com/photo-1524169358666-eb3c8c4cedf3?auto=format&fit=crop&w=800&q=80'
-    }
-]
+const milestonesData = {
+    FR: [
+        {
+            year: '2018',
+            title: 'DÉBUT DES ÉTUDES',
+            desc: "Entrée en école d'ingénieur. Plongée dans les mathématiques appliquées, l'algorithmique et les fondements de l'informatique.",
+            image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219ed?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+            year: '2020',
+            title: 'PREMIERS PAS DATA',
+            desc: "Découverte de l'écosystème Big Data lors d'un premier stage. Création de pipelines ETL et initiation au Machine Learning.",
+            image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+            year: '2022',
+            title: 'MASTER IA & DATA',
+            desc: 'Obtention du diplôme avec mention. Spécialisation en Intelligence Artificielle et thèse sur les modèles de langage (NLP).',
+            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+            year: '2023',
+            title: 'DATA ENGINEER',
+            desc: "Premier poste structurant. Déploiement d'architectures cloud robustes et industrialisation de modèles prédictifs.",
+            image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+            year: '2024',
+            title: 'CONSULTANT SENIOR',
+            desc: "Lancement en tant qu'indépendant. Accompagnement de startups et grands comptes sur leur stratégie et implémentation IA.",
+            image: 'https://images.unsplash.com/photo-1524169358666-eb3c8c4cedf3?auto=format&fit=crop&w=800&q=80'
+        }
+    ],
+    EN: [
+        {
+            year: '2018',
+            title: 'STUDIES BEGIN',
+            desc: "Entered engineering school. Immersed in applied mathematics, algorithms, and computer science fundamentals.",
+            image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219ed?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+            year: '2020',
+            title: 'FIRST STEPS IN DATA',
+            desc: "Discovered the Big Data ecosystem during a first internship. Created ETL pipelines and was initiated into Machine Learning.",
+            image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+            year: '2022',
+            title: 'MASTER IN AI & DATA',
+            desc: 'Graduated with honors. Specialized in Artificial Intelligence with a thesis on Large Language Models (NLP).',
+            image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+            year: '2023',
+            title: 'DATA ENGINEER',
+            desc: "First key professional role. Deployed robust cloud architectures and industrialized predictive models.",
+            image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
+        },
+        {
+            year: '2024',
+            title: 'SENIOR CONSULTANT',
+            desc: "Launched as a freelancer. Supporting startups and major accounts with their AI strategy and implementation.",
+            image: 'https://images.unsplash.com/photo-1524169358666-eb3c8c4cedf3?auto=format&fit=crop&w=800&q=80'
+        }
+    ]
+}
 
 export default function Parcours() {
+    const { lang, t } = useLanguage()
+    const milestones = milestonesData[lang]
+    
     const targetRef = useRef(null)
     const carouselRef = useRef(null)
     const [carouselWidth, setCarouselWidth] = useState(0)
@@ -54,7 +92,7 @@ export default function Parcours() {
         setTimeout(updateWidth, 100)
         window.addEventListener('resize', updateWidth)
         return () => window.removeEventListener('resize', updateWidth)
-    }, [])
+    }, [lang]) // Re-calculate on lang change
 
     const { scrollYProgress } = useScroll({
         target: targetRef,
@@ -73,43 +111,32 @@ export default function Parcours() {
 
     return (
         <main className="bg-[#0D0D0D] font-grotesk text-offwhite min-h-screen">
-            {/* Sur desktop : 400vh. Sur mobile : taille normale automatique */}
             <div ref={targetRef} className="md:h-[400vh] relative">
-
-                {/* Sur desktop : sticky et h-screen. Sur mobile : juste un block normal */}
                 <div className="md:sticky md:top-0 md:h-screen flex flex-col md:flex-row md:items-center md:overflow-hidden relative">
-
-                    {/* Le titre */}
                     <motion.div
                         style={{ opacity: isDesktop ? opacityTitleDesktop : 1 }}
                         className="md:absolute left-7 md:left-14 top-24 z-10 pointer-events-none mt-24 md:mt-0 mb-12 md:mb-0 px-7 md:px-0"
                     >
                         <h1 className="font-bebas text-6xl md:text-8xl text-offwhite tracking-widest leading-none drop-shadow-lg">
-                            MON<br className="hidden md:block" /> PARCOURS.
+                            {t({ FR: 'MON', EN: 'MY' })}<br className="hidden md:block" /> {t({ FR: 'PARCOURS.', EN: 'EXPERIENCE.' })}
                         </h1>
                         <p className="mt-4 font-mono text-[10px] text-[#555] tracking-[0.2em] uppercase max-w-[200px] hidden md:block">
-                            Scrollez pour avancer dans le temps
+                            {t({ FR: 'Scrollez pour avancer dans le temps', EN: 'Scroll to move through time' })}
                         </p>
                     </motion.div>
 
-                    {/* La chronologie */}
                     <motion.div
                         ref={carouselRef}
                         style={{ x }}
                         className="flex flex-col md:flex-row md:items-center w-full md:w-[max-content] md:pt-16 pb-24 md:pb-0 px-7 md:px-0 gap-16 md:gap-0"
                     >
-                        {/* Espace initial (uniquement sur PC) */}
                         <div className="hidden md:block w-[40vw] shrink-0"></div>
 
                         {milestones.map((milestone, idx) => (
                             <div key={idx} className="w-full md:w-[450px] shrink-0 flex flex-col gap-4 md:gap-6 relative group md:mr-32">
-
-                                {/* Ligne horizontale (Desktop) */}
                                 {idx !== milestones.length - 1 && (
                                     <div className="absolute top-[44px] left-[220px] right-[-180px] h-px bg-[#222] z-0 hidden md:block"></div>
                                 )}
-
-                                {/* Ligne verticale (Mobile) */}
                                 {idx !== milestones.length - 1 && (
                                     <div className="absolute top-[80px] bottom-[-80px] left-[20px] w-px bg-[#222] z-0 md:hidden block"></div>
                                 )}
@@ -145,7 +172,6 @@ export default function Parcours() {
                             </div>
                         ))}
 
-                        {/* Espace final (uniquement sur PC) */}
                         <div className="hidden md:block w-[15vw] shrink-0"></div>
                     </motion.div>
                 </div>

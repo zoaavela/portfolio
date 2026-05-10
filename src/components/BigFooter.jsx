@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Footer() {
+    const { t } = useLanguage()
+    
     return (
         <footer className="border-t border-[#161616] px-7 py-20 md:py-32 flex flex-col gap-16 md:gap-24 bg-[#0D0D0D]">
 
@@ -10,7 +13,7 @@ export default function Footer() {
                 {/* Left side: Massive Text */}
                 <div className="flex flex-col gap-6">
                     <h2 className="font-bebas text-7xl md:text-9xl text-offwhite tracking-widest leading-[0.85] drop-shadow-lg">
-                        LET'S BUILD<br />SOMETHING.
+                        {t({ FR: "CONSTRUISONS", EN: "LET'S BUILD" })}<br />{t({ FR: "ENSEMBLE.", EN: "SOMETHING." })}
                     </h2>
                     <a href="mailto:enzooabdi@gmail.com" className="font-mono text-sm md:text-base tracking-[0.2em] text-[#888] hover:text-offwhite transition-colors w-fit">
                         ENZOOABDI@GMAIL.COM
@@ -20,15 +23,15 @@ export default function Footer() {
                 {/* Right side: Links */}
                 <div className="flex gap-16 md:gap-24 mt-4 md:mt-0">
                     <div className="flex flex-col gap-4">
-                        <span className="font-mono text-[10px] tracking-widest uppercase text-[#444] mb-2">Réseaux</span>
+                        <span className="font-mono text-[10px] tracking-widest uppercase text-[#444] mb-2">{t({ FR: 'Réseaux', EN: 'Socials' })}</span>
                         <a href="https://www.linkedin.com/in/abdienzo/" target="_blank" rel="noopener noreferrer" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">LinkedIn</a>
                         <a href="https://github.com/zoaavela" target="_blank" rel="noopener noreferrer" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">GitHub</a>
                         <a href="#" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Twitter</a>
                     </div>
                     <div className="flex flex-col gap-4">
                         <span className="font-mono text-[10px] tracking-widest uppercase text-[#444] mb-2">Navigation</span>
-                        <Link to="/projets" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Projets</Link>
-                        <Link to="/parcours" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Parcours</Link>
+                        <Link to="/projets" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Projets', EN: 'Projects' })}</Link>
+                        <Link to="/parcours" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Parcours', EN: 'Experience' })}</Link>
                         <Link to="/contact" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Contact</Link>
                     </div>
                 </div>
@@ -44,7 +47,7 @@ export default function Footer() {
                     download="CV_Enzo.pdf"
                     className="flex items-center gap-3 text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#0D0D0D] bg-offwhite px-8 py-4 hover:bg-[#CCC] transition-all duration-300 w-full md:w-auto justify-center"
                 >
-                    <span>TÉLÉCHARGER CV</span>
+                    <span>{t({ FR: 'TÉLÉCHARGER CV', EN: 'DOWNLOAD CV' })}</span>
                     <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
                         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                         <polyline points="7 10 12 15 17 10"></polyline>
@@ -53,7 +56,7 @@ export default function Footer() {
                 </a>
 
                 <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-[#333]">
-                    © {new Date().getFullYear()} ENZO. TOUS DROITS RÉSERVÉS.
+                    © {new Date().getFullYear()} ENZO. {t({ FR: 'TOUS DROITS RÉSERVÉS.', EN: 'ALL RIGHTS RESERVED.' })}
                 </span>
             </div>
 

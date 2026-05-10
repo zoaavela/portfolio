@@ -1,4 +1,8 @@
+import { useLanguage } from '../context/LanguageContext'
+
 export default function Footer() {
+    const { t } = useLanguage()
+    
     return (
         <footer className="border-t border-[#161616] px-7 py-6 flex flex-col md:flex-row gap-6 md:gap-0 items-center justify-between">
             <span className="font-bebas text-lg text-offwhite tracking-widest">ENZO.</span>
@@ -21,7 +25,7 @@ export default function Footer() {
                 {/* Liens sociaux */}
                 <a href="https://www.linkedin.com/in/abdienzo/" target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">LinkedIn</a>
                 <a href="https://github.com/zoaavela" target="_blank" rel="noopener noreferrer" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">GitHub</a>
-                <a href="mailto:enzooabdi@gmail.com" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">Mail</a>
+                <a href="mailto:enzooabdi@gmail.com" className="text-[10px] tracking-widest uppercase text-[#555] hover:text-offwhite transition-colors">{t({ FR: 'Mail', EN: 'Email' })}</a>
             </div>
         </footer>
     )

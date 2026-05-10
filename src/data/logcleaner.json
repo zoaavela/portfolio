@@ -1,0 +1,84 @@
+{
+    "id": "logcleaner",
+    "accent": "#4CAF82",
+    "meta": {
+        "title": "logCleaner",
+        "subtitle": "Outil de nettoyage de logs",
+        "category": "Script Python",
+        "pitch": "Utilitaire Python pour automatiser le nettoyage et l'analyse de fichiers de logs via expressions régulières — sans dépendance externe.",
+        "period": "Janvier 2026",
+        "duration": "En cours",
+        "context": "Projet personnel",
+        "team_size": 1,
+        "role": "Développeur",
+        "status": "En cours"
+    },
+    "links": {
+        "repository": "https://github.com/zoaavela/logCleaner"
+    },
+    "description": {
+        "short": "Utilitaire Python de nettoyage et d'analyse de logs — filtrage par RegEx, architecture modulaire, zéro dépendance externe.",
+        "long": "logCleaner est un outil personnel développé en Python pur pour automatiser le traitement de gros volumes de logs. Il repose sur une architecture modulaire claire — main.py, interface.py, functions.py, patterns.py — et exploite les expressions régulières pour isoler les informations critiques. Aucune bibliothèque externe requise. Supporte les formats Apache, Syslog et logs applicatifs personnalisés."
+    },
+    "tech_stack": {
+        "frontend": [],
+        "backend": [
+            "Python"
+        ],
+        "infrastructure": [],
+        "display": [
+            "Python",
+            "RegEx",
+            "CLI"
+        ]
+    },
+    "modules": [
+        {
+            "id": "main",
+            "name": "main.py",
+            "description": "Point d'entrée de l'application — orchestre les modules et lance l'interface."
+        },
+        {
+            "id": "interface",
+            "name": "interface.py",
+            "description": "Gestion des menus et de l'affichage terminal — expérience utilisateur CLI."
+        },
+        {
+            "id": "functions",
+            "name": "functions.py",
+            "description": "Logique de manipulation des fichiers — lecture, nettoyage, export."
+        },
+        {
+            "id": "patterns",
+            "name": "patterns.py",
+            "description": "Configuration des expressions régulières — patterns Apache, Syslog, erreurs, timestamps."
+        }
+    ],
+    "challenges": [
+        {
+            "title": "Filtrage pertinent sans surcharge",
+            "description": "Isoler les informations vraiment critiques dans des fichiers de logs potentiellement massifs sans ralentir l'exécution.",
+            "resolution": "Utilisation exclusive de la bibliothèque standard Python et de RegEx compilées pour maximiser les performances.",
+            "lesson": "La performance en traitement de texte vient souvent de ce qu'on n'importe pas, pas de ce qu'on optimise."
+        },
+        {
+            "title": "Architecture modulaire maintenable",
+            "description": "Garder le projet extensible sans complexifier la structure au fur et à mesure des nouvelles fonctionnalités.",
+            "resolution": "Séparation stricte des responsabilités en 4 fichiers distincts — chaque module a un seul rôle.",
+            "lesson": "Un fichier, une responsabilité — le principe le plus simple est souvent le plus durable."
+        }
+    ],
+    "results_and_impact": {
+        "summary": "Outil CLI fonctionnel pour le nettoyage automatisé de logs, zéro dépendance, architecture modulaire extensible. Projet en cours d'évolution.",
+        "key_learnings": [
+            "Maîtrise des expressions régulières Python",
+            "Architecture modulaire CLI",
+            "Traitement de fichiers texte à haute volumétrie",
+            "Python standard library — sans dépendances externes"
+        ]
+    },
+    "visuals": {
+        "main_image": null,
+        "alt_text": "logCleaner — interface terminal Python"
+    }
+}

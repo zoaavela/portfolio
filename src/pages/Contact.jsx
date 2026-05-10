@@ -1,6 +1,9 @@
 import { motion } from 'framer-motion'
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Contact() {
+    const { t } = useLanguage()
+
     // Fonction pour auto-agrandir la zone de texte selon son contenu
     const handleTextareaInput = (e) => {
         e.target.style.height = 'auto'
@@ -19,10 +22,13 @@ export default function Contact() {
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
                         <h1 className="font-bebas text-7xl md:text-[10vw] text-offwhite tracking-widest leading-[0.85] drop-shadow-lg mb-4 md:mb-8">
-                            LET'S<br />TALK.
+                            {t({ FR: 'DISCUTONS.', EN: "LET'S TALK." })}
                         </h1>
                         <p className="font-mono text-[10px] md:text-sm text-[#666] tracking-widest uppercase max-w-md leading-relaxed hidden md:block">
-                            Open for freelance opportunities, collaborations, or just a coffee chat.
+                            {t({ 
+                                FR: "Ouvert aux opportunités de freelance, aux collaborations ou simplement pour discuter autour d'un café.", 
+                                EN: "Open for freelance opportunities, collaborations, or just a coffee chat." 
+                            })}
                         </p>
 
                         <div className="mt-2 md:mt-12 flex flex-col gap-2 md:gap-4">
@@ -46,11 +52,13 @@ export default function Contact() {
                 >
                     <form className="flex flex-col gap-6 md:gap-8 w-full max-w-md mx-auto md:mx-0">
                         <div className="flex flex-col gap-1 md:gap-2 group">
-                            <label className="font-mono text-[9px] md:text-[10px] tracking-widest uppercase text-[#555] group-focus-within:text-offwhite transition-colors">Name</label>
+                            <label className="font-mono text-[9px] md:text-[10px] tracking-widest uppercase text-[#555] group-focus-within:text-offwhite transition-colors">
+                                {t({ FR: 'Nom', EN: 'Name' })}
+                            </label>
                             <input
                                 type="text"
                                 className="bg-transparent border-b border-[#222] text-offwhite pb-1 md:pb-2 focus:outline-none focus:border-offwhite transition-colors font-grotesk text-base md:text-lg w-full rounded-none"
-                                placeholder="Your name"
+                                placeholder={t({ FR: 'Votre nom', EN: 'Your name' })}
                             />
                         </div>
                         <div className="flex flex-col gap-1 md:gap-2 group">
@@ -58,7 +66,7 @@ export default function Contact() {
                             <input
                                 type="email"
                                 className="bg-transparent border-b border-[#222] text-offwhite pb-1 md:pb-2 focus:outline-none focus:border-offwhite transition-colors font-grotesk text-base md:text-lg w-full rounded-none"
-                                placeholder="your@email.com"
+                                placeholder="votre@email.com"
                             />
                         </div>
                         <div className="flex flex-col gap-1 md:gap-2 group">
@@ -67,14 +75,14 @@ export default function Contact() {
                                 rows="1"
                                 onInput={handleTextareaInput}
                                 className="bg-transparent border-b border-[#222] text-offwhite pb-1 md:pb-2 focus:outline-none focus:border-offwhite transition-colors font-grotesk text-base md:text-lg resize-none w-full min-h-[40px] md:min-h-[50px] max-h-[150px] md:max-h-[250px] overflow-y-auto rounded-none"
-                                placeholder="How can I help you?"
+                                placeholder={t({ FR: 'Comment puis-je vous aider ?', EN: 'How can I help you?' })}
                             ></textarea>
                         </div>
                         <button
                             type="button"
                             className="mt-4 md:mt-4 border border-[#333] py-4 font-mono text-[10px] tracking-[0.2em] uppercase text-offwhite hover:bg-offwhite hover:text-[#0D0D0D] transition-all duration-300 w-full md:w-max px-12"
                         >
-                            SEND MESSAGE
+                            {t({ FR: 'ENVOYER LE MESSAGE', EN: 'SEND MESSAGE' })}
                         </button>
                     </form>
                 </motion.div>

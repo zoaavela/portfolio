@@ -1,29 +1,31 @@
 import { motion } from 'framer-motion'
 import { Link } from 'react-router-dom'
 import BigFooter from '../components/BigFooter'
-
-const featuredProjects = [
-    {
-        id: 1,
-        title: "KNOWLEDGE GRAPH",
-        category: "DATA ARCHITECTURE",
-        image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-        id: 2,
-        title: "PREDICTIVE ENGINE",
-        category: "MACHINE LEARNING",
-        image: "https://images.unsplash.com/photo-1620825937374-87fc7d6aaf09?auto=format&fit=crop&w=1200&q=80"
-    },
-    {
-        id: 3,
-        title: "LLM ORCHESTRATION",
-        category: "GENERATIVE AI",
-        image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
-    }
-]
+import { useLanguage } from '../context/LanguageContext'
 
 export default function Home() {
+    const { t } = useLanguage()
+
+    const featuredProjects = [
+        {
+            id: 1,
+            title: t({ FR: "KNOWLEDGE GRAPH", EN: "KNOWLEDGE GRAPH" }),
+            category: t({ FR: "ARCHITECTURE DE DONNÉES", EN: "DATA ARCHITECTURE" }),
+            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+            id: 2,
+            title: t({ FR: "MOTEUR PRÉDICTIF", EN: "PREDICTIVE ENGINE" }),
+            category: t({ FR: "MACHINE LEARNING", EN: "MACHINE LEARNING" }),
+            image: "https://images.unsplash.com/photo-1620825937374-87fc7d6aaf09?auto=format&fit=crop&w=1200&q=80"
+        },
+        {
+            id: 3,
+            title: t({ FR: "ORCHESTRATION LLM", EN: "LLM ORCHESTRATION" }),
+            category: t({ FR: "IA GÉNÉRATIVE", EN: "GENERATIVE AI" }),
+            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
+        }
+    ]
     return (
         <main className="bg-[#0D0D0D] h-[100dvh] w-full text-offwhite font-grotesk overflow-x-hidden overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth">
 
@@ -40,7 +42,10 @@ export default function Home() {
                     </h1>
                     <div className="w-px h-12 md:h-16 bg-[#333] mx-auto my-6 md:my-8"></div>
                     <p className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-[#888] uppercase max-w-lg mx-auto leading-relaxed">
-                        Data & AI Engineer <br className="md:hidden" />crafting intelligent systems.
+                        {t({ 
+                            FR: 'Ingénieur Data & IA concepteur de systèmes intelligents.', 
+                            EN: 'Data & AI Engineer crafting intelligent systems.' 
+                        })}
                     </p>
                 </motion.div>
 
@@ -52,17 +57,17 @@ export default function Home() {
                 >
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
                         <Link to="/projets" className="border border-[#222] flex items-center justify-center h-20 md:h-28 hover:bg-offwhite hover:text-[#0D0D0D] transition-colors group">
-                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase">Projets</span>
+                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase">{t({ FR: 'Projets', EN: 'Projects' })}</span>
                         </Link>
                         <Link to="/parcours" className="border border-[#222] flex items-center justify-center h-20 md:h-28 hover:bg-offwhite hover:text-[#0D0D0D] transition-colors group">
-                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase">Parcours</span>
+                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase">{t({ FR: 'Parcours', EN: 'Experience' })}</span>
                         </Link>
                         <Link to="/contact" className="border border-[#222] flex items-center justify-center h-20 md:h-28 hover:bg-offwhite hover:text-[#0D0D0D] transition-colors group">
                             <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase">Contact</span>
                         </Link>
                         <div className="border border-[#111] bg-[#0A0A0A] flex flex-col items-center justify-center h-20 md:h-28 cursor-not-allowed relative">
-                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#333]">Le Lab</span>
-                            <span className="font-mono text-[7px] tracking-widest uppercase text-[#444] mt-1 md:mt-2">En construction</span>
+                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#333]">{t({ FR: 'Le Lab', EN: 'The Lab' })}</span>
+                            <span className="font-mono text-[7px] tracking-widest uppercase text-[#444] mt-1 md:mt-2">{t({ FR: 'En construction', EN: 'Under construction' })}</span>
                         </div>
                     </div>
                 </motion.div>
@@ -78,7 +83,7 @@ export default function Home() {
                     className="w-full max-w-7xl mx-auto"
                 >
                     <div className="text-center mb-8 md:mb-16">
-                        <h2 className="font-bebas text-3xl md:text-4xl tracking-widest text-[#555]">PROJETS PHARES</h2>
+                        <h2 className="font-bebas text-3xl md:text-4xl tracking-widest text-[#555]">{t({ FR: 'PROJETS PHARES', EN: 'FEATURED PROJECTS' })}</h2>
                         <div className="w-px h-6 md:h-8 bg-[#222] mx-auto mt-4 md:mt-6"></div>
                     </div>
 
