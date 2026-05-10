@@ -21,23 +21,23 @@ export default function Home() {
     })
 
     const featuredProjects = [
-        { 
-            id: 'vision', 
-            title: t({ FR: "Vision", EN: "Vision" }), 
-            category: t({ FR: "Data Viz", EN: "Data Viz" }), 
-            num: "01" 
+        {
+            id: 'vision',
+            title: t({ FR: "Vision", EN: "Vision" }),
+            category: t({ FR: "Data Viz", EN: "Data Viz" }),
+            num: "01"
         },
-        { 
-            id: 'predictive', 
-            title: t({ FR: "Prédiction", EN: "Predictive" }), 
-            category: t({ FR: "Moteur ML", EN: "ML Engine" }), 
-            num: "02" 
+        {
+            id: 'predictive',
+            title: t({ FR: "Prédiction", EN: "Predictive" }),
+            category: t({ FR: "Moteur ML", EN: "ML Engine" }),
+            num: "02"
         },
-        { 
-            id: 'llm', 
-            title: t({ FR: "Orchestra", EN: "Orchestra" }), 
-            category: t({ FR: "IA Générative", EN: "Gen AI" }), 
-            num: "03" 
+        {
+            id: 'llm',
+            title: t({ FR: "Orchestra", EN: "Orchestra" }),
+            category: t({ FR: "IA Générative", EN: "Gen AI" }),
+            num: "03"
         }
     ]
 
@@ -49,12 +49,12 @@ export default function Home() {
 
             {/* --- SECTION 1 : PERSPECTIVE GRID HERO --- */}
             <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
-                
+
                 <div className="absolute inset-0 z-0 pointer-events-none opacity-20" style={{ perspective: '1000px' }}>
-                    <motion.div 
-                        animate={{ 
-                            rotateX: 60 + (mousePos.y - window.innerHeight/2) * 0.01,
-                            rotateY: (mousePos.x - window.innerWidth/2) * 0.01
+                    <motion.div
+                        animate={{
+                            rotateX: 60 + (mousePos.y - window.innerHeight / 2) * 0.01,
+                            rotateY: (mousePos.x - window.innerWidth / 2) * 0.01
                         }}
                         className="absolute inset-0 flex items-center justify-center translate-y-1/4"
                     >
@@ -64,12 +64,12 @@ export default function Home() {
 
                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/10 rounded-full blur-[100px] pointer-events-none"></div>
 
-                <motion.div 
+                <motion.div
                     style={{ opacity, scale }}
                     className="relative z-10 flex flex-col items-center text-center"
                 >
                     <div className="overflow-hidden mb-6">
-                        <motion.p 
+                        <motion.p
                             initial={{ y: "100%" }}
                             animate={{ y: 0 }}
                             transition={{ duration: 0.8 }}
@@ -83,19 +83,19 @@ export default function Home() {
                         ENZO ABDI<span className="text-[#333]">.</span>
                     </h1>
 
-                    <motion.div 
+                    <motion.div
                         initial={{ opacity: 0 }}
                         animate={{ opacity: 1 }}
                         transition={{ delay: 1 }}
                         className="mt-16 flex flex-col items-center"
                     >
                         <p className="font-mono text-[10px] tracking-[0.2em] text-[#444] uppercase max-w-xs leading-relaxed mb-12">
-                            {t({ 
-                                FR: 'Bâtir le futur de l\'intelligence par l\'ingénierie de données.', 
-                                EN: 'Building the future of intelligence through data engineering.' 
+                            {t({
+                                FR: 'Bâtir le futur de l\'intelligence par l\'ingénierie de données.',
+                                EN: 'Building the future of intelligence through data engineering.'
                             })}
                         </p>
-                        
+
                         <div className="flex gap-12">
                             <Link to="/projets" className="group flex flex-col items-center">
                                 <span className="font-bebas text-3xl tracking-widest text-[#666] group-hover:text-offwhite transition-colors">{t({ FR: 'PROJETS', EN: 'PROJECTS' })}</span>
@@ -125,7 +125,7 @@ export default function Home() {
 
                     <div className="flex flex-col gap-1">
                         {featuredProjects.map((p) => (
-                            <Link 
+                            <Link
                                 key={p.id}
                                 to="/projets"
                                 className="group flex flex-col md:flex-row md:items-end justify-between py-16 border-b border-[#111] hover:border-offwhite transition-colors duration-700"
@@ -162,13 +162,13 @@ export default function Home() {
                         THE LAB<span className="text-[#CCC]">.</span>
                     </h2>
                     <p className="font-grotesk text-xl md:text-2xl leading-relaxed max-w-2xl mb-24 text-[#555]">
-                        {t({ 
-                            FR: 'Un espace dédié à la recherche en IA générative, à l\'analyse de données massives et à la création d\'outils innovants.', 
-                            EN: 'A space dedicated to generative AI research, massive data analysis, and the creation of innovative tools.' 
+                        {t({
+                            FR: 'Un espace dédié à la recherche en IA générative, à l\'analyse de données massives et à la création d\'outils innovants.',
+                            EN: 'A space dedicated to generative AI research, massive data analysis, and the creation of innovative tools.'
                         })}
                     </p>
                     <Link to="/projets" className="group relative px-16 py-8 border border-[#0D0D0D] overflow-hidden">
-                        <motion.div 
+                        <motion.div
                             className="absolute inset-0 bg-[#0D0D0D]"
                             initial={{ x: "-100%" }}
                             whileHover={{ x: 0 }}
