@@ -5,40 +5,40 @@ export default function Footer() {
     const { t } = useLanguage()
     
     return (
-        <footer className="border-t border-[#161616] px-7 py-20 md:py-32 flex flex-col gap-16 md:gap-24 bg-[#0D0D0D]">
+        <footer className="border-t border-[#161616] px-6 py-16 md:px-7 md:py-32 flex flex-col gap-12 md:gap-24 bg-[#0D0D0D]">
 
             {/* HAUT DU FOOTER : Gros texte et Liens */}
-            <div className="flex flex-col md:flex-row justify-between items-start gap-16 md:gap-0 max-w-7xl mx-auto w-full">
+            <div className="flex flex-col lg:flex-row justify-between items-start gap-12 lg:gap-0 max-w-7xl mx-auto w-full">
 
                 {/* Left side: Massive Text */}
-                <div className="flex flex-col gap-6">
-                    <h2 className="font-bebas text-7xl md:text-9xl text-offwhite tracking-widest leading-[0.85] drop-shadow-lg">
+                <div className="flex flex-col gap-4 md:gap-6">
+                    <h2 className="font-bebas text-5xl sm:text-6xl md:text-8xl lg:text-9xl text-offwhite tracking-widest leading-[0.9] drop-shadow-lg">
                         {t({ FR: "CONSTRUISONS", EN: "LET'S BUILD" })}<br />{t({ FR: "ENSEMBLE.", EN: "SOMETHING." })}
                     </h2>
-                    <a href="mailto:enzooabdi@gmail.com" className="font-mono text-sm md:text-base tracking-[0.2em] text-[#888] hover:text-offwhite transition-colors w-fit">
+                    <a href="mailto:enzooabdi@gmail.com" className="font-mono text-[10px] sm:text-xs md:text-base tracking-[0.2em] text-[#888] hover:text-offwhite transition-colors w-fit">
                         ENZOOABDI@GMAIL.COM
                     </a>
                 </div>
 
                 {/* Right side: Links */}
-                <div className="flex gap-16 md:gap-24 mt-4 md:mt-0">
-                    <div className="flex flex-col gap-4">
-                        <span className="font-mono text-[10px] tracking-widest uppercase text-[#444] mb-2">{t({ FR: 'Réseaux', EN: 'Socials' })}</span>
-                        <a href="https://www.linkedin.com/in/abdienzo/" target="_blank" rel="noopener noreferrer" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">LinkedIn</a>
-                        <a href="https://github.com/zoaavela" target="_blank" rel="noopener noreferrer" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">GitHub</a>
-                        <a href="#" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Twitter</a>
+                <div className="grid grid-cols-2 gap-10 sm:gap-16 md:gap-24 mt-8 lg:mt-0">
+                    <div className="flex flex-col gap-3 md:gap-4">
+                        <span className="font-mono text-[9px] md:text-[10px] tracking-widest uppercase text-[#444] mb-1 md:mb-2">{t({ FR: 'Réseaux', EN: 'Socials' })}</span>
+                        <a href="https://www.linkedin.com/in/abdienzo/" target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">LinkedIn</a>
+                        <a href="https://github.com/zoaavela" target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">GitHub</a>
+                        <a href="#" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Twitter</a>
                     </div>
-                    <div className="flex flex-col gap-4">
-                        <span className="font-mono text-[10px] tracking-widest uppercase text-[#444] mb-2">Navigation</span>
-                        <Link to="/projets" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Projets', EN: 'Projects' })}</Link>
-                        <Link to="/parcours" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Parcours', EN: 'Experience' })}</Link>
-                        <Link to="/contact" className="font-mono text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Contact</Link>
+                    <div className="flex flex-col gap-3 md:gap-4">
+                        <span className="font-mono text-[9px] md:text-[10px] tracking-widest uppercase text-[#444] mb-1 md:mb-2">Navigation</span>
+                        <Link to="/projets" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Projets', EN: 'Projects' })}</Link>
+                        <Link to="/parcours" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Parcours', EN: 'Experience' })}</Link>
+                        <Link to="/contact" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Contact</Link>
                     </div>
                 </div>
             </div>
 
             {/* BAS DU FOOTER : Logo, CV et Copyright */}
-            <div className="flex flex-col md:flex-row justify-between items-center gap-8 md:gap-0 pt-10 border-t border-[#161616] max-w-7xl mx-auto w-full">
+            <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-0 pt-10 border-t border-[#161616] max-w-7xl mx-auto w-full">
 
                 <span className="font-bebas text-3xl md:text-4xl text-[#555] tracking-widest hidden md:block">ENZO.</span>
 
@@ -55,7 +55,7 @@ export default function Footer() {
                     </svg>
                 </a>
 
-                <span className="font-mono text-[9px] tracking-[0.2em] uppercase text-[#333]">
+                <span className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[#333] text-center md:text-right">
                     © {new Date().getFullYear()} ENZO. {t({ FR: 'TOUS DROITS RÉSERVÉS.', EN: 'ALL RIGHTS RESERVED.' })}
                 </span>
             </div>

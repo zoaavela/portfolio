@@ -1,119 +1,187 @@
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import { Link } from 'react-router-dom'
+import { useRef, useEffect, useState } from 'react'
 import BigFooter from '../components/BigFooter'
 import { useLanguage } from '../context/LanguageContext'
 
 export default function Home() {
     const { t } = useLanguage()
+    const containerRef = useRef(null)
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 })
+
+    useEffect(() => {
+        const handleMouse = (e) => setMousePos({ x: e.clientX, y: e.clientY })
+        window.addEventListener('mousemove', handleMouse)
+        return () => window.removeEventListener('mousemove', handleMouse)
+    }, [])
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
+    })
 
     const featuredProjects = [
-        {
-            id: 1,
-            title: t({ FR: "KNOWLEDGE GRAPH", EN: "KNOWLEDGE GRAPH" }),
-            category: t({ FR: "ARCHITECTURE DE DONNÉES", EN: "DATA ARCHITECTURE" }),
-            image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+        { 
+            id: 'vision', 
+            title: t({ FR: "Vision", EN: "Vision" }), 
+            category: t({ FR: "Data Viz", EN: "Data Viz" }), 
+            num: "01" 
         },
-        {
-            id: 2,
-            title: t({ FR: "MOTEUR PRÉDICTIF", EN: "PREDICTIVE ENGINE" }),
-            category: t({ FR: "MACHINE LEARNING", EN: "MACHINE LEARNING" }),
-            image: "https://images.unsplash.com/photo-1620825937374-87fc7d6aaf09?auto=format&fit=crop&w=1200&q=80"
+        { 
+            id: 'predictive', 
+            title: t({ FR: "Prédiction", EN: "Predictive" }), 
+            category: t({ FR: "Moteur ML", EN: "ML Engine" }), 
+            num: "02" 
         },
-        {
-            id: 3,
-            title: t({ FR: "ORCHESTRATION LLM", EN: "LLM ORCHESTRATION" }),
-            category: t({ FR: "IA GÉNÉRATIVE", EN: "GENERATIVE AI" }),
-            image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80"
+        { 
+            id: 'llm', 
+            title: t({ FR: "Orchestra", EN: "Orchestra" }), 
+            category: t({ FR: "IA Générative", EN: "Gen AI" }), 
+            num: "03" 
         }
     ]
+
+    const opacity = useTransform(scrollYProgress, [0, 0.2], [1, 0])
+    const scale = useTransform(scrollYProgress, [0, 0.2], [1, 0.9])
+
     return (
-        <main className="bg-[#0D0D0D] h-[100dvh] w-full text-offwhite font-grotesk overflow-x-hidden overflow-y-auto md:snap-y md:snap-mandatory scroll-smooth">
+        <main ref={containerRef} className="bg-[#0D0D0D] w-full text-offwhite font-grotesk overflow-x-hidden selection:bg-offwhite selection:text-[#0D0D0D]">
 
-            {/* SECTION 1 : HERO & NAVIGATION */}
-            <section className="min-h-[100dvh] md:h-[100dvh] w-full md:snap-start flex flex-col items-center justify-center py-20 md:py-0 md:pt-14 px-7 relative">
-                <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 1 }}
-                    className="text-center mb-12 md:mb-16"
-                >
-                    <h1 className="font-bebas text-[20vw] md:text-[14vw] leading-[0.8] tracking-widest text-offwhite drop-shadow-lg">
-                        ENZO.
-                    </h1>
-                    <div className="w-px h-12 md:h-16 bg-[#333] mx-auto my-6 md:my-8"></div>
-                    <p className="font-mono text-[10px] md:text-xs tracking-[0.3em] text-[#888] uppercase max-w-lg mx-auto leading-relaxed">
-                        {t({ 
-                            FR: 'Ingénieur Data & IA concepteur de systèmes intelligents.', 
-                            EN: 'Data & AI Engineer crafting intelligent systems.' 
-                        })}
-                    </p>
-                </motion.div>
+            {/* --- SECTION 1 : PERSPECTIVE GRID HERO --- */}
+            <section className="relative h-screen w-full flex flex-col items-center justify-center overflow-hidden bg-black">
+                
+                <div className="absolute inset-0 z-0 pointer-events-none opacity-20" style={{ perspective: '1000px' }}>
+                    <motion.div 
+                        animate={{ 
+                            rotateX: 60 + (mousePos.y - window.innerHeight/2) * 0.01,
+                            rotateY: (mousePos.x - window.innerWidth/2) * 0.01
+                        }}
+                        className="absolute inset-0 flex items-center justify-center translate-y-1/4"
+                    >
+                        <div className="w-[200vw] h-[200vw] bg-[linear-gradient(rgba(255,255,255,0.05)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.05)_1px,transparent_1px)] bg-[size:60px_60px]"></div>
+                    </motion.div>
+                </div>
 
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ duration: 1, delay: 0.3 }}
-                    className="w-full max-w-5xl mx-auto"
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-white/10 rounded-full blur-[100px] pointer-events-none"></div>
+
+                <motion.div 
+                    style={{ opacity, scale }}
+                    className="relative z-10 flex flex-col items-center text-center"
                 >
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-                        <Link to="/projets" className="border border-[#222] flex items-center justify-center h-20 md:h-28 hover:bg-offwhite hover:text-[#0D0D0D] transition-colors group">
-                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase">{t({ FR: 'Projets', EN: 'Projects' })}</span>
-                        </Link>
-                        <Link to="/parcours" className="border border-[#222] flex items-center justify-center h-20 md:h-28 hover:bg-offwhite hover:text-[#0D0D0D] transition-colors group">
-                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase">{t({ FR: 'Parcours', EN: 'Experience' })}</span>
-                        </Link>
-                        <Link to="/contact" className="border border-[#222] flex items-center justify-center h-20 md:h-28 hover:bg-offwhite hover:text-[#0D0D0D] transition-colors group">
-                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase">Contact</span>
-                        </Link>
-                        <div className="border border-[#111] bg-[#0A0A0A] flex flex-col items-center justify-center h-20 md:h-28 cursor-not-allowed relative">
-                            <span className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#333]">{t({ FR: 'Le Lab', EN: 'The Lab' })}</span>
-                            <span className="font-mono text-[7px] tracking-widest uppercase text-[#444] mt-1 md:mt-2">{t({ FR: 'En construction', EN: 'Under construction' })}</span>
-                        </div>
+                    <div className="overflow-hidden mb-6">
+                        <motion.p 
+                            initial={{ y: "100%" }}
+                            animate={{ y: 0 }}
+                            transition={{ duration: 0.8 }}
+                            className="font-mono text-[10px] tracking-[0.6em] text-[#666] uppercase"
+                        >
+                            {t({ FR: 'INGÉNIEUR DATA & IA', EN: 'DATA & AI ENGINEER' })}
+                        </motion.p>
                     </div>
+
+                    <h1 className="font-bebas text-[18vw] md:text-[14vw] leading-none tracking-tighter text-offwhite drop-shadow-2xl">
+                        ENZO ABDI<span className="text-[#333]">.</span>
+                    </h1>
+
+                    <motion.div 
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        transition={{ delay: 1 }}
+                        className="mt-16 flex flex-col items-center"
+                    >
+                        <p className="font-mono text-[10px] tracking-[0.2em] text-[#444] uppercase max-w-xs leading-relaxed mb-12">
+                            {t({ 
+                                FR: 'Bâtir le futur de l\'intelligence par l\'ingénierie de données.', 
+                                EN: 'Building the future of intelligence through data engineering.' 
+                            })}
+                        </p>
+                        
+                        <div className="flex gap-12">
+                            <Link to="/projets" className="group flex flex-col items-center">
+                                <span className="font-bebas text-3xl tracking-widest text-[#666] group-hover:text-offwhite transition-colors">{t({ FR: 'PROJETS', EN: 'PROJECTS' })}</span>
+                                <div className="w-2 h-2 rounded-full bg-[#222] group-hover:bg-offwhite transition-all duration-300 mt-2"></div>
+                            </Link>
+                            <Link to="/parcours" className="group flex flex-col items-center">
+                                <span className="font-bebas text-3xl tracking-widest text-[#666] group-hover:text-offwhite transition-colors">{t({ FR: 'PARCOURS', EN: 'EXPERIENCE' })}</span>
+                                <div className="w-2 h-2 rounded-full bg-[#222] group-hover:bg-offwhite transition-all duration-300 mt-2"></div>
+                            </Link>
+                        </div>
+                    </motion.div>
                 </motion.div>
+
+                <div className="absolute bottom-12 w-1 h-24 bg-gradient-to-b from-[#111] to-transparent"></div>
             </section>
 
-            {/* SECTION 2 : PROJETS PHARES */}
-            <section className="min-h-[100dvh] md:h-[100dvh] w-full md:snap-start flex flex-col items-center justify-center py-20 md:py-0 md:pt-14 px-7 relative">
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    whileInView={{ opacity: 1 }}
-                    viewport={{ once: true, amount: 0.5 }}
-                    transition={{ duration: 1 }}
-                    className="w-full max-w-7xl mx-auto"
-                >
-                    <div className="text-center mb-8 md:mb-16">
-                        <h2 className="font-bebas text-3xl md:text-4xl tracking-widest text-[#555]">{t({ FR: 'PROJETS PHARES', EN: 'FEATURED PROJECTS' })}</h2>
-                        <div className="w-px h-6 md:h-8 bg-[#222] mx-auto mt-4 md:mt-6"></div>
+            {/* --- SECTION 2 : SELECTED WORK --- */}
+            <section className="py-40 px-7 md:px-14 border-t border-[#111]">
+                <div className="max-w-6xl mx-auto">
+                    <div className="mb-32 flex items-baseline gap-6">
+                        <h2 className="font-bebas text-6xl md:text-8xl tracking-tighter text-offwhite uppercase">
+                            {t({ FR: 'TRAVAUX', EN: 'WORKS' })}
+                        </h2>
+                        <div className="flex-grow h-px bg-[#111]"></div>
+                        <p className="font-mono text-[9px] tracking-widest text-[#333] uppercase">01 — 03</p>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-12 lg:gap-16 max-w-5xl mx-auto">
-                        {featuredProjects.map((project, idx) => (
-                            <Link to={`/projets`} key={project.id} className="group block">
-                                <div className="aspect-[4/3] md:aspect-[4/5] bg-[#111] overflow-hidden relative border border-[#1A1A1A] p-2">
-                                    <div className="w-full h-full relative overflow-hidden">
-                                        <div className="absolute inset-0 bg-[#0D0D0D]/60 z-10 group-hover:bg-transparent transition-colors duration-500"></div>
-                                        <img
-                                            src={project.image}
-                                            alt={project.title}
-                                            className="w-full h-full object-cover filter grayscale group-hover:grayscale-0 transition-all duration-700 group-hover:scale-105"
-                                        />
-                                    </div>
+                    <div className="flex flex-col gap-1">
+                        {featuredProjects.map((p) => (
+                            <Link 
+                                key={p.id}
+                                to="/projets"
+                                className="group flex flex-col md:flex-row md:items-end justify-between py-16 border-b border-[#111] hover:border-offwhite transition-colors duration-700"
+                            >
+                                <div className="flex items-baseline gap-10">
+                                    <span className="font-mono text-[10px] text-[#222] group-hover:text-[#555] transition-colors">{p.num}</span>
+                                    <h3 className="font-bebas text-6xl md:text-[10vw] leading-[0.8] text-[#1A1A1A] group-hover:text-offwhite transition-all duration-700 uppercase">
+                                        {p.title}
+                                    </h3>
                                 </div>
-                                <div className="mt-4 md:mt-6 text-center">
-                                    <h3 className="font-bebas text-xl md:text-2xl lg:text-3xl tracking-widest text-offwhite group-hover:text-[#888] transition-colors">{project.title}</h3>
-                                    <p className="font-mono text-[8px] md:text-[9px] text-[#555] tracking-[0.2em] uppercase mt-2">{project.category}</p>
+                                <div className="mt-8 md:mt-0 flex flex-col items-end">
+                                    <p className="font-mono text-[10px] tracking-[0.3em] text-[#333] uppercase mb-4">{p.category}</p>
+                                    <div className="w-0 h-px bg-offwhite group-hover:w-full transition-all duration-700"></div>
                                 </div>
                             </Link>
                         ))}
                     </div>
-                </motion.div>
+
+                    <div className="mt-32">
+                        <Link to="/projets" className="font-mono text-[10px] tracking-[0.4em] text-[#444] hover:text-offwhite transition-colors uppercase">
+                            {t({ FR: 'Explorer tous les projets', EN: 'Explore all projects' })} ↗
+                        </Link>
+                    </div>
+                </div>
             </section>
 
-            {/* SECTION 3 : FOOTER */}
-            <section className="min-h-screen md:h-[100dvh] w-full md:snap-start flex flex-col justify-end">
-                <BigFooter />
+            {/* --- SECTION 3 : THE LAB --- */}
+            <section className="pt-60 pb-80 px-7 bg-offwhite text-[#0D0D0D]">
+                <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
+                    <p className="font-mono text-[10px] tracking-[0.5em] uppercase text-[#999] mb-8">
+                        {t({ FR: 'EXPÉRIMENTATIONS', EN: 'EXPERIMENTATIONS' })}
+                    </p>
+                    <h2 className="font-bebas text-7xl md:text-[10vw] leading-none tracking-tighter mb-16">
+                        THE LAB<span className="text-[#CCC]">.</span>
+                    </h2>
+                    <p className="font-grotesk text-xl md:text-2xl leading-relaxed max-w-2xl mb-24 text-[#555]">
+                        {t({ 
+                            FR: 'Un espace dédié à la recherche en IA générative, à l\'analyse de données massives et à la création d\'outils innovants.', 
+                            EN: 'A space dedicated to generative AI research, massive data analysis, and the creation of innovative tools.' 
+                        })}
+                    </p>
+                    <Link to="/projets" className="group relative px-16 py-8 border border-[#0D0D0D] overflow-hidden">
+                        <motion.div 
+                            className="absolute inset-0 bg-[#0D0D0D]"
+                            initial={{ x: "-100%" }}
+                            whileHover={{ x: 0 }}
+                            transition={{ duration: 0.4, ease: "circOut" }}
+                        />
+                        <span className="relative z-10 font-bebas text-3xl tracking-[0.2em] group-hover:text-offwhite transition-colors">
+                            {t({ FR: 'EXPLORER LE LAB', EN: 'EXPLORE THE LAB' })}
+                        </span>
+                    </Link>
+                </div>
             </section>
+
+            <BigFooter />
 
         </main>
     )
