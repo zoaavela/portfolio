@@ -4,8 +4,9 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
-// Lazy loading for pages
-const Home = lazy(() => import('./pages/Home'))
+import Home from './pages/Home'
+
+// Lazy loading for other pages
 const Projects = lazy(() => import('./pages/Projects'))
 const Project = lazy(() => import('./pages/Project'))
 const Blog = lazy(() => import('./pages/Blog'))
