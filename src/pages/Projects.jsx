@@ -26,11 +26,14 @@ function ProjectCard({ p, lang, className = '' }) {
             {/* Glass Overlay */}
             <div className={`absolute inset-0 z-0 bg-[#0D0D0D]/60 opacity-0 transition-opacity duration-300 ${isClickable ? 'group-hover:opacity-100' : ''}`}></div>
 
-            {/* Arrow */}
+            {/* Arrow SVG */}
             {isClickable && (
-                <span className="absolute top-4 right-4 text-[14px] text-[#1A1A1A] transition-all duration-200 z-20 group-hover:text-offwhite group-hover:translate-x-[2px] group-hover:-translate-y-[2px]">
-                    ↗
-                </span>
+                <div className="absolute top-4 right-4 text-[#1A1A1A] transition-all duration-200 z-20 group-hover:text-offwhite group-hover:translate-x-[2px] group-hover:-translate-y-[2px]">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                        <line x1="7" y1="17" x2="17" y2="7"></line>
+                        <polyline points="7 7 17 7 17 17"></polyline>
+                    </svg>
+                </div>
             )}
 
             {/* Content */}
