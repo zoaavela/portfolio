@@ -139,8 +139,12 @@ export default function Home() {
                     </div>
 
                     <div className="mt-32">
-                        <Link to="/projets" className="font-mono text-[10px] tracking-[0.4em] text-[#444] hover:text-offwhite transition-colors uppercase">
-                            {t({ FR: 'Explorer tous les projets', EN: 'Explore all projects' })} ↗
+                        <Link to="/projets" className="group font-mono text-[10px] tracking-[0.4em] text-[#444] hover:text-offwhite transition-colors uppercase flex items-center gap-2 w-fit">
+                            <span>{t({ FR: 'Explorer tous les projets', EN: 'Explore all projects' })}</span>
+                            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
+                                <line x1="7" y1="17" x2="17" y2="7"></line>
+                                <polyline points="7 7 17 7 17 17"></polyline>
+                            </svg>
                         </Link>
                     </div>
                 </div>
