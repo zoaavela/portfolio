@@ -21,13 +21,13 @@ export default function Contact() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.8, ease: "easeOut" }}
                     >
-                        <h1 className="font-bebas text-7xl md:text-[10vw] text-offwhite tracking-widest leading-[0.85] drop-shadow-lg mb-4 md:mb-8">
-                            {t({ FR: 'DISCUTONS.', EN: "LET'S TALK." })}
+                        <h1 className="font-bebas text-7xl md:text-[9.5vw] text-offwhite tracking-widest leading-[0.8] drop-shadow-lg mb-4 md:mb-8 whitespace-nowrap">
+                            {t({ FR: 'ON', EN: "LET'S" })}<br />{t({ FR: 'PARLE?', EN: "TALK." })}
                         </h1>
                         <p className="font-mono text-[10px] md:text-sm text-[#666] tracking-widest uppercase max-w-md leading-relaxed hidden md:block">
                             {t({ 
-                                FR: "Ouvert aux opportunités de freelance, aux collaborations ou simplement pour discuter autour d'un café.", 
-                                EN: "Open for freelance opportunities, collaborations, or just a coffee chat." 
+                                FR: "Ouvert aux opportunités, aux collaborations ou simplement pour discuter autour d'un café.", 
+                                EN: "Open for opportunities, collaborations, or just a coffee chat." 
                             })}
                         </p>
 

@@ -1,5 +1,5 @@
 import { useEffect } from 'react'
-import { Routes, Route, useLocation } from 'react-router-dom'
+import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -9,6 +9,7 @@ import Project from './pages/Project'
 import Parcours from './pages/Parcours'
 import Blog from './pages/Blog'
 import Contact from './pages/Contact'
+import DutchField from './three/DutchField'
 
 // Transition "Directe" : On ne voit jamais l'ancienne page sortir
 const PageTransition = ({ children }) => {
@@ -76,9 +77,13 @@ export default function App() {
                     <Route path="/" element={<PageTransition><Home /></PageTransition>} />
                     <Route path="/projets" element={<PageTransition><Projects /></PageTransition>} />
                     <Route path="/projets/:id" element={<PageTransition><Project /></PageTransition>} />
-                    <Route path="/parcours" element={<PageTransition><Parcours /></PageTransition>} />
+                    {/* <Route path="/parcours" element={<PageTransition><Parcours /></PageTransition>} /> */}
                     <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
                     <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+                    {/* <Route path="/labo" element={<DutchField />} /> */}
+                    
+                    {/* Redirection pour toute URL inexistante ou inaccessible */}
+                    <Route path="*" element={<Navigate to="/" replace />} />
                 </Routes>
             </AnimatePresence>
 

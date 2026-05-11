@@ -25,19 +25,22 @@ export default function Home() {
             id: 'vision',
             title: t({ FR: "Vision", EN: "Vision" }),
             category: t({ FR: "Data Viz", EN: "Data Viz" }),
-            num: "01"
+            num: "01",
+            locked: false
         },
         {
             id: 'predictive',
             title: t({ FR: "Prédiction", EN: "Predictive" }),
             category: t({ FR: "Moteur ML", EN: "ML Engine" }),
-            num: "02"
+            num: "02",
+            locked: true
         },
         {
             id: 'llm',
             title: t({ FR: "Orchestra", EN: "Orchestra" }),
             category: t({ FR: "IA Générative", EN: "Gen AI" }),
-            num: "03"
+            num: "03",
+            locked: true
         }
     ]
 
@@ -68,17 +71,6 @@ export default function Home() {
                     style={{ opacity, scale }}
                     className="relative z-10 flex flex-col items-center text-center"
                 >
-                    <div className="overflow-hidden mb-6">
-                        <motion.p
-                            initial={{ y: "100%" }}
-                            animate={{ y: 0 }}
-                            transition={{ duration: 0.8 }}
-                            className="font-mono text-[10px] tracking-[0.6em] text-[#666] uppercase"
-                        >
-                            {t({ FR: 'INGÉNIEUR DATA & IA', EN: 'DATA & AI ENGINEER' })}
-                        </motion.p>
-                    </div>
-
                     <h1 className="font-bebas text-[18vw] md:text-[14vw] leading-none tracking-tighter text-offwhite drop-shadow-2xl">
                         ENZO ABDI<span className="text-[#333]">.</span>
                     </h1>
@@ -101,10 +93,10 @@ export default function Home() {
                                 <span className="font-bebas text-3xl tracking-widest text-[#666] group-hover:text-offwhite transition-colors">{t({ FR: 'PROJETS', EN: 'PROJECTS' })}</span>
                                 <div className="w-2 h-2 rounded-full bg-[#222] group-hover:bg-offwhite transition-all duration-300 mt-2"></div>
                             </Link>
-                            <Link to="/parcours" className="group flex flex-col items-center">
-                                <span className="font-bebas text-3xl tracking-widest text-[#666] group-hover:text-offwhite transition-colors">{t({ FR: 'PARCOURS', EN: 'EXPERIENCE' })}</span>
-                                <div className="w-2 h-2 rounded-full bg-[#222] group-hover:bg-offwhite transition-all duration-300 mt-2"></div>
-                            </Link>
+                            <div className="flex flex-col items-center opacity-30 grayscale cursor-not-allowed">
+                                <span className="font-bebas text-3xl tracking-widest text-[#333] transition-colors">{t({ FR: 'PARCOURS', EN: 'EXPERIENCE' })}</span>
+                                <div className="w-2 h-2 rounded-full bg-[#111] mt-2"></div>
+                            </div>
                         </div>
                     </motion.div>
                 </motion.div>
@@ -127,18 +119,20 @@ export default function Home() {
                         {featuredProjects.map((p) => (
                             <Link
                                 key={p.id}
-                                to="/projets"
-                                className="group flex flex-col md:flex-row md:items-end justify-between py-16 border-b border-[#111] hover:border-offwhite transition-colors duration-700"
+                                to={p.locked ? "#" : "/projets"}
+                                className={`group flex flex-col md:flex-row md:items-end justify-between py-16 border-b border-[#111] transition-all duration-700 ${p.locked ? 'opacity-50 cursor-not-allowed pointer-events-none grayscale' : 'hover:border-offwhite'}`}
                             >
                                 <div className="flex items-baseline gap-10">
-                                    <span className="font-mono text-[10px] text-[#222] group-hover:text-[#555] transition-colors">{p.num}</span>
-                                    <h3 className="font-bebas text-6xl md:text-[10vw] leading-[0.8] text-[#1A1A1A] group-hover:text-offwhite transition-all duration-700 uppercase">
-                                        {p.title}
+                                    <span className="font-mono text-[10px] text-[#222] transition-colors">{p.num}</span>
+                                    <h3 className={`font-bebas text-6xl md:text-[10vw] leading-[0.8] transition-all duration-700 uppercase ${p.locked ? 'text-[#1A1A1A]' : 'text-[#1A1A1A] group-hover:text-offwhite'}`}>
+                                        {p.locked ? t({ FR: 'À VENIR', EN: 'COMING SOON' }) : p.title}
                                     </h3>
                                 </div>
                                 <div className="mt-8 md:mt-0 flex flex-col items-end">
-                                    <p className="font-mono text-[10px] tracking-[0.3em] text-[#333] uppercase mb-4">{p.category}</p>
-                                    <div className="w-0 h-px bg-offwhite group-hover:w-full transition-all duration-700"></div>
+                                    <p className="font-mono text-[10px] tracking-[0.3em] text-[#333] uppercase mb-4">
+                                        {p.locked ? p.category : p.category}
+                                    </p>
+                                    <div className={`w-0 h-px bg-offwhite transition-all duration-700 ${!p.locked && 'group-hover:w-full'}`}></div>
                                 </div>
                             </Link>
                         ))}
@@ -153,13 +147,13 @@ export default function Home() {
             </section>
 
             {/* --- SECTION 3 : THE LAB --- */}
-            <section className="pt-60 pb-80 px-7 bg-offwhite text-[#0D0D0D]">
+            <section className="pt-60 pb-80 px-7 bg-[#E5E5E5] text-[#0D0D0D] opacity-50 grayscale transition-all duration-700">
                 <div className="max-w-7xl mx-auto flex flex-col items-center text-center">
-                    <p className="font-mono text-[10px] tracking-[0.5em] uppercase text-[#999] mb-8">
+                    <p className="font-mono text-[10px] tracking-[0.5em] uppercase text-[#777] mb-8">
                         {t({ FR: 'EXPÉRIMENTATIONS', EN: 'EXPERIMENTATIONS' })}
                     </p>
-                    <h2 className="font-bebas text-7xl md:text-[10vw] leading-none tracking-tighter mb-16">
-                        THE LAB<span className="text-[#CCC]">.</span>
+                    <h2 className="font-bebas text-7xl md:text-[10vw] leading-none tracking-tighter mb-16 opacity-30">
+                        THE LAB<span className="text-[#999]">.</span>
                     </h2>
                     <p className="font-grotesk text-xl md:text-2xl leading-relaxed max-w-2xl mb-24 text-[#555]">
                         {t({
@@ -167,17 +161,11 @@ export default function Home() {
                             EN: 'A space dedicated to generative AI research, massive data analysis, and the creation of innovative tools.'
                         })}
                     </p>
-                    <Link to="/projets" className="group relative px-16 py-8 border border-[#0D0D0D] overflow-hidden">
-                        <motion.div
-                            className="absolute inset-0 bg-[#0D0D0D]"
-                            initial={{ x: "-100%" }}
-                            whileHover={{ x: 0 }}
-                            transition={{ duration: 0.4, ease: "circOut" }}
-                        />
-                        <span className="relative z-10 font-bebas text-3xl tracking-[0.2em] group-hover:text-offwhite transition-colors">
-                            {t({ FR: 'EXPLORER LE LAB', EN: 'EXPLORE THE LAB' })}
+                    <div className="group relative px-16 py-8 border border-[#0D0D0D] overflow-hidden opacity-30 cursor-not-allowed">
+                        <span className="relative z-10 font-bebas text-3xl tracking-[0.2em] transition-colors">
+                            {t({ FR: 'À VENIR', EN: 'COMING SOON' })}
                         </span>
-                    </Link>
+                    </div>
                 </div>
             </section>
 

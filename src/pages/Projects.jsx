@@ -18,13 +18,13 @@ function ProjectCard({ p, lang, className = '' }) {
 
     const CardContent = (
         <div
-            className={`group break-inside-avoid bg-[#111] border ${p.type === 'main' ? 'border-[#202020]' : 'border-[#1A1A1A]'} ${isClickable ? 'cursor-pointer' : 'cursor-default'} relative overflow-hidden block w-full ${p.height} ${className}`}
+            className={`group break-inside-avoid bg-[#111] border ${p.type === 'main' ? 'border-[#202020]' : 'border-[#1A1A1A]'} ${isClickable ? 'cursor-pointer grayscale-0' : 'cursor-default opacity-50 grayscale'} relative overflow-hidden block w-full ${p.height} ${className} transition-all duration-500`}
         >
             {/* Image / Gradient Hover */}
             <div className={`absolute inset-0 z-0 opacity-0 transition-opacity duration-300 ease-in-out ${isClickable ? 'group-hover:opacity-100' : ''} ${p.bg}`}></div>
 
             {/* Glass Overlay */}
-            <div className="absolute inset-0 z-0 bg-[#0D0D0D]/60 opacity-0 transition-opacity duration-300 ${isClickable ? 'group-hover:opacity-100' : ''}"></div>
+            <div className={`absolute inset-0 z-0 bg-[#0D0D0D]/60 opacity-0 transition-opacity duration-300 ${isClickable ? 'group-hover:opacity-100' : ''}`}></div>
 
             {/* Arrow */}
             {isClickable && (
@@ -117,6 +117,10 @@ export default function Projects() {
             { title: 'DATA WAREHOUSE', stack: 'Snowflake · SQL' },
             { title: 'RECOMMENDER', stack: 'Python · Scikit-Learn' },
             { title: 'MLOPS PIPELINE', stack: 'MLflow · Kubernetes' },
+            { title: 'DATA STREAMING', stack: 'Kafka · Spark' },
+            { title: 'CLOUD INFRA', stack: 'AWS · Terraform' },
+            { title: 'API DESIGN', stack: 'FastAPI · Docker' },
+            { title: 'DATA GOVERNANCE', stack: 'Collibra · Data Quality' }
         ]
         const ph = placeholders[i - otherProjectsFromData.length] || placeholders[0]
 

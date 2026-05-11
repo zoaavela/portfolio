@@ -26,12 +26,11 @@ export default function Footer() {
                         <span className="font-mono text-[9px] md:text-[10px] tracking-widest uppercase text-[#444] mb-1 md:mb-2">{t({ FR: 'Réseaux', EN: 'Socials' })}</span>
                         <a href="https://www.linkedin.com/in/abdienzo/" target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">LinkedIn</a>
                         <a href="https://github.com/zoaavela" target="_blank" rel="noopener noreferrer" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">GitHub</a>
-                        <a href="#" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Twitter</a>
                     </div>
                     <div className="flex flex-col gap-3 md:gap-4">
                         <span className="font-mono text-[9px] md:text-[10px] tracking-widest uppercase text-[#444] mb-1 md:mb-2">Navigation</span>
                         <Link to="/projets" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Projets', EN: 'Projects' })}</Link>
-                        <Link to="/parcours" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Parcours', EN: 'Experience' })}</Link>
+                        {/* <Link to="/parcours" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">{t({ FR: 'Parcours', EN: 'Experience' })}</Link> */}
                         <Link to="/contact" className="font-mono text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#888] hover:text-offwhite transition-colors">Contact</Link>
                     </div>
                 </div>
@@ -40,24 +39,30 @@ export default function Footer() {
             {/* BAS DU FOOTER : Logo, CV et Copyright */}
             <div className="flex flex-col md:flex-row justify-between items-center gap-10 md:gap-0 pt-10 border-t border-[#161616] max-w-7xl mx-auto w-full">
 
-                <span className="font-bebas text-3xl md:text-4xl text-[#555] tracking-widest hidden md:block">ENZO.</span>
+                <div className="md:flex-1 hidden md:block">
+                    <span className="font-bebas text-3xl md:text-4xl text-[#555] tracking-widest">ENZO.</span>
+                </div>
 
-                <a
-                    href="/cv_enzo.pdf"
-                    download="CV_Enzo.pdf"
-                    className="flex items-center gap-3 text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#0D0D0D] bg-offwhite px-8 py-4 hover:bg-[#CCC] transition-all duration-300 w-full md:w-auto justify-center"
-                >
-                    <span>{t({ FR: 'TÉLÉCHARGER CV', EN: 'DOWNLOAD CV' })}</span>
-                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
-                        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                        <polyline points="7 10 12 15 17 10"></polyline>
-                        <line x1="12" y1="15" x2="12" y2="3"></line>
-                    </svg>
-                </a>
+                <div className="flex justify-center md:flex-1">
+                    <a
+                        href="/CV_Enzo_Abdi.pdf"
+                        download="CV_Enzo_Abdi.pdf"
+                        className="flex items-center gap-3 text-[10px] md:text-xs tracking-[0.2em] uppercase text-[#0D0D0D] bg-offwhite px-8 py-4 hover:bg-[#CCC] transition-all duration-300 w-full md:w-auto justify-center"
+                    >
+                        <span>{t({ FR: 'TÉLÉCHARGER CV', EN: 'DOWNLOAD CV' })}</span>
+                        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="square">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                    </a>
+                </div>
 
-                <span className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[#333] text-center md:text-right">
-                    © {new Date().getFullYear()} ENZO. {t({ FR: 'TOUS DROITS RÉSERVÉS.', EN: 'ALL RIGHTS RESERVED.' })}
-                </span>
+                <div className="md:flex-1 flex justify-center md:justify-end">
+                    <span className="font-mono text-[8px] md:text-[9px] tracking-[0.2em] uppercase text-[#333] text-center md:text-right">
+                        © {new Date().getFullYear()} ENZO. {t({ FR: 'TOUS DROITS RÉSERVÉS.', EN: 'ALL RIGHTS RESERVED.' })}
+                    </span>
+                </div>
             </div>
 
         </footer>

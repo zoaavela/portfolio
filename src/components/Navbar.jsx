@@ -6,12 +6,12 @@ import { useLanguage } from '../context/LanguageContext'
 const links = {
     FR: [
         { label: 'PROJETS', href: '/projets' },
-        { label: 'PARCOURS', href: '/parcours' },
+        // { label: 'PARCOURS', href: '/parcours' },
         { label: 'CONTACT', href: '/contact' },
     ],
     EN: [
         { label: 'PROJECTS', href: '/projets' },
-        { label: 'EXPERIENCE', href: '/parcours' },
+        // { label: 'EXPERIENCE', href: '/parcours' },
         { label: 'CONTACT', href: '/contact' },
     ]
 }
