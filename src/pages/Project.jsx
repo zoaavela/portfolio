@@ -1,11 +1,22 @@
 import { useParams, Link } from 'react-router-dom'
-import { motion } from 'framer-motion'
+import { motion, Suspense } from 'framer-motion'
+import { lazy } from 'react'
 import { getProjectById } from '../data/projects'
-import PythonTerminal from '../components/PythonTerminal'
-import JavaTerminal from '../components/JavaTerminal'
-import LogCleanerDemo from '../components/LogCleanerDemo'
-import LogGenerator from '../components/LogGenerator'
 import { useLanguage } from '../context/LanguageContext'
+
+// Lazy load heavy components
+const PythonTerminal = lazy(() => import('../components/PythonTerminal'))
+const JavaTerminal = lazy(() => import('../components/JavaTerminal'))
+const LogCleanerDemo = lazy(() => import('../components/LogCleanerDemo'))
+const LogGenerator = lazy(() => import('../components/LogGenerator'))
+
+const TerminalLoading = () => (
+    <div className="w-full h-[300px] flex items-center justify-center bg-[#0A0A0A] border border-[#1A1A1A]">
+        <div className="font-mono text-[10px] text-[#333] animate-pulse uppercase tracking-widest">
+            Initializing Environment...
+        </div>
+    </div>
+)
 
 const fadeUp = (delay = 0) => ({
     initial: { opacity: 0, y: 24 },
@@ -142,7 +153,9 @@ export default function Project() {
                                 </a>
                             )}
                         </div>
-                        <PythonTerminal />
+                        <Suspense fallback={<TerminalLoading />}>
+                            <PythonTerminal />
+                        </Suspense>
                     </div>
                 </section>
             ) : project.id === 'javabanking' ? (
@@ -161,7 +174,9 @@ export default function Project() {
                                 </a>
                             )}
                         </div>
-                        <JavaTerminal />
+                        <Suspense fallback={<TerminalLoading />}>
+                            <JavaTerminal />
+                        </Suspense>
                     </div>
                 </section>
             ) : project.id === 'logcleaner' ? (
@@ -174,20 +189,22 @@ export default function Project() {
                             Source GitHub ↗
                         </a>
                     </div>
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
-                        <div>
-                            <p className="font-mono text-[9px] tracking-widest uppercase mb-3" style={{ color: '#333' }}>
-                                01 — {t({ FR: 'Générez un log sale', EN: 'Generate a dirty log' })}
-                            </p>
-                            <LogGenerator />
-                        </div>
-                        <div>
-                            <p className="font-mono text-[9px] tracking-widest uppercase mb-3" style={{ color: '#333' }}>
-                                02 — {t({ FR: 'Glissez-le ici pour le nettoyer', EN: 'Drop it here to clean it' })}
-                            </p>
-                            <LogCleanerDemo />
-                        </div>
-                    </div>
+                        <Suspense fallback={<TerminalLoading />}>
+                            <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
+                                <div>
+                                    <p className="font-mono text-[9px] tracking-widest uppercase mb-3" style={{ color: '#333' }}>
+                                        01 — {t({ FR: 'Générez un log sale', EN: 'Generate a dirty log' })}
+                                    </p>
+                                    <LogGenerator />
+                                </div>
+                                <div>
+                                    <p className="font-mono text-[9px] tracking-widest uppercase mb-3" style={{ color: '#333' }}>
+                                        02 — {t({ FR: 'Glissez-le ici pour le nettoyer', EN: 'Drop it here to clean it' })}
+                                    </p>
+                                    <LogCleanerDemo />
+                                </div>
+                            </div>
+                        </Suspense>
                 </div>
             </section>
 

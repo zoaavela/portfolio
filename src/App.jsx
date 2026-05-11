@@ -1,15 +1,15 @@
-import { useEffect } from 'react'
+import { useEffect, Suspense, lazy } from 'react'
 import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
-import Home from './pages/Home'
-import Projects from './pages/Projects'
-import Project from './pages/Project'
-import Parcours from './pages/Parcours'
-import Blog from './pages/Blog'
-import Contact from './pages/Contact'
-import DutchField from './three/DutchField'
+
+// Lazy loading for pages
+const Home = lazy(() => import('./pages/Home'))
+const Projects = lazy(() => import('./pages/Projects'))
+const Project = lazy(() => import('./pages/Project'))
+const Blog = lazy(() => import('./pages/Blog'))
+const Contact = lazy(() => import('./pages/Contact'))
 
 // Transition "Directe" : On ne voit jamais l'ancienne page sortir
 const PageTransition = ({ children }) => {
@@ -27,6 +27,19 @@ const PageTransition = ({ children }) => {
         </motion.div>
     )
 }
+
+const LoadingFallback = () => (
+    <div className="fixed inset-0 bg-[#0D0D0D] flex items-center justify-center z-[100]">
+        <motion.span 
+            initial={{ opacity: 0 }}
+            animate={{ opacity: [0, 1, 0] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+            className="font-bebas text-4xl text-offwhite tracking-widest"
+        >
+            ENZO.
+        </motion.span>
+    </div>
+)
 
 export default function App() {
     const location = useLocation()
@@ -72,20 +85,18 @@ export default function App() {
     return (
         <div className="min-h-screen bg-[#0D0D0D]">
             <Navbar />
-            <AnimatePresence mode="wait" initial={false}>
-                <Routes location={location} key={location.pathname}>
-                    <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-                    <Route path="/projets" element={<PageTransition><Projects /></PageTransition>} />
-                    <Route path="/projets/:id" element={<PageTransition><Project /></PageTransition>} />
-                    {/* <Route path="/parcours" element={<PageTransition><Parcours /></PageTransition>} /> */}
-                    <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
-                    <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-                    {/* <Route path="/labo" element={<DutchField />} /> */}
-                    
-                    {/* Redirection pour toute URL inexistante ou inaccessible */}
-                    <Route path="*" element={<Navigate to="/" replace />} />
-                </Routes>
-            </AnimatePresence>
+            <Suspense fallback={<LoadingFallback />}>
+                <AnimatePresence mode="wait" initial={false}>
+                    <Routes location={location} key={location.pathname}>
+                        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+                        <Route path="/projets" element={<PageTransition><Projects /></PageTransition>} />
+                        <Route path="/projets/:id" element={<PageTransition><Project /></PageTransition>} />
+                        <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+                        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+                        <Route path="*" element={<Navigate to="/" replace />} />
+                    </Routes>
+                </AnimatePresence>
+            </Suspense>
 
             <AnimatePresence>
                 {showFooter && (
@@ -102,3 +113,4 @@ export default function App() {
         </div>
     )
 }
+
