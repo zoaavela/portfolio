@@ -4,9 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
-import Home from './pages/Home'
-
-// Lazy loading for other pages
+// Lazy loading for pages
+const Home = lazy(() => import('./pages/Home'))
 const Projects = lazy(() => import('./pages/Projects'))
 const Project = lazy(() => import('./pages/Project'))
 const Blog = lazy(() => import('./pages/Blog'))
@@ -31,7 +30,7 @@ const PageTransition = ({ children }) => {
 
 const LoadingFallback = () => (
     <div className="fixed inset-0 bg-[#0D0D0D] flex items-center justify-center z-[100]">
-        <motion.span 
+        <motion.span
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 1, 0] }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}

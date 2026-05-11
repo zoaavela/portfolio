@@ -4,59 +4,20 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="theme-color" content="#0D0D0D">
   <title>enzo.</title>
   <meta name="description"
     content="Data & Logiciel — Concevoir des architectures robustes et transformer la complexité des données en systèmes performants." />
 
-  <!-- Pre-render style to avoid flash/gray screen -->
-  <style>
-    body {
-      background-color: #0D0D0D;
-      margin: 0;
-      padding: 0;
-    }
-
-    #initial-loader {
-      position: fixed;
-      inset: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      background-color: #0D0D0D;
-      z-index: 9999;
-    }
-
-    .loader-text {
-      font-family: sans-serif;
-      font-weight: 800;
-      color: #F0EDE8;
-      letter-spacing: 0.5em;
-      font-size: 24px;
-      animation: pulse 1.5s ease-in-out infinite;
-    }
-
-    @keyframes pulse {
-      0%, 100% { opacity: 0.2; }
-      50% { opacity: 1; }
-    }
-  </style>
-
-  <!-- Fonts Optimization -->
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Instrument+Serif:ital@0;1&family=Space+Grotesk:wght@300;400;500;700&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
     rel="stylesheet" />
 </head>
 
 <body>
-  <div id="root">
-    <!-- Immediate content before React loads -->
-    <div id="initial-loader">
-      <div class="loader-text">ENZO.</div>
-    </div>
-  </div>
+  <div id="root"></div>
   <script type="module" src="/src/main.jsx"></script>
 </body>
 
