@@ -1,6 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
-import { motion, Suspense } from 'framer-motion'
-import { lazy } from 'react'
+import { motion } from 'framer-motion'
+import { lazy, Suspense } from 'react'
 import { getProjectById } from '../data/projects'
 import { useLanguage } from '../context/LanguageContext'
 
@@ -180,15 +180,15 @@ export default function Project() {
                     </div>
                 </section>
             ) : project.id === 'logcleaner' ? (
-            <section className="px-7 py-24 border-y border-[#1A1A1A] bg-[#090909]">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex justify-between items-end mb-12">
-                        <h2 className="font-bebas text-3xl md:text-4xl tracking-[0.15em] text-[#333]">{t({ FR: 'DÉMONSTRATION', EN: 'DEMONSTRATION' })}</h2>
-                        <a href={project.links?.repository} target="_blank" rel="noreferrer"
-                            className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#444] hover:text-offwhite border-b border-transparent hover:border-offwhite pb-1 transition-all">
-                            Source GitHub ↗
-                        </a>
-                    </div>
+                <section className="px-7 py-24 border-y border-[#1A1A1A] bg-[#090909]">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="flex justify-between items-end mb-12">
+                            <h2 className="font-bebas text-3xl md:text-4xl tracking-[0.15em] text-[#333]">{t({ FR: 'DÉMONSTRATION', EN: 'DEMONSTRATION' })}</h2>
+                            <a href={project.links?.repository} target="_blank" rel="noreferrer"
+                                className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#444] hover:text-offwhite border-b border-transparent hover:border-offwhite pb-1 transition-all">
+                                Source GitHub ↗
+                            </a>
+                        </div>
                         <Suspense fallback={<TerminalLoading />}>
                             <div className="grid grid-cols-1 lg:grid-cols-2 gap-3">
                                 <div>
@@ -205,50 +205,50 @@ export default function Project() {
                                 </div>
                             </div>
                         </Suspense>
-                </div>
-            </section>
+                    </div>
+                </section>
 
             ) : project.links?.demo && (
-            <section className="px-7 py-24 border-y border-[#1A1A1A] bg-[#090909]">
-                <div className="max-w-6xl mx-auto">
-                    <div className="flex flex-wrap justify-between items-end mb-12 gap-8">
-                        <h2 className="font-bebas text-3xl md:text-4xl tracking-[0.15em] text-[#333]">{t({ FR: 'DÉMONSTRATION', EN: 'DEMONSTRATION' })}</h2>
-                        <div className="flex gap-10">
-                            <a
-                                href={project.links.demo}
-                                target="_blank"
-                                rel="noreferrer"
-                                className="text-[10px] font-mono uppercase tracking-[0.2em] border-b border-[#222] hover:border-offwhite pb-1 font-bold transition-all"
-                            >
-                                {t({ FR: 'Déploiement Web', EN: 'Web Deployment' })} ↗
-                            </a>
-                            {project.links?.repository && (
+                <section className="px-7 py-24 border-y border-[#1A1A1A] bg-[#090909]">
+                    <div className="max-w-6xl mx-auto">
+                        <div className="flex flex-wrap justify-between items-end mb-12 gap-8">
+                            <h2 className="font-bebas text-3xl md:text-4xl tracking-[0.15em] text-[#333]">{t({ FR: 'DÉMONSTRATION', EN: 'DEMONSTRATION' })}</h2>
+                            <div className="flex gap-10">
                                 <a
-                                    href={project.links.repository}
+                                    href={project.links.demo}
                                     target="_blank"
                                     rel="noreferrer"
-                                    className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#444] hover:text-offwhite border-b border-transparent hover:border-offwhite pb-1 transition-all"
+                                    className="text-[10px] font-mono uppercase tracking-[0.2em] border-b border-[#222] hover:border-offwhite pb-1 font-bold transition-all"
                                 >
-                                    Source GitHub ↗
+                                    {t({ FR: 'Déploiement Web', EN: 'Web Deployment' })} ↗
                                 </a>
-                            )}
+                                {project.links?.repository && (
+                                    <a
+                                        href={project.links.repository}
+                                        target="_blank"
+                                        rel="noreferrer"
+                                        className="text-[10px] font-mono uppercase tracking-[0.2em] text-[#444] hover:text-offwhite border-b border-transparent hover:border-offwhite pb-1 transition-all"
+                                    >
+                                        Source GitHub ↗
+                                    </a>
+                                )}
+                            </div>
                         </div>
+                        <motion.div
+                            {...fadeUp(0.1)}
+                            className="w-full overflow-hidden bg-black"
+                            style={{ border: '1px solid #1A1A1A', height: '680px' }}
+                        >
+                            <iframe
+                                src={project.links.demo}
+                                title={t(project.meta?.title)}
+                                className="w-full h-full opacity-80 hover:opacity-100 transition-opacity duration-700"
+                                style={{ border: 'none' }}
+                                loading="lazy"
+                            />
+                        </motion.div>
                     </div>
-                    <motion.div
-                        {...fadeUp(0.1)}
-                        className="w-full overflow-hidden bg-black"
-                        style={{ border: '1px solid #1A1A1A', height: '680px' }}
-                    >
-                        <iframe
-                            src={project.links.demo}
-                            title={t(project.meta?.title)}
-                            className="w-full h-full opacity-80 hover:opacity-100 transition-opacity duration-700"
-                            style={{ border: 'none' }}
-                            loading="lazy"
-                        />
-                    </motion.div>
-                </div>
-            </section>
+                </section>
             )}
 
             {/* ── MODULES ── */}
