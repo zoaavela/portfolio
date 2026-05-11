@@ -4,7 +4,6 @@ import { useLanguage } from '../context/LanguageContext'
 export default function Contact() {
     const { t } = useLanguage()
 
-    // Fonction pour auto-agrandir la zone de texte selon son contenu
     const handleTextareaInput = (e) => {
         e.target.style.height = 'auto'
         e.target.style.height = `${e.target.scrollHeight}px`
@@ -25,9 +24,9 @@ export default function Contact() {
                             {t({ FR: 'ON', EN: "LET'S" })}<br />{t({ FR: 'PARLE?', EN: "TALK." })}
                         </h1>
                         <p className="font-mono text-[10px] md:text-sm text-[#666] tracking-widest uppercase max-w-md leading-relaxed hidden md:block">
-                            {t({ 
-                                FR: "Ouvert aux opportunités, aux collaborations ou simplement pour discuter autour d'un café.", 
-                                EN: "Open for opportunities, collaborations, or just a coffee chat." 
+                            {t({
+                                FR: "Ouvert aux opportunités, aux collaborations ou simplement pour discuter autour d'un café.",
+                                EN: "Open for opportunities, collaborations, or just a coffee chat."
                             })}
                         </p>
 
