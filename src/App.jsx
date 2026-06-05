@@ -3,6 +3,8 @@ import { Routes, Route, useLocation, Navigate } from 'react-router-dom'
 import { AnimatePresence, motion } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
+import { AuthProvider } from './context/AuthProvider'
+import ProtectedRoute from './components/ProtectedRoute'
 
 // Lazy loading for pages
 const Home = lazy(() => import('./pages/Home'))
@@ -10,8 +12,9 @@ const Projects = lazy(() => import('./pages/Projects'))
 const Project = lazy(() => import('./pages/Project'))
 const Blog = lazy(() => import('./pages/Blog'))
 const Contact = lazy(() => import('./pages/Contact'))
+const LoginPage = lazy(() => import('./pages/LoginPage'))
+const BrainPage = lazy(() => import('./pages/BrainPage'))
 
-// Transition "Directe" : On ne voit jamais l'ancienne page sortir
 const PageTransition = ({ children }) => {
     useEffect(() => {
         window.scrollTo(0, 0)
@@ -43,7 +46,11 @@ const LoadingFallback = () => (
 
 export default function App() {
     const location = useLocation()
-    const showFooter = location.pathname !== '/parcours' && location.pathname !== '/contact' && location.pathname !== '/'
+    const isBrainRoute = location.pathname.startsWith('/brain')
+    const showFooter = !isBrainRoute
+        && location.pathname !== '/parcours'
+        && location.pathname !== '/contact'
+        && location.pathname !== '/'
 
     useEffect(() => {
         const baseTitle = "enzo."
@@ -83,34 +90,48 @@ export default function App() {
     }, [])
 
     return (
-        <div className="min-h-screen bg-[#0D0D0D]">
-            <Navbar />
-            <Suspense fallback={<LoadingFallback />}>
-                <AnimatePresence mode="wait" initial={false}>
-                    <Routes location={location} key={location.pathname}>
-                        <Route path="/" element={<PageTransition><Home /></PageTransition>} />
-                        <Route path="/projets" element={<PageTransition><Projects /></PageTransition>} />
-                        <Route path="/projets/:id" element={<PageTransition><Project /></PageTransition>} />
-                        <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
-                        <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
-                        <Route path="*" element={<Navigate to="/" replace />} />
-                    </Routes>
-                </AnimatePresence>
-            </Suspense>
+        <AuthProvider>
+            <div className="min-h-screen bg-[#0D0D0D]">
+                {!isBrainRoute && <Navbar />}
 
-            <AnimatePresence>
-                {showFooter && (
-                    <motion.div
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        exit={{ opacity: 0 }}
-                        transition={{ duration: 0.3 }}
-                    >
-                        <Footer />
-                    </motion.div>
-                )}
-            </AnimatePresence>
-        </div>
+                <Suspense fallback={<LoadingFallback />}>
+                    <AnimatePresence mode="wait" initial={false}>
+                        <Routes location={location} key={location.pathname}>
+                            {/* Routes publiques */}
+                            <Route path="/" element={<PageTransition><Home /></PageTransition>} />
+                            <Route path="/projets" element={<PageTransition><Projects /></PageTransition>} />
+                            <Route path="/projets/:id" element={<PageTransition><Project /></PageTransition>} />
+                            <Route path="/blog" element={<PageTransition><Blog /></PageTransition>} />
+                            <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
+
+                            {/* Auth */}
+                            <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
+
+                            {/* Second cerveau — protégé */}
+                            <Route path="/brain" element={
+                                <ProtectedRoute>
+                                    <PageTransition><BrainPage /></PageTransition>
+                                </ProtectedRoute>
+                            } />
+
+                            <Route path="*" element={<Navigate to="/" replace />} />
+                        </Routes>
+                    </AnimatePresence>
+                </Suspense>
+
+                <AnimatePresence>
+                    {showFooter && (
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            transition={{ duration: 0.3 }}
+                        >
+                            <Footer />
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+            </div>
+        </AuthProvider>
     )
 }
-
