@@ -8,11 +8,13 @@ const links = {
         { label: 'PROJETS', href: '/projets' },
         // { label: 'PARCOURS', href: '/parcours' },
         { label: 'CONTACT', href: '/contact' },
+        { label: 'AXIOME', href: '/brain' },
     ],
     EN: [
         { label: 'PROJECTS', href: '/projets' },
         // { label: 'EXPERIENCE', href: '/parcours' },
         { label: 'CONTACT', href: '/contact' },
+        { label: 'AXIOME', href: '/brain' },
     ]
 }
 

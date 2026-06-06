@@ -6,26 +6,19 @@ import Footer from './components/Footer'
 import { AuthProvider } from './context/AuthProvider'
 import ProtectedRoute from './components/ProtectedRoute'
 
-// Lazy loading for pages
 const Home = lazy(() => import('./pages/Home'))
 const Projects = lazy(() => import('./pages/Projects'))
 const Project = lazy(() => import('./pages/Project'))
 const Blog = lazy(() => import('./pages/Blog'))
 const Contact = lazy(() => import('./pages/Contact'))
 const LoginPage = lazy(() => import('./pages/LoginPage'))
-const BrainPage = lazy(() => import('./pages/BrainPage'))
+const BrainPage = lazy(() => import('./pages/BrainPage'))   // hub orbe
+const BrainHub = lazy(() => import('./pages/BrainHub'))    // toutes les notes
 
 const PageTransition = ({ children }) => {
-    useEffect(() => {
-        window.scrollTo(0, 0)
-    }, [])
-
+    useEffect(() => { window.scrollTo(0, 0) }, [])
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-        >
+        <motion.div initial={{ opacity: 0, filter: 'blur(4px)' }} animate={{ opacity: 1, filter: 'blur(0px)' }} exit={{ opacity: 0, filter: 'blur(4px)' }} transition={{ duration: 0.4, ease: 'easeInOut' }}>
             {children}
         </motion.div>
     )
@@ -33,12 +26,8 @@ const PageTransition = ({ children }) => {
 
 const LoadingFallback = () => (
     <div className="fixed inset-0 bg-[#0D0D0D] flex items-center justify-center z-[100]">
-        <motion.span
-            initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 1, 0] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-            className="font-bebas text-4xl text-offwhite tracking-widest"
-        >
+        <motion.span initial={{ opacity: 0 }} animate={{ opacity: [0, 1, 0] }} transition={{ duration: 1.5, repeat: Infinity, ease: 'easeInOut' }}
+            className="font-bebas text-4xl text-offwhite tracking-widest">
             ENZO.
         </motion.span>
     </div>
@@ -47,45 +36,23 @@ const LoadingFallback = () => (
 export default function App() {
     const location = useLocation()
     const isBrainRoute = location.pathname.startsWith('/brain')
-    const showFooter = !isBrainRoute
-        && location.pathname !== '/parcours'
-        && location.pathname !== '/contact'
-        && location.pathname !== '/'
+    const showFooter = !isBrainRoute && location.pathname !== '/parcours' && location.pathname !== '/contact' && location.pathname !== '/'
 
     useEffect(() => {
-        const baseTitle = "enzo."
-        const numbers = "0123456789"
+        const baseTitle = 'enzo.'
+        const numbers = '0123456789'
         let isGlitching = false
-
         const interval = setInterval(() => {
             if (!isGlitching && Math.random() > 0.95) {
                 isGlitching = true
-                let glitchTicks = 0
-                const maxTicks = 4 + Math.floor(Math.random() * 4)
-
-                const glitchInterval = setInterval(() => {
-                    let currentTitle = ""
-                    for (let i = 0; i < baseTitle.length; i++) {
-                        if (baseTitle[i] === ".") {
-                            currentTitle += "."
-                        } else if (Math.random() > 0.5) {
-                            currentTitle += numbers[Math.floor(Math.random() * numbers.length)]
-                        } else {
-                            currentTitle += baseTitle[i]
-                        }
-                    }
-                    document.title = currentTitle
-
-                    glitchTicks++
-                    if (glitchTicks >= maxTicks) {
-                        clearInterval(glitchInterval)
-                        document.title = baseTitle
-                        isGlitching = false
-                    }
+                let ticks = 0
+                const max = 4 + Math.floor(Math.random() * 4)
+                const gi = setInterval(() => {
+                    document.title = baseTitle.split('').map(c => c === '.' ? '.' : Math.random() > 0.5 ? numbers[Math.floor(Math.random() * 10)] : c).join('')
+                    if (++ticks >= max) { clearInterval(gi); document.title = baseTitle; isGlitching = false }
                 }, 60)
             }
         }, 100)
-
         return () => clearInterval(interval)
     }, [])
 
@@ -97,7 +64,7 @@ export default function App() {
                 <Suspense fallback={<LoadingFallback />}>
                     <AnimatePresence mode="wait" initial={false}>
                         <Routes location={location} key={location.pathname}>
-                            {/* Routes publiques */}
+                            {/* Public */}
                             <Route path="/" element={<PageTransition><Home /></PageTransition>} />
                             <Route path="/projets" element={<PageTransition><Projects /></PageTransition>} />
                             <Route path="/projets/:id" element={<PageTransition><Project /></PageTransition>} />
@@ -107,11 +74,12 @@ export default function App() {
                             {/* Auth */}
                             <Route path="/login" element={<PageTransition><LoginPage /></PageTransition>} />
 
-                            {/* Second cerveau — protégé */}
+                            {/* Brain — protégé */}
                             <Route path="/brain" element={
-                                <ProtectedRoute>
-                                    <PageTransition><BrainPage /></PageTransition>
-                                </ProtectedRoute>
+                                <ProtectedRoute><PageTransition><BrainPage /></PageTransition></ProtectedRoute>
+                            } />
+                            <Route path="/brain/notes" element={
+                                <ProtectedRoute><PageTransition><BrainHub /></PageTransition></ProtectedRoute>
                             } />
 
                             <Route path="*" element={<Navigate to="/" replace />} />
@@ -121,12 +89,7 @@ export default function App() {
 
                 <AnimatePresence>
                     {showFooter && (
-                        <motion.div
-                            initial={{ opacity: 0 }}
-                            animate={{ opacity: 1 }}
-                            exit={{ opacity: 0 }}
-                            transition={{ duration: 0.3 }}
-                        >
+                        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
                             <Footer />
                         </motion.div>
                     )}
