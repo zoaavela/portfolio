@@ -51,19 +51,26 @@ export default function BrainPage() {
             a.dpr = window.devicePixelRatio || 1
 
             const bg = canvasRef.current
+            if (!bg) return
             bg.width = sw * a.dpr; bg.height = sh * a.dpr
             bg.style.width = sw + 'px'; bg.style.height = sh + 'px'
-            bg.getContext('2d').setTransform(a.dpr, 0, 0, a.dpr, 0, 0)
+            const ctx = bg.getContext('2d')
+            if (ctx) ctx.setTransform(a.dpr, 0, 0, a.dpr, 0, 0)
 
             const labelSize = Math.max(9, Math.round(minDim * 0.025))
             const iconSize = Math.round(a.circle * 0.4)
             nodeRefs.current.forEach(node => {
                 if (!node) return
                 const nc = node.querySelector('.node-circle')
-                nc.style.width = a.circle + 'px'; nc.style.height = a.circle + 'px'
-                const svg = nc.querySelector('svg')
-                svg.setAttribute('width', iconSize); svg.setAttribute('height', iconSize)
-                node.querySelector('.node-label').style.fontSize = labelSize + 'px'
+                if (nc) {
+                    nc.style.width = a.circle + 'px'; nc.style.height = a.circle + 'px'
+                    const svg = nc.querySelector('svg')
+                    if (svg) {
+                        svg.setAttribute('width', iconSize); svg.setAttribute('height', iconSize)
+                    }
+                }
+                const label = node.querySelector('.node-label')
+                if (label) label.style.fontSize = labelSize + 'px'
             })
         }
 
@@ -72,6 +79,7 @@ export default function BrainPage() {
             a.orbitAngle += 0.0020
             ORDER.forEach((_, i) => {
                 const ang = a.orbitAngle + i * (Math.PI / 2)
+                if (!a.pos[i]) return
                 a.pos[i].x = Math.cos(ang) * a.orbitR
                 a.pos[i].y = Math.sin(ang) * a.orbitR
                 const node = nodeRefs.current[i]
@@ -84,6 +92,7 @@ export default function BrainPage() {
             const bg = canvasRef.current
             if (!bg) return
             const ctx = bg.getContext('2d')
+            if (!ctx) return
             const sw = bg.width / a.dpr, sh = bg.height / a.dpr
             ctx.clearRect(0, 0, sw, sh)
             const cx = a.cx, cy = a.cy

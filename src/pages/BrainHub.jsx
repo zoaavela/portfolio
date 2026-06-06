@@ -365,6 +365,7 @@ export default function BrainHub() {
     const { user, logout } = useAuth()
     const navigate = useNavigate()
     const [notes, setNotes] = useState([])
+    const [loading, setLoading] = useState(true)
     const [filter, setFilter] = useState('all')
     const [search, setSearch] = useState('')
     const [activeNote, setActiveNote] = useState(null)
@@ -378,6 +379,7 @@ export default function BrainHub() {
     async function load() {
         const { data } = await supabase.from('notes').select('*').order('updated_at', { ascending: false })
         setNotes(data ?? [])
+        setLoading(false)
     }
 
     const catCounts = CATS.reduce((acc, c) => {
@@ -444,7 +446,7 @@ export default function BrainHub() {
                         style={{ width: 10, height: 10, borderRadius: '50%', padding: 0, flexShrink: 0 }} />
                     <span style={{ fontFamily: 'Inter, sans-serif', fontSize: 14, color: '#fff', fontWeight: 700, letterSpacing: '-.01em' }}>axiome.</span>
                 </div>
-                <span style={{ fontSize: 11, color: 'rgba(255,255,255,.2)' }}>{filtered.length} note{filtered.length !== 1 ? 's' : ''}</span>
+                <span style={{ fontSize: 11, color: 'rgba(255,255,255,.2)' }}>{loading ? '...' : `${filtered.length} note${filtered.length !== 1 ? 's' : ''}`}</span>
                 <div style={{ marginLeft: 'auto', display: 'flex', gap: 8, alignItems: 'center' }}>
                     <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'rgba(255,255,255,.05)', borderRadius: 20, padding: '5px 13px' }}>
                         <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,.3)" strokeWidth="2"><circle cx="11" cy="11" r="8" /><path d="m21 21-4.35-4.35" /></svg>
@@ -453,7 +455,7 @@ export default function BrainHub() {
                     </div>
                     <button onClick={() => setNewMode(true)} style={{ background: '#fff', border: 'none', borderRadius: 20, padding: '6px 14px', fontSize: 11, color: '#0a0a0a', cursor: 'pointer', fontWeight: 600 }}>+ Note</button>
                     <NotifPanel />
-                    <button onClick={logout} style={{ background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 20, padding: '6px 12px', fontSize: 11, color: 'rgba(255,255,255,.5)', cursor: 'pointer' }}>↩</button>
+                    <button onClick={logout} style={{ background: 'rgba(255,255,255,.06)', border: '1px solid rgba(255,255,255,.1)', borderRadius: 20, padding: '6px 12px', fontSize: 11, color: 'rgba(255,255,255,.5)', cursor: 'pointer' }} title="Déconnexion">🚪</button>
                 </div>
             </div>
 
@@ -463,7 +465,7 @@ export default function BrainHub() {
                     <button key={cat.id} onClick={() => setFilter(cat.id)}
                         style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '11px 16px', cursor: 'pointer', position: 'relative', background: 'transparent', border: 'none', fontFamily: 'Inter, sans-serif', flexShrink: 0 }}>
                         <span style={{ fontSize: 12, color: filter === cat.id ? '#fff' : 'rgba(255,255,255,.35)', fontWeight: filter === cat.id ? 600 : 400, transition: 'color .2s' }}>{cat.label}</span>
-                        <span style={{ fontSize: 10, color: filter === cat.id ? 'rgba(255,255,255,.5)' : 'rgba(255,255,255,.18)', transition: 'color .2s' }}>{catCounts[cat.id] || 0}</span>
+                        <span style={{ fontSize: 10, color: filter === cat.id ? 'rgba(255,255,255,.5)' : 'rgba(255,255,255,.18)', transition: 'color .2s' }}>{loading ? '...' : (catCounts[cat.id] || 0)}</span>
                         {filter === cat.id && (
                             <motion.div layoutId="filter-line"
                                 style={{ position: 'absolute', bottom: -1, left: 0, right: 0, height: 2, borderRadius: '2px 2px 0 0', background: cat.color }} />
@@ -521,14 +523,18 @@ export default function BrainHub() {
                         </div>
                     ))}
 
-                    {filtered.length === 0 && !newMode && (
+                    {loading ? (
+                        <div style={{ gridColumn: '1 / -1', display: 'flex', justifyContent: 'center', paddingTop: 80 }}>
+                            <motion.div initial={{ opacity: 0 }} animate={{ opacity: [.2, 1, .2] }} transition={{ delay: 0.2, duration: 1.5, repeat: Infinity }} style={{ width: 6, height: 6, borderRadius: '50%', background: 'rgba(255,255,255,.3)' }} />
+                        </div>
+                    ) : filtered.length === 0 && !newMode && (
                         <div style={{ gridColumn: '1 / -1', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 14, paddingTop: 60 }}>
                             <p style={{ color: 'rgba(255,255,255,.2)', fontSize: 14 }}>Aucune note{filter !== 'all' ? ` en ${CATS.find(c => c.id === filter)?.label}` : ''}</p>
                             <button onClick={() => setNewMode(true)} style={{ background: '#fff', border: 'none', borderRadius: 20, padding: '8px 18px', fontSize: 12, color: '#0a0a0a', cursor: 'pointer', fontWeight: 600 }}>+ Créer une note</button>
                         </div>
                     )}
 
-                    {!newMode && filtered.length > 0 && (
+                    {!loading && !newMode && filtered.length > 0 && (
                         <div>
                             <motion.div onClick={() => setNewMode(true)} whileHover={{ scale: 1.02 }}
                                 style={{ borderRadius: 18, border: '1px dashed rgba(255,255,255,.07)', cursor: 'pointer', height: 90, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>

@@ -5,33 +5,33 @@ import { useLanguage } from '../context/LanguageContext'
 const milestonesData = {
     FR: [
         {
-            year: '2018',
-            title: 'DÉBUT DES ÉTUDES',
-            desc: "Entrée en école d'ingénieur. Plongée dans les mathématiques appliquées, l'algorithmique et les fondements de l'informatique.",
+            year: '2024-2026',
+            title: 'BUT MMI',
+            desc: "2 ans de BUT MMI à l'IUT de Marne la Vallée. Spécialité développement web et dispositifs interactifs.",
             image: 'https://images.unsplash.com/photo-1604014237800-1c9102c219ed?auto=format&fit=crop&w=800&q=80'
         },
         {
-            year: '2020',
-            title: 'PREMIERS PAS DATA',
-            desc: "Découverte de l'écosystème Big Data lors d'un premier stage. Création de pipelines ETL et initiation au Machine Learning.",
+            year: '2025',
+            title: 'Stage Data Engineer',
+            desc: "Stage de 1 mois à La Banque Postale.",
             image: 'https://images.unsplash.com/photo-1550684848-fac1c5b4e853?auto=format&fit=crop&w=800&q=80'
         },
         {
-            year: '2022',
-            title: 'MASTER IA & DATA',
-            desc: 'Obtention du diplôme avec mention. Spécialisation en Intelligence Artificielle et thèse sur les modèles de langage (NLP).',
+            year: '2026',
+            title: 'Stage Full Stack Developer',
+            desc: "Stage de 2 mois chez Gleam Agency, création d'un outil métier pour la création musicale.",
             image: 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80'
         },
         {
-            year: '2023',
-            title: 'DATA ENGINEER',
-            desc: "Premier poste structurant. Déploiement d'architectures cloud robustes et industrialisation de modèles prédictifs.",
+            year: '2026-2029',
+            title: 'EFREI - Ingénieur Big Data & Machine Learning',
+            desc: "3 ans à l'EFREI - Paris, école d'ingénieur spécialisée en informatique.",
             image: 'https://images.unsplash.com/photo-1618005182384-a83a8bd57fbe?auto=format&fit=crop&w=800&q=80'
         },
         {
-            year: '2024',
-            title: 'CONSULTANT SENIOR',
-            desc: "Lancement en tant qu'indépendant. Accompagnement de startups et grands comptes sur leur stratégie et implémentation IA.",
+            year: '2026-2029',
+            title: 'Data Analyst',
+            desc: "Ministère de la Transition Ecologique - Alternance de 3 ans.",
             image: 'https://images.unsplash.com/photo-1524169358666-eb3c8c4cedf3?auto=format&fit=crop&w=800&q=80'
         }
     ],
@@ -72,7 +72,7 @@ const milestonesData = {
 export default function Parcours() {
     const { lang, t } = useLanguage()
     const milestones = milestonesData[lang]
-    
+
     const targetRef = useRef(null)
     const carouselRef = useRef(null)
     const [carouselWidth, setCarouselWidth] = useState(0)
