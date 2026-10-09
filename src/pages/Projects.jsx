@@ -7,8 +7,8 @@ import { useLanguage } from '../context/LanguageContext'
 function SectionDivider({ title }) {
     return (
         <div className="flex items-center gap-4 mb-6 mt-16 first:mt-0">
-            <span className="font-mono text-[10px] text-[#555] tracking-[0.2em] uppercase whitespace-nowrap">{title}</span>
-            <div className="h-[1px] flex-grow bg-[#161616]"></div>
+            <span className="font-mono text-[10px] text-[#999] tracking-[0.2em] uppercase whitespace-nowrap">{title}</span>
+            <div className="h-[1px] flex-grow bg-[#444]"></div>
         </div>
     )
 }
@@ -18,7 +18,7 @@ function ProjectCard({ p, lang, className = '' }) {
 
     const CardContent = (
         <div
-            className={`group break-inside-avoid bg-[#111] border ${p.type === 'main' ? 'border-[#202020]' : 'border-[#1A1A1A]'} ${isClickable ? 'cursor-pointer grayscale-0' : 'cursor-default opacity-50 grayscale'} relative overflow-hidden block w-full ${p.height} ${className} transition-all duration-500`}
+            className={`group break-inside-avoid bg-[#111] border ${p.type === 'main' ? 'border-[#333]' : 'border-[#2A2A2A]'} ${isClickable ? 'cursor-pointer grayscale-0' : 'cursor-default opacity-70 grayscale-0'} relative overflow-hidden block w-full ${p.height} ${className} transition-all duration-500`}
         >
             {/* Image / Gradient Hover */}
             <div className={`absolute inset-0 z-0 opacity-0 transition-opacity duration-300 ease-in-out ${isClickable ? 'group-hover:opacity-100' : ''} ${p.bg}`}></div>
@@ -28,7 +28,7 @@ function ProjectCard({ p, lang, className = '' }) {
 
             {/* Arrow SVG */}
             {isClickable && (
-                <div className="absolute top-4 right-4 text-[#1A1A1A] transition-all duration-200 z-20 group-hover:text-offwhite group-hover:translate-x-[2px] group-hover:-translate-y-[2px]">
+                <div className="absolute top-4 right-4 text-[#888] transition-all duration-200 z-20 group-hover:text-offwhite group-hover:translate-x-[2px] group-hover:-translate-y-[2px]">
                     <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
                         <line x1="7" y1="17" x2="17" y2="7"></line>
                         <polyline points="7 7 17 7 17 17"></polyline>
@@ -38,13 +38,13 @@ function ProjectCard({ p, lang, className = '' }) {
 
             {/* Content */}
             <div className="p-5 flex flex-col justify-end h-full relative z-10">
-                <div className="font-mono text-[9px] text-[#232323] tracking-[0.12em] mb-2 transition-colors duration-200 group-hover:text-[#444]">
+                <div className="font-mono text-[9px] text-[#888] tracking-[0.12em] mb-2 transition-colors duration-200 group-hover:text-[#AAA]">
                     {p.id.toUpperCase()}{p.type === 'main' && isClickable ? (lang === 'FR' ? ' · Principal' : ' · Main') : ''}
                 </div>
-                <div className={`font-bebas tracking-[0.04em] leading-none transition-colors duration-200 group-hover:text-offwhite ${p.type === 'main' ? 'text-[36px] text-[#383838]' : 'text-[24px] text-[#2A2A2A]'}`}>
+                <div className={`font-bebas tracking-[0.04em] leading-none transition-colors duration-200 group-hover:text-offwhite ${p.type === 'main' ? 'text-[36px] text-[#CCC]' : 'text-[24px] text-[#AAA]'}`}>
                     {p.title}
                 </div>
-                <div className="text-[10px] text-[#1E1E1E] mt-1.5 tracking-[0.06em] uppercase transition-colors duration-200 group-hover:text-[#555]">
+                <div className="text-[10px] text-[#777] mt-1.5 tracking-[0.06em] uppercase transition-colors duration-200 group-hover:text-[#999]">
                     {p.stack}
                 </div>
             </div>
@@ -75,9 +75,9 @@ export default function Projects() {
             bg: 'bg-[linear-gradient(160deg,#1A1A2E,#0D0D0D)]'
         }] : []),
         // 2. Placeholder 1
-        { id: 'placeholder-1', type: 'main', height: 'h-[320px]', title: t({ FR: 'À VENIR', EN: 'COMING SOON' }), stack: 'Data Engineering', bg: 'bg-[#111]' },
+        { id: 'placeholder-1', type: 'main', height: 'h-[320px]', title: t({ FR: 'À VENIR', EN: 'COMING SOON' }), stack: 'Data Engineering', bg: 'bg-[#222]' },
         // 3. Placeholder 2
-        { id: 'placeholder-2', type: 'main', height: 'h-[320px]', title: t({ FR: 'À VENIR', EN: 'COMING SOON' }), stack: 'Machine Learning', bg: 'bg-[#111]' },
+        { id: 'placeholder-2', type: 'main', height: 'h-[320px]', title: t({ FR: 'À VENIR', EN: 'COMING SOON' }), stack: 'Machine Learning', bg: 'bg-[#222]' },
     ].slice(0, 3)
 
     // All other projects go to secondary
